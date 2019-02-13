@@ -1,0 +1,32 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2019-01-29 00:08:33 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 00:08:33 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 00:40:12 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 00:40:13 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 01:39:29 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 01:39:29 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 01:42:21 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 01:42:21 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 03:06:33 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 03:06:33 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 03:06:56 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 03:06:56 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 03:48:37 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 03:48:37 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 03:56:20 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 03:56:20 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 03:56:20 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 03:56:20 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 03:56:20 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 03:56:20 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 03:56:20 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 03:56:20 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 04:03:19 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 04:03:20 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 04:25:48 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 04:25:48 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 04:25:50 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 04:25:50 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
+ERROR - 2019-01-29 04:26:01 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 8
+ERROR - 2019-01-29 04:26:01 --> Severity: Notice --> Undefined variable: locale /nfs/c12/h01/mnt/225778/domains/recordtime.com/html/application/views/themes/recordtime/scripts.php 9
