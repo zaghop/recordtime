@@ -1235,33 +1235,44 @@ class User extends Public_controller
         if (is_client_logged_in()) {
             redirect(site_url());
         }
-        $this->form_validation->set_rules('password', _l('clients_login_password'), 'required');
-        $this->form_validation->set_rules('email', _l('clients_login_email'), 'required|valid_email');
-        if (get_option('use_recaptcha_customers_area') == 1 && get_option('recaptcha_secret_key') != '' && get_option('recaptcha_site_key') != '') {
-            $this->form_validation->set_rules('g-recaptcha-response', 'Captcha', 'callback_recaptcha');
+        if(isset($this->session->userdata['userid'])!= ''){
+            redirect('artists/profile');
         }
-        if ($this->form_validation->run() !== false) {
-            $this->load->model('Authentication_model');
-            $success = $this->Authentication_model->login($this->input->post('email'), $this->input->post('password'), $this->input->post('remember'), false);
-            if (is_array($success) && isset($success['memberinactive'])) {
-                set_alert('danger', _l('inactive_account'));
-                redirect(site_url('clients/login'));
-            } elseif ($success == false) {
-                set_alert('danger', _l('client_invalid_username_or_password'));
-                redirect(site_url('clients/login'));
-            }
-            do_action('after_contact_login');
-            redirect(site_url());
-        }
-        if (get_option('allow_registration') == 1) {
-            $data['title'] = _l('clients_login_heading_register');
-        } else {
-            $data['title'] = _l('clients_login_heading_no_register');
-        }
-        $data['bodyclass'] = 'customers_login';
-        $this->data        = $data;
-        $this->view        = 'login';
+        $data['title'] = _l('artists_login');
+
+        $this->data    = $data;
+        $this->view    = 'artists/login';
         $this->layout();
+
+        if($this->input->post('submit')){
+            $data['email'] = trim($this->input->post('email'));
+            $data['password'] = md5($this->input->post('password'));
+            $this->form_validation->set_rules('email', 'Email', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->session->set_flashdata('error',"There is some error. please check");
+            }
+            else{
+                    $username = trim($this->input->post('email'));
+                    $password = md5($this->input->post('password'));
+
+                    $login = $this->user->login_user($data);
+                    if($login != false) {
+                        $this->session->set_flashdata('success',"You have been successfully logged in.");
+                        if($login['type'] == 1){
+                            redirect("artists/profile");
+                        }elseif($login['type'] == 2){
+                            redirect("producer/profile");
+                        }
+                    }
+                    else{
+                        $this->session->set_flashdata('error',"Email address or password does not match.");
+                         redirect("artists/login");
+                    }
+                }
+            }
     }
 
     public function logout()
@@ -1464,4 +1475,72 @@ class User extends Public_controller
         $this->layout();
     }
     /***************************************code by prakash end ******************************/
+
+    /*PRODUCER METHODS*/
+    public function producer_login(){
+        if(isset($this->session->userdata['userid'])!= ''){
+            redirect('producer/profile');
+        }
+        $data['title'] = _l('producer_login');
+
+        $this->data    = $data;
+        $this->view    = 'artists/login';
+        $this->layout();
+
+        if($this->input->post('submit')){
+            $data['email'] = trim($this->input->post('email'));
+            $data['password'] = md5($this->input->post('password'));
+            $this->form_validation->set_rules('email', 'Email', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->session->set_flashdata('error',"There is some error. please check");
+            }
+            else{
+                    $username = trim($this->input->post('email'));
+                    $password = md5($this->input->post('password'));
+
+                    $login = $this->user->login_user($data);
+                    if($login == true) {
+                        $this->session->set_flashdata('success',"You have been successfully logged in.");
+                         redirect("producer/profile");
+                    }
+                    else{
+                        $this->session->set_flashdata('error',"Email address or password does not match.");
+                         redirect("producer/login");
+                    }
+                }
+            }
+        }
+    public function producer_profile(){
+        if ($this->session->userdata('email') === NULL){
+                redirect("/");
+        }
+        $data['title'] = _l('producer_profile');
+
+        $this->data    = $data;
+        $this->view    = 'producers/profile';
+        $this->layout();
+    }
+    public function producer_signup()
+    {
+        if($this->input->post('submit')){
+            $userdata = $this->input->post();
+            $insert = $this->user->artists_signup($userdata);
+            if($insert){
+                $this->session->set_flashdata('success',"Your profile has been successfully registered.");
+                redirect("producer/login");
+            }
+            else{
+                $this->session->set_flashdata('error',"there is some error. please try again.");
+                redirect("producer/signup");
+            }
+        }
+        $data['title'] = _l('producer_signup');
+
+        $this->data    = $data;
+        $this->view    = 'producers/signup';
+        $this->layout();
+    }
 }

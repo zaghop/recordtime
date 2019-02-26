@@ -27,15 +27,16 @@
 		</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-
         <?php if(isset($this->session->userdata['userid'])!= '') {  ?>
         	<li><a href="<?= site_url('artists/logout')?>" class="txt-upper mobile-hide"><strong>SIGN OUT</strong></a></li>
 					<?php if($this->session->userdata['type'] == 1){?>
 						<li><a href="<?= site_url('artists/profile')?>" class="txt-upper mobile-hide"><strong>My Profile</strong></a></li>
-					 <?php } ?>
+					 <?php }elseif($this->session->userdata['type'] == 2) { ?>
+            <li><a href="<?= site_url('producer/profile')?>" class="txt-upper mobile-hide"><strong>My Profile</strong></a></li>
+           <?php }?>
     	<?php } else { ?>
         <li><a href="https://recordtime.zendesk.com/" class="txt-upper">Help</a></li>
-    		<li><a href="<?= site_url('artists/login')?>" class="txt-upper mobile-hide"><strong>SIGN IN</strong></a></li>
+    		<li><a href="<?= site_url('login')?>" class="txt-upper mobile-hide"><strong>SIGN IN</strong></a></li>
         <li class="active mobile-hide" ><a href="#">Start Recording</a></li>
     	<?php } ?>
 

@@ -47,11 +47,30 @@ class User_model extends CI_Model {
                 );
             }
             $this->session->set_userdata($newdata);
-            return true;
+            return $newdata;
         }
         else{
             return false;
         }
 
     }
+    public function producer_signup($data){
+    // $this->db->insert('ef_userinvestorprofile', $data);
+    // return true;
+        $email = $data['email'];
+        $data['type'] = 2;
+        $this->db->where("email", $email);
+        $query = $this->db->get("tbl_user");
+         if ($query->num_rows() > 0) {
+            return false;
+        }
+        else {
+            unset($data['submit']);
+            $data['password'] = md5($data['password']);
+            $this->db->insert('tbl_user', $data);
+            $lastId = $this->db->insert_id();
+            return $lastId;
+
+        }
+ }
 }

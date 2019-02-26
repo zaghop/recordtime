@@ -15,7 +15,7 @@
           <div class="col-sm-1"></div>
           <div class="col-sm-4 producer-profile-img-container">
             <div class="producer-profile-img">
-              <img src="images/profucer-profile-image.png">
+              <img src="<?= site_url().template_assets_path(); ?>/images/profucer-profile-image.png">
             </div>
 
           </div>
@@ -34,10 +34,10 @@
             </div>
             <div class="producer-email-container">
               <a href="mailto:test@test.com" class="email-icon">
-                <img src="images/big-mail-icon.png">
+                <img src="<?= site_url().template_assets_path(); ?>/images/big-mail-icon.png">
               </a>
               <a href="##" class="check-box-icon">
-                <img src="images/Checkbox.png">
+                <img src="<?= site_url().template_assets_path(); ?>/images/Checkbox.png">
               </a>
             </div>
           </div>
@@ -54,7 +54,7 @@
               <p>Blah blah blah blah <br>
               Some stuff<br>
               Limited characters</p>
-            </div>  
+            </div>
           </div>
           <div class="col-sm-6">
             <div class="credits-container profile-card box-shadow">
@@ -62,7 +62,7 @@
               <p>Blah blah blah blah <br>
                 AllMusic Link can go here too<br>
               <p>For inexperienced producers, this section can be deselected.</p>
-            </div>  
+            </div>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@
                             <h5>$100</h5>
                           </td>
                         </tr>
-                        
+
 
 
                       </table>
@@ -155,11 +155,11 @@
             <div class="song-track-container">
               <div class="song-track-block">
                 <div class="play-btn-container">
-                  <a href="##" class="play-btn"><img src="images/play-icon.png"></a>
+                  <a href="##" class="play-btn"><img src="<?= site_url().template_assets_path(); ?>/images/play-icon.png"></a>
                 </div>
                 <div class="song-track-container">
                   <div class="song-track-img">
-                    <img src="images/song-track-grid.png">
+                    <img src="<?= site_url().template_assets_path(); ?>/images/song-track-grid.png">
                   </div>
                   <div class="song-details">
                     <p>Song One by <a href="##">Bob Loblaw</a></p>
@@ -168,11 +168,11 @@
               </div>
               <div class="song-track-block">
                 <div class="play-btn-container">
-                  <a href="##" class="play-btn"><img src="images/play-icon.png"></a>
+                  <a href="##" class="play-btn"><img src="<?= site_url().template_assets_path(); ?>/images/play-icon.png"></a>
                 </div>
                 <div class="song-track-container">
                   <div class="song-track-img">
-                    <img src="images/song-track-grid.png">
+                    <img src="<?= site_url().template_assets_path(); ?>/images/song-track-grid.png">
                   </div>
                   <div class="song-details">
                     <p>Song One by <a href="##">Bob Loblaw</a></p>
@@ -181,11 +181,11 @@
               </div>
               <div class="song-track-block">
                 <div class="play-btn-container">
-                  <a href="##" class="play-btn"><img src="images/play-icon.png"></a>
+                  <a href="##" class="play-btn"><img src="<?= site_url().template_assets_path(); ?>/images/play-icon.png"></a>
                 </div>
                 <div class="song-track-container">
                   <div class="song-track-img">
-                    <img src="images/song-track-grid.png">
+                    <img src="<?= site_url().template_assets_path(); ?>/images/song-track-grid.png">
                   </div>
                   <div class="song-details">
                     <p>Song One by <a href="##">Bob Loblaw</a></p>
@@ -194,11 +194,11 @@
               </div>
               <div class="song-track-block">
                 <div class="play-btn-container">
-                  <a href="##" class="play-btn"><img src="images/play-icon.png"></a>
+                  <a href="##" class="play-btn"><img src="<?= site_url().template_assets_path(); ?>/images/play-icon.png"></a>
                 </div>
                 <div class="song-track-container">
                   <div class="song-track-img">
-                    <img src="images/song-track-grid.png">
+                    <img src="<?= site_url().template_assets_path(); ?>/images/song-track-grid.png">
                   </div>
                   <div class="song-details">
                     <p>Song One by <a href="##">Bob Loblaw</a></p>
@@ -211,7 +211,7 @@
                 <div class="col-sm-3">
                 </div>
                 <div class="col-sm-9 low-high-image-container">
-                  <img src="images/low-high-image.png">
+                  <img src="<?= site_url().template_assets_path(); ?>/images/low-high-image.png">
                 </div>
               </div>
               <div class="row">
@@ -262,15 +262,15 @@
                   <span class="rating-circle flexibility-rating">5</span>
                 </div>
               </div>
-              
+
             </div>
           </div>
           </div>
         </div>
       </div>
     </div>
-        
-    
+
+
 
   </div>
 </div>
