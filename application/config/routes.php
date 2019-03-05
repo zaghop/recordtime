@@ -84,6 +84,7 @@ $route['producer/profile']  = "User/producer_profile";
 
 $route['projects/create']  = "project/projects_add"; // added by prakash
 $route['projects/summary']  = "User/projects_summary"; // added by prakash
+$route['project/dashboard'] = "Project/Dashboard";
 
 $route['viewinvoice/(:num)/(:any)']  = "clients/viewinvoice/$1/$2";
 

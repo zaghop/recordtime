@@ -5,7 +5,7 @@ class Project extends Public_controller
     public function __construct()
     {
         parent::__construct();
-//        $this->form_validation->set_error_delimiters('<p class="text-danger alert-validation">', '</p>');
+        // $this->form_validation->set_error_delimiters('<p class="text-danger alert-validation">', '</p>');;;
         do_action('after_website_init');
         $this->load->library('form_validation');
         $this->load->model('project_model','project');
@@ -21,10 +21,27 @@ class Project extends Public_controller
         $this->layout();
     }
 
+
+    /****/
+
+    public function dashboard()
+    {
+      $data['title'] = _l('Projects');
+
+      $data['projects'] = array(
+        "project1" => [ "name" => "project 1", ],
+        "project2" => [ "name" => "project 2", ],
+      );
+
+      $this->data    = $data;
+      $this->view    = 'projects/dashboard';
+      $this->layout();
+    }
+
     /***************************************code by prakash start ******************************/
     public function projects_add()
     {
-     
+
         if($this->input->post('submit')){
             $this->form_validation->set_rules('name', 'Project Name', 'required');
             $this->form_validation->set_rules('budget', 'Budget', 'required');
@@ -41,7 +58,7 @@ class Project extends Public_controller
                 $config['encrypt_name'] = TRUE;
                 $this->upload->initialize($config);
                 $this->load->library('upload', $config);
-         
+
                 if (!$this->upload->do_upload('doc_name'))
                 {
                     $projdata['doc_name'] = '';
@@ -92,7 +109,7 @@ class Project extends Public_controller
             else{
                     $username = trim($this->input->post('email'));
                     $password = md5($this->input->post('password'));
-                    
+
                     $login = $this->user->login_user($data);
                     if($login == true) {
                         $this->session->set_flashdata('success',"You have been successfully logged in.");
