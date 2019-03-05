@@ -8,19 +8,10 @@
 
 If on a Mac, [this guide is OK.]]( https://coolestguidesontheplanet.com/install-apache-mysql-php-on-macos-mojave-10-14/)
 
-### Screens/Pages
-- Landing
-- ???
-
-
-### Local Dev Env
-
-
-### Recommended
-- PHPMyAdmin
 
 ### Apache Web Server
 - `/etc/apache2/httpd.conf` is config file for httpd daemon. It is made up of configuration directives. http://httpd.apache.org/docs/2.4/mod/directives.html
+- make sure the PHP module is enabled
 - Important Directives: `DocumentName`
 
 #### Handy commands:
@@ -33,4 +24,13 @@ If on a Mac, [this guide is OK.]]( https://coolestguidesontheplanet.com/install-
 ### MySQL Community Server 8.0.15
 
 - When installing, use legacy password system (not SHA2)
--
+- To log in: `mysql -u USER -p`
+- `CREATE DATABASE recordtime;`
+- `mysql -u USER -p recordtime < dump.sql`
+- PHPMyAdmin recommended
+
+### Screens/Pages
+- projects dashboard - GET /projects
+- create new project - GET /project
+- workon project - GET POST PUT DELETE /projects/<id>
+- 
