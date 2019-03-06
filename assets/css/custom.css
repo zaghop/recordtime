@@ -1,0 +1,16 @@
+/* loaded in head.html */
+
+.ProjectsDashboard {
+  padding-top: 100px;
+  width: 100vw;
+  margin: 0 auto;
+}
+
+.ProjectList {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.ProjectItem__Details {
+  background: #FFFFFF;
+}
