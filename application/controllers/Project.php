@@ -28,10 +28,14 @@ class Project extends Public_controller
     {
       $data['title'] = _l('Projects');
 
-      $data['projects'] = array(
-        "project1" => [ "name" => "project 1", ],
-        "project2" => [ "name" => "project 2", ],
-      );
+      // wanna call the model dashboard/get all ORM function
+
+      // $data['projects'] = array(
+      //   "project1" => [ "name" => "project 1", ],
+      //   "project2" => [ "name" => "project 2", ],
+      // );
+
+      $data['projects'] = $this->project->dashboard();
 
       $this->data    = $data;
       $this->view    = 'projects/dashboard';

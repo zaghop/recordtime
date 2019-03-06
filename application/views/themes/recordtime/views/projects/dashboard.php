@@ -4,9 +4,9 @@
 
     <<?php foreach ($projects as $project): ?>
 
-        <h3><?php echo $project["name"]; ?></h3>
+        <h3><?php echo $project; ?></h3>
         <div class="main">
-                <?php echo $project['name']; ?>
+                <?php echo $project; ?>
         </div>
 
 

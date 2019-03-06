@@ -9,13 +9,25 @@ class Project_model extends CI_Model {
         parent::__construct();
         $this->load->library('session');
         $this->load->library('upload');
+        $this->load->database();
     }
- 
+
+ public function dashboard() {
+    $projects = $this->db->get("tblprojects");
+
+    if ($projects->num_rows() < 0) {
+      return false;
+    }
+    else {
+      return $projects->row_array();
+    }
+ }
+
  public function projects_add($data){
         $proj_name = $data['name'];
         $this->db->where("name", $proj_name);
         $query = $this->db->get("tbl_projects");
-         if ($query->num_rows() > 0) { 
+         if ($query->num_rows() > 0) {
             return false;
         }
         else {
@@ -40,16 +52,16 @@ class Project_model extends CI_Model {
             $this->db->insert('tbl_project_docs', $proj_doc_data);
             return $lastId;
 
-        } 
+        }
  }
- public function login_user($data){ 
+ public function login_user($data){
         // print_r($data);die;
         $data = array(
             'email' => $data['email'],
             'password' => $data['password']
-        );  
+        );
         $query = $this->db->get_where('tbl_user', $data);
-        if ($query->num_rows() > 0) { 
+        if ($query->num_rows() > 0) {
             foreach ($query->result() as $rows) {
                 //add all data to session
                 $newdata = array(
@@ -62,8 +74,8 @@ class Project_model extends CI_Model {
             return true;
         }
         else{
-            return false;    
+            return false;
         }
-        
+
     }
 }
