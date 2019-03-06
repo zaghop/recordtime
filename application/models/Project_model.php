@@ -13,13 +13,13 @@ class Project_model extends CI_Model {
     }
 
  public function dashboard() {
-    $projects = $this->db->get("tblprojects");
+    $projects = $this->db->query("SELECT * FROM tblprojects");
 
-    if ($projects->num_rows() < 0) {
+    if ($projects->num_rows() < 1) {
       return false;
     }
     else {
-      return $projects->row_array();
+      return $projects->result_array();
     }
  }
 
