@@ -27,14 +27,6 @@ class Project extends Public_controller
     public function dashboard()
     {
       $data['title'] = _l('Projects');
-
-      // wanna call the model dashboard/get all ORM function
-
-      // $data['projects'] = array(
-      //   "project1" => [ "name" => "project 1", ],
-      //   "project2" => [ "name" => "project 2", ],
-      // );
-
       $data['projects'] = $this->project->dashboard();
 
       $this->data    = $data;

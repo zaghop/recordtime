@@ -13,6 +13,7 @@ class Project_model extends CI_Model {
     }
 
  public function dashboard() {
+   // TODO: Obviously needs to be more finely grained + auth
     $projects = $this->db->query("SELECT * FROM tblprojects");
 
     if ($projects->num_rows() < 1) {
