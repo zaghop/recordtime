@@ -33,4 +33,7 @@ If on a Mac, [this guide is OK.]]( https://coolestguidesontheplanet.com/install-
 - projects dashboard - GET /projects
 - create new project - GET /project
 - workon project - GET POST PUT DELETE /projects/<id>
-- 
+
+
+
+- /recordtime/index.php/user/login
