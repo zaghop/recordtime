@@ -1,10 +1,13 @@
 <div class="ProjectsDashboard">
-    <h2>Projects</h2>
     <div class="ProjectList">
+      <h2>Projects--Overview</h2>
 
       <?php foreach ($projects as $project): ?>
+
         <div class="ProjectItem">
-          <span>Started <?php echo $project['start_date']; ?><span>
+          <p class="ProjectItem__Started">Started
+            <?php echo $project['start_date']; ?>
+          <p>
           <div class="ProjectItem__Details">
             <h3><?php echo $project['name']; ?></h3>
             <p class="name"><?php echo $project['name']; ?></p>
