@@ -1,1 +1,4 @@
 application/config/database.php
+application/config/app-config.php
+
+application/logs
