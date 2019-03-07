@@ -14,35 +14,31 @@ class Project extends Public_controller
     public function index()
     {
         $data['is_home'] = true;
-
         $data['title'] = get_option('companyname');
         $this->data    = $data;
         $this->view    = 'home';
         $this->layout();
     }
 
-
-    /****/
-
     public function dashboard()
     {
-      $data['title'] = _l('Projects');
-      $data['projects'] = $this->project->dashboard();
+        $data['title'] = _l('Projects');
+        $data['projects'] = $this->project->dashboard();
 
-      $this->data    = $data;
-      $this->view    = 'projects/dashboard';
-      $this->layout();
+        $this->data    = $data;
+        $this->view    = 'projects/dashboard';
+        $this->layout();
     }
 
     /***************************************code by prakash start ******************************/
-    public function projects_add()
+    public function create()
     {
-
         if($this->input->post('submit')){
             $this->form_validation->set_rules('name', 'Project Name', 'required');
             $this->form_validation->set_rules('budget', 'Budget', 'required');
             $this->form_validation->set_rules('songs', 'Project Song', 'required');
             $this->form_validation->set_rules('songs', 'Project Song', 'required');
+
             if ($this->form_validation->run() == FALSE)
             {
                 $this->session->set_flashdata('error',"There is some error. please check");
@@ -82,48 +78,49 @@ class Project extends Public_controller
         $this->layout();
     }
 
-    public function artists_login(){
-        if(isset($this->session->userdata['userid'])!= ''){
-            redirect('artists/profile');
-        }
-        $data['title'] = _l('artists_login');
+    // public function artists_login(){
+    //     if(isset($this->session->userdata['userid'])!= ''){
+    //         redirect('artists/profile');
+    //     }
+    //     $data['title'] = _l('artists_login');
+    //
+    //     $this->data    = $data;
+    //     $this->view    = 'artists/login';
+    //     $this->layout();
+    //
+    //     if($this->input->post('submit')){
+    //         $data['email'] = trim($this->input->post('email'));
+    //         $data['password'] = md5($this->input->post('password'));
+    //         $this->form_validation->set_rules('email', 'Email', 'required');
+    //         $this->form_validation->set_rules('password', 'Password', 'required');
+    //
+    //         if ($this->form_validation->run() == FALSE)
+    //         {
+    //             $this->session->set_flashdata('error',"There is some error. please check");
+    //         }
+    //         else{
+    //                 $username = trim($this->input->post('email'));
+    //                 $password = md5($this->input->post('password'));
+    //
+    //                 $login = $this->user->login_user($data);
+    //                 if($login == true) {
+    //                     $this->session->set_flashdata('success',"You have been successfully logged in.");
+    //                      redirect("artists/profile");
+    //                 }
+    //                 else{
+    //                     $this->session->set_flashdata('error',"Email address or password does not match.");
+    //                      redirect("artists/login");
+    //                 }
+    //             }
+    //         }
+    //     }
 
-        $this->data    = $data;
-        $this->view    = 'artists/login';
-        $this->layout();
-
-        if($this->input->post('submit')){
-            $data['email'] = trim($this->input->post('email'));
-            $data['password'] = md5($this->input->post('password'));
-            $this->form_validation->set_rules('email', 'Email', 'required');
-            $this->form_validation->set_rules('password', 'Password', 'required');
-
-            if ($this->form_validation->run() == FALSE)
-            {
-                $this->session->set_flashdata('error',"There is some error. please check");
-            }
-            else{
-                    $username = trim($this->input->post('email'));
-                    $password = md5($this->input->post('password'));
-
-                    $login = $this->user->login_user($data);
-                    if($login == true) {
-                        $this->session->set_flashdata('success',"You have been successfully logged in.");
-                         redirect("artists/profile");
-                    }
-                    else{
-                        $this->session->set_flashdata('error',"Email address or password does not match.");
-                         redirect("artists/login");
-                    }
-                }
-            }
-        }
-    public function projects_summary(){
-         $data['title'] = _l('projects_summary');
-
-        $this->data    = $data;
-        $this->view    = 'projects/summary';
-        $this->layout();
-    }
+    // public function projects_summary(){
+    //      $data['title'] = _l('projects_summary');
+    //
+    //     $this->data    = $data;
+    //     $this->view    = 'projects/summary';
+    //     $this->layout();
+    // }
     /***************************************code by prakash end ******************************/
 }

@@ -1,6 +1,20 @@
+<div class="middle-container">
+  <div class="banner-image">
+     <div class="banner-content">
+        <img src="<?= site_url().template_assets_path(); ?>/images/Big Logo-White.png">
+     </div>
+  </div>
+  <div class="page-title box-shadow">
+     <div class="container-fluid">
+        <h1>Projects</h1>
+     </div>
+  </div>
+</div>
+
+<?php echo anchor('index.php/project/create', 'New Project', array('title' => 'projjj', 'class' => 'btn btn-danger float-right', 'type' => 'button')); ?>
+
 <div class="ProjectsDashboard">
     <div class="ProjectList">
-      <h2>Projects--Overview</h2>
 
       <?php foreach ($projects as $project): ?>
 
