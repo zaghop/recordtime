@@ -47,23 +47,23 @@
             </div>
           </div>
         </li>
-        <li>    
+        <li>
           <div class="number-arrow-section">
             <div class="number">
               2
             </div>
           </div>
         </li>
-        <li>  
+        <li>
           <div class="number-arrow-section">
             <div class="number">
               3
             </div>
           </div>
-        </li> 
+        </li>
       </ul>
     </div>
-    <div class="arrow-section number-arrow-section"> 
+    <div class="arrow-section number-arrow-section">
       <div class="arrow">
         <a href="javascript:void(0)" id="step-1-submit"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
       </div>
@@ -115,23 +115,23 @@
                     </div>
                   </div>
                 </li>
-                <li>    
+                <li>
                   <div class="number-arrow-section active">
                     <div class="number">
                       2
                     </div>
                   </div>
                 </li>
-                <li>  
+                <li>
                   <div class="number-arrow-section">
                     <div class="number">
                       3
                     </div>
                   </div>
-                </li> 
+                </li>
               </ul>
             </div>
-            <div class="arrow-section number-arrow-section two-arrow"> 
+            <div class="arrow-section number-arrow-section two-arrow">
               <div class="arrow left-arrow">
                 <a href="javascript:void(0)" id="step-1-back"><i class="fa fa-arrow-left" aria-hidden="true"></i>
               </div>
@@ -194,7 +194,7 @@
                   </div>
                 </li>
               </ul>
-                
+
             </div>
           </div>
         </div>
@@ -209,23 +209,23 @@
                     </div>
                   </div>
                 </li>
-                <li>    
+                <li>
                   <div class="number-arrow-section">
                     <div class="number">
                       2
                     </div>
                   </div>
                 </li>
-                <li>  
+                <li>
                   <div class="number-arrow-section active">
                     <div class="number">
                       3
                     </div>
                   </div>
-                </li> 
+                </li>
               </ul>
             </div>
-            <div class="arrow-section number-arrow-section two-arrow"> 
+            <div class="arrow-section number-arrow-section two-arrow">
               <div class="arrow left-arrow">
                 <a href="javascript:void(0)" id="step-2-back"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
               </div>
@@ -237,8 +237,8 @@
           </div>
         </div>
       </div>
-     </div>   
-   
+     </div>
+
 </div>
 <script type="text/javascript">
 $(document).ready(function(){

@@ -12,9 +12,10 @@ class Project_model extends CI_Model {
         $this->load->database();
     }
 
- public function dashboard() {
-   // TODO: Obviously needs to be more finely grained + auth
-    $projects = $this->db->query("SELECT * FROM tblprojects");
+ public function dashboard($user_id) {
+    $query = "SELECT * FROM tblprojects WHERE clientid = " . $user_id;
+
+    $projects = $this->db->query($query);
 
     if ($projects->num_rows() < 1) {
       return false;

@@ -7,6 +7,8 @@ class Project extends Public_controller
         parent::__construct();
         // $this->form_validation->set_error_delimiters('<p class="text-danger alert-validation">', '</p>');;;
         do_action('after_website_init');
+
+        $this->load->library('session');
         $this->load->library('form_validation');
         $this->load->model('project_model','project');
     }
@@ -22,21 +24,25 @@ class Project extends Public_controller
 
     public function dashboard()
     {
+        if (!$this->session->user_logged_in) {
+          redirect(site_url('clients/login'));
+        }
+
+        $user_id = $this->session->userid;
+
         $data['title'] = _l('Projects');
-        $data['projects'] = $this->project->dashboard();
+        $data['projects'] = $this->project->dashboard($user_id);
 
         $this->data    = $data;
         $this->view    = 'projects/dashboard';
         $this->layout();
     }
 
-    /***************************************code by prakash start ******************************/
     public function create()
     {
         if($this->input->post('submit')){
             $this->form_validation->set_rules('name', 'Project Name', 'required');
             $this->form_validation->set_rules('budget', 'Budget', 'required');
-            $this->form_validation->set_rules('songs', 'Project Song', 'required');
             $this->form_validation->set_rules('songs', 'Project Song', 'required');
 
             if ($this->form_validation->run() == FALSE)
@@ -71,12 +77,15 @@ class Project extends Public_controller
                 }
             }
         }
-        $data['title'] = _l('add_project');
+
+        $data['title'] = _l('add project');
 
         $this->data    = $data;
-        $this->view    = 'projects/add';
+        $this->view    = 'projects/create';
         $this->layout();
     }
+
+}
 
     // public function artists_login(){
     //     if(isset($this->session->userdata['userid'])!= ''){
@@ -123,4 +132,3 @@ class Project extends Public_controller
     //     $this->layout();
     // }
     /***************************************code by prakash end ******************************/
-}
