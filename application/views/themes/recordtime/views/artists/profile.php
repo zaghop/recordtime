@@ -1,7 +1,7 @@
   <div class="middle-container">
     <div class="banner-image">
       <div class="banner-content">
-        <img src="images/Big Logo-White.png">
+        <img src="<?= site_url().template_assets_path(); ?>/images/Big-Logo-White.png">
       </div>
     </div>
     <div class="page-title box-shadow">
@@ -21,13 +21,13 @@
           </div>
           <div class="col-sm-7 producer-profile-contact-details-container">
             <div class="producer-name">
-              <h1>Name Surname</h1>
+              <h1><?= $this->user->firstname; ?> <?= $this->user->lastname; ?></h1>
             </div>
             <div class="producer-type">
-              <p>Genres</p>
+              <p><?= $this->user->genre; ?></p>
             </div>
             <div class="producer-city">
-              <p>City, State</p>
+              <p><?= $this->user->city; ?>, <?= $this->user->state; ?></p>
             </div>
             <div class="producer-base-rate">
               <p>$700 Base Rate</p>
