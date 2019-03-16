@@ -25,6 +25,21 @@ class Project_model extends CI_Model {
     }
  }
 
+ public function create($data)
+ {
+   $criteria = implode(',', $data['criteria']);
+   $proj_data  = array(
+       'name' => $data['name'],
+       'budget' => $data['budget'],
+       'songs' => $data['songs'],
+       'complete_time' => $data['complete_time'],
+       'criteria' => $criteria,
+       'user_id' => $this->session->userdata['userid']
+    );
+   
+   $this->db->insert('tbl_projects', $proj_data);
+ }
+
  public function projects_add($data){
         $proj_name = $data['name'];
         $this->db->where("name", $proj_name);

@@ -25,7 +25,7 @@ class Project extends Public_controller
     public function dashboard()
     {
         if (!$this->session->user_logged_in) {
-          redirect(site_url('clients/login'));
+          redirect(site_url('index.php/user/login'));
         }
 
         $user_id = $this->session->userid;
@@ -40,52 +40,100 @@ class Project extends Public_controller
 
     public function create()
     {
-        if($this->input->post('submit')){
-            $this->form_validation->set_rules('name', 'Project Name', 'required');
-            $this->form_validation->set_rules('budget', 'Budget', 'required');
-            $this->form_validation->set_rules('songs', 'Project Song', 'required');
+      if (!$this->session->user_logged_in) {
+        redirect(site_url('/index.php/user/login'));
+      }
 
-            if ($this->form_validation->run() == FALSE)
-            {
-                $this->session->set_flashdata('error',"There is some error. please check");
-            }
-            else{
-                $projdata = $this->input->post();
-                $config['upload_path'] = './assets/themes/recordtime/project_files/';
-                $config['allowed_types'] = 'gif|jpg|png|doc|txt';
-                $config['encrypt_name'] = TRUE;
-                $this->upload->initialize($config);
-                $this->load->library('upload', $config);
+      $this->form_validation->set_rules('name', 'Project Name', 'required');
+      $this->form_validation->set_rules('budget', 'Budget', 'required');
+      // $this->form_validation->set_rules('songs', 'Project Song', 'required');
 
-                if (!$this->upload->do_upload('doc_name'))
-                {
-                    $projdata['doc_name'] = '';
-                }
-                else
-                {
-                    $data = $this->upload->data();
-                    $projdata['doc_name'] = $data['file_name'];
-                }
-                $insert = $this->project->projects_add($projdata);
-                if($insert){
-                    $this->session->set_flashdata('success',"Your project has been added successfully.");
-                    redirect("projects/summary");
-                }
-                else{
-                    $this->session->set_flashdata('error',"there is some error. please try again.");
-                    redirect("artists/create");
-                }
-            }
-        }
-
+      if ($this->form_validation->run() == FALSE)
+      {
         $data['title'] = _l('add project');
-
         $this->data    = $data;
         $this->view    = 'projects/create';
         $this->layout();
+      }
+      else
+      {
+        $formData = $this->input->post();
+        $insert = $this->project->create($formData);
+        redirect('index.php/project/dashboard');
+      }
+
     }
 
+    // public function create2()
+    // {
+    //     if (!$this->session->user_logged_in) {
+    //       redirect(site_url('clients/login'));
+    //     }
+    //
+    //     if($this->input->post('submit')){
+    //         $this->form_validation->set_rules('name', 'Project Name', 'required');
+    //         $this->form_validation->set_rules('budget', 'Budget', 'required');
+    //         $this->form_validation->set_rules('songs', 'Project Song', 'required');
+    //
+    //         if ($this->form_validation->run() == FALSE)
+    //         {
+    //             $this->session->set_flashdata('error',"There is some error. please check");
+    //
+    //         }
+    //         else{
+    //             $projdata = $this->input->post();
+    //             $config['upload_path'] = './assets/themes/recordtime/project_files/';
+    //             $config['allowed_types'] = 'gif|jpg|png|doc|txt';
+    //             $config['encrypt_name'] = TRUE;
+    //             $this->upload->initialize($config);
+    //             $this->load->library('upload', $config);
+    //
+    //             if (!$this->upload->do_upload('doc_name'))
+    //             {
+    //                 $projdata['doc_name'] = '';
+    //             }
+    //             else
+    //             {
+    //                 $data = $this->upload->data();
+    //                 $projdata['doc_name'] = $data['file_name'];
+    //             }
+    //             $insert = $this->project->projects_add($projdata);
+    //
+    //             if($insert){
+    //                 $this->session->set_flashdata('success',"Your project has been added successfully.");
+    //                 redirect("index.php/project/dashboard");
+    //             }
+    //             else{
+    //                 $this->session->set_flashdata('error',"there is some error. please try again.");
+    //                 redirect("index./create");
+    //             }
+    //         }
+    //     }
+    //
+    //     $data['title'] = _l('add project');
+    //
+    //     $this->data    = $data;
+    //     $this->view    = 'projects/create';
+    //     $this->layout();
+    // }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // public function artists_login(){
     //     if(isset($this->session->userdata['userid'])!= ''){

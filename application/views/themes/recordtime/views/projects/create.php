@@ -1,8 +1,10 @@
-<form action="" method="post" enctype="multipart/form-data">
+
  <div class="middle-container">
     <div class="banner-image">
        <div class="banner-content">
-          <img src="<?= site_url().template_assets_path(); ?>/images/Big Logo-White.png">
+          <img
+            src="<?= site_url().template_assets_path(); ?>/images/Big Logo-White.png"
+          >
        </div>
     </div>
     <div class="page-title box-shadow">
@@ -11,32 +13,42 @@
        </div>
     </div>
  </div>
+
+<div class="FormErrors">
+ <?php echo validation_errors(); ?>
+</div>
+
+<?php echo form_open('index.php/project/create'); ?>
+
+<!-- <form action="" method="post" enctype="multipart/form-data"> -->
+
+
 <div class="container new-project-container-padding" id="step-1">
-<div class="row project-inner-section">
-<div class="col-sm-4">
-  <div class="project-details-container">
-    <div class="new-project-section-title box-shadow white-bg same-height">
-      <h3>What will this project be called?</h3>
-      <p>Don’t worry—this isn’t official. </p>
-      <p>It’ll just help you identify it on RecordTime.</p>
-    </div>
-    <div class="project-section-input-box">
-      <input type="text" name="name" >
-    </div>
-  </div>
-</div>
-<div class="col-sm-4">
-  <div class="project-details-container">
-    <div class="new-project-section-title box-shadow white-bg same-height">
-      <h3>What's your budget per song?</h3>
-      <p>this will help us find you producers in your price range.</p>
-    </div>
-    <div class="project-section-input-box doller-sign-textbox">
-      <input type="text" name="budget" placeholder="$">
+  <div class="row project-inner-section">
+    <div class="col-sm-4">
+    <div class="project-details-container">
+      <div class="new-project-section-title box-shadow white-bg same-height">
+        <h3>What will this project be called?</h3>
+        <p>Don’t worry—this isn’t official. </p>
+        <p>It’ll just help you identify it on RecordTime.</p>
+      </div>
+      <div class="project-section-input-box">
+        <input type="text" name="name" />
+      </div>
     </div>
   </div>
-</div>
-<div class="col-sm-4">
+    <div class="col-sm-4">
+    <div class="project-details-container">
+      <div class="new-project-section-title box-shadow white-bg same-height">
+        <h3>What's your budget per song?</h3>
+        <p>this will help us find you producers in your price range.</p>
+      </div>
+      <div class="project-section-input-box doller-sign-textbox">
+        <input type="text" name="budget" placeholder="$" />
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
   <div class="project-details-container process-icon-section">
     <div class="process-stetus">
       <ul>
@@ -71,11 +83,14 @@
   </div>
 </div>
 </div>
+
 </div>
+
+
 <div class="container new-project-container-padding" id="step-2" style="display:none;">
       <div class="row project-inner-section">
         <div class="col-sm-4">
-          <div class="project-details-container">
+          <div class="project-details-container"s>
             <div class="new-project-section-title box-shadow white-bg same-height">
               <h3>How many songs would you like to record?</h3>
               <p>You can always change this number later on. </p>
@@ -83,11 +98,11 @@
             <div class="project-section-dropdown-box">
               <div class="custom-select" style="">
                 <select name="songs">
-                <option value="1"></option>
-                <option value="2"></option>
-                <option value="3"></option>
-                <option value="4"></option>
-                <option value="5"></option>
+                  <option value="1"></option>
+                  <option value="2"></option>
+                  <option value="3"></option>
+                  <option value="4"></option>
+                  <option value="5"></option>
                 </select>
               </div>
             </div>
