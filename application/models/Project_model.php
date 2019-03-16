@@ -13,7 +13,7 @@ class Project_model extends CI_Model {
     }
 
  public function dashboard($user_id) {
-    $query = "SELECT * FROM tblprojects WHERE clientid = " . $user_id;
+    $query = "SELECT * FROM tbl_projects WHERE user_id = " . $user_id;
 
     $projects = $this->db->query($query);
 
@@ -36,7 +36,7 @@ class Project_model extends CI_Model {
        'criteria' => $criteria,
        'user_id' => $this->session->userdata['userid']
     );
-   
+
    $this->db->insert('tbl_projects', $proj_data);
  }
 
