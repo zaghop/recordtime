@@ -33,7 +33,7 @@
               </div>
             </div>
           <?php else: ?>
-          <div>AIN"T NUTTING HERE </div>
+          <div>waiting to start</div>
           <?php endif; ?>
 
 
