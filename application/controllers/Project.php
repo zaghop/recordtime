@@ -64,6 +64,8 @@ class Project extends Public_controller
 
     }
 
+  }
+
     // public function create2()
     // {
     //     if (!$this->session->user_logged_in) {
@@ -117,7 +119,6 @@ class Project extends Public_controller
     //     $this->layout();
     // }
 
-}
 
 
 

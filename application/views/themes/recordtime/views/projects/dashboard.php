@@ -11,26 +11,31 @@
   </div>
 </div>
 
-<?php echo anchor('index.php/project/create', 'New Project', array('title' => 'projjj', 'class' => 'btn btn-danger pull-right', 'type' => 'button')); ?>
+<?php echo anchor('index.php/project/create', 'New Project', array('title' => 'project', 'class' => 'btn btn-danger pull-right', 'type' => 'button')); ?>
 
 <div class="ProjectsDashboard">
     <div class="ProjectList">
 
       <?php foreach ($projects as $project): ?>
 
-        <div class="ProjectItem">
-          <p class="ProjectItem__Started">Started
-            <?php echo $project['start_date']; ?>
-          <p>
-          <div class="ProjectItem__Details">
-            <h3><?php echo $project['name']; ?></h3>
-            <p class="name"><?php echo $project['name']; ?></p>
-            <p class="cost"><?php echo $project['project_cost']; ?></p>
-            <p class="producer"><?php echo "Producer?"; ?></p>
-            <p class="name"><?php echo "Number of songs?"; ?></p>
-            <p class="name"><?php echo $project['name']; ?></p>
-          </div>
-        </div>
+        <?php if (isset($project['start_date'])): ?>
+            <div class="ProjectItem">
+              <p class="ProjectItem__Started">Started
+                <?php echo $project['start_date']; ?>
+              <p>
+              <div class="ProjectItem__Details">
+                <h3><?php echo $project['name']; ?></h3>
+                <p class="name"><?php echo $project['name']; ?></p>
+                <p class="cost"><?php echo $project['project_cost']; ?></p>
+                <p class="producer"><?php echo "Producer?"; ?></p>
+                <p class="name"><?php echo "Number of songs?"; ?></p>
+                <p class="name"><?php echo $project['name']; ?></p>
+              </div>
+            </div>
+          <?php else: ?>
+          <div>AIN"T NUTTING HERE </div>
+          <?php endif; ?>
+
 
         <?php endforeach; ?>
 
