@@ -11,6 +11,12 @@
   margin: 0 auto;
 }
 
+.ProjectItem img {
+  border-radius: 100%;
+  height: 5em;
+  margin: 2em 0;
+}
+
 .ProjectItem__Details {
   background: #FFFFFF;
 }

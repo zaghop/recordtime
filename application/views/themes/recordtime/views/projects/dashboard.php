@@ -13,23 +13,50 @@
 
 <?php echo anchor('index.php/project/create', 'New Project', array('title' => 'project', 'class' => 'btn btn-danger pull-right', 'type' => 'button')); ?>
 
-<div class="ProjectsDashboard">
+<div class="ProjectsDashboard container">
     <div class="ProjectList">
 
       <?php foreach ($projects as $project): ?>
 
         <?php if (isset($project['start_date'])): ?>
-            <div class="ProjectItem">
+            <div class="ProjectItem ">
               <p class="ProjectItem__Started">Started
                 <?php echo $project['start_date']; ?>
               <p>
-              <div class="ProjectItem__Details">
-                <h3><?php echo $project['name']; ?></h3>
-                <p class="name"><?php echo $project['name']; ?></p>
-                <p class="cost"><?php echo $project['project_cost']; ?></p>
-                <p class="producer"><?php echo "Producer?"; ?></p>
-                <p class="name"><?php echo "Number of songs?"; ?></p>
-                <p class="name"><?php echo $project['name']; ?></p>
+              <div class="ProjectItem__Details row">
+                <div class="col-sm-3">
+                  <img
+                    src="<?= site_url(); ?>assets/images/user-placeholder.jpg"
+                  />
+                </div>
+                <div class="col-sm-3">
+                  <h3><?php echo $project['name']; ?></h3>
+
+                  <p class="end_date">
+                    <?php echo "Ends " ?>
+                    <?php echo date($project['end_date']);?>
+                  </p>
+                  <p class="producer">
+                    <?php echo $project['firstname'];
+                          echo " ";
+                          echo $project['lastname'];
+                    ?>
+                  </p>
+                  <p class="cost">
+                    <?php
+                      echo $project['project_cost'];
+                    ?>
+                  </p>
+                </div>
+                <div class="col-sm-3">
+                  Basic Overview
+                  <p class="name"><?php echo $project['songs']; echo " songs"; ?></p>
+                  <p class="name"><?php echo $project['name']; ?></p>
+                </div>
+                <div class="col-sm--3">
+                  PDF
+                  Change
+                </div>
               </div>
             </div>
           <?php else: ?>
