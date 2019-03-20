@@ -11,12 +11,48 @@
   margin: 0 auto;
 }
 
+.ProjectItem {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 300px;
+  width: 90vw;
+  max-width: 1000px;
+}
+
+.ProjectItem--overlay {
+  background-color: rgba(0,0,0,.86);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
 .ProjectItem img {
   border-radius: 100%;
   height: 5em;
   margin: 2em 0;
 }
 
+.ProjectItem h3 {
+  color: #009CD5 !important;
+}
+
 .ProjectItem__Details {
-  background: #FFFFFF;
+  /* background: #FFFFFF; */
+}
+
+.ProjectItem--overlay .details {
+    text-align: center;
+}
+
+.ProjectItem--overlay button {
+    text-align: center;
+    background: #009CD5;
+    color: white;
+    border-radius: 10%;
+    border: white;
 }
