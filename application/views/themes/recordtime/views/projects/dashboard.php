@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<?php echo anchor('index.php/project/create', 'New Project', array('title' => 'project', 'class' => 'btn btn-danger pull-right', 'type' => 'button')); ?>
+<?php echo anchor('index.php/project/create', 'New Project', array('title' => 'project', 'class' => 'btn btn-danger', 'type' => 'button')); ?>
 
 <div class="ProjectsDashboard container">
     <div class="ProjectList">
