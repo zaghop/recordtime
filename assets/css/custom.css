@@ -1,5 +1,15 @@
 /* loaded in head.html */
 
+* {
+  box-sizing: border-box !important;
+}
+
+/* over bootstrap */
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
 .ProjectsDashboard {
   padding-top: 100px;
   width: 100vw;
@@ -18,6 +28,7 @@
   height: 300px;
   width: 90vw;
   max-width: 1000px;
+  margin-bottom: 2em;
 }
 
 .ProjectItem--overlay {
@@ -42,7 +53,14 @@
 }
 
 .ProjectItem__Details {
-  /* background: #FFFFFF; */
+  background: #FFFFFF;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 .ProjectItem--overlay .details {
@@ -54,5 +72,5 @@
     background: #009CD5;
     color: white;
     border-radius: 10%;
-    border: white;
+    border: 1px solid white;
 }
