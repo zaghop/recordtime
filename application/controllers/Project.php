@@ -38,6 +38,16 @@ class Project extends Public_controller
         $this->layout();
     }
 
+    public function start($project_id){
+      if (!$this->session->user_logged_in) {
+        redirect(site_url('index.php/user/login'));
+      }
+
+      $data['started_project'] = $this->project->start($project_id);
+      redirect(site_url('index.php/project/dashboard'));
+
+    }
+
     public function create()
     {
       if (!$this->session->user_logged_in) {
@@ -61,9 +71,7 @@ class Project extends Public_controller
         $insert = $this->project->create($formData);
         redirect('index.php/project/dashboard');
       }
-
     }
-
   }
 
     // public function create2()

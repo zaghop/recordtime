@@ -19,17 +19,24 @@
       <?php foreach ($projects as $project): ?>
 
 
-        <div class="ProjectItem">
 
           <?php if (isset($project['start_date'])): ?>
-                <p class="started">Started
-                  <?php echo $project['start_date']; ?>
-                <p>
+            <p class="started">Started
+              <?php echo $project['start_date']; ?>
+            <p>
+            <div class="ProjectItem">
+
           <?php else: ?>
+            <div class="ProjectItem">
               <div class="ProjectItem--overlay">
                 <div class="details">
                   <h3><?php echo $project['name']; ?></h3>
-                  <button class="start">Start</button>
+                    <a
+                      class="start"
+                      href="<?= site_url(); ?>index.php/project/start/<?php echo $project['project_id']; ?>"
+                    >
+                    Start
+                  </a>
                 </div>
               </div>
           <?php endif; ?>

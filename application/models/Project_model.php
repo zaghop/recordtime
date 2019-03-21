@@ -25,6 +25,14 @@ class Project_model extends CI_Model {
     }
  }
 
+ // TODO: Add error handling
+ public function start($project_id) {
+
+   $query = "UPDATE tbl_projects SET start_date = CURDATE() WHERE project_id = " . $project_id . ";";
+
+   $started_project = $this->db->query($query);
+ }
+
  public function create($data)
  {
    $criteria = implode(',', $data['criteria']);
