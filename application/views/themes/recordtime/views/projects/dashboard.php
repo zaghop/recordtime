@@ -4,21 +4,23 @@
         <img src="<?= site_url().template_assets_path(); ?>/images/Big Logo-White.png">
      </div>
   </div>
-  <div class="page-title box-shadow">
+  <div class="page-title box-shadow ProjectsDashboard__Title">
      <div class="container-fluid">
         <h1>Projects</h1>
+        <a  class="btn" href="<?= site_url(); ?>/index.php/project/create">
+            New Project
+            <span class="fas fa-arrow-right fa-w-14"></span>
+        </a>
      </div>
   </div>
 </div>
 
-<?php echo anchor('index.php/project/create', 'New Project', array('title' => 'project', 'class' => 'btn btn-danger', 'type' => 'button')); ?>
+
 
 <div class="ProjectsDashboard container">
     <div class="ProjectList">
 
       <?php foreach ($projects as $project): ?>
-
-
 
           <?php if (isset($project['start_date'])): ?>
             <p class="started">Started
@@ -43,7 +45,7 @@
 
 
             <div class="ProjectItem__Details row">
-              <div class="col-sm-3">
+              <div class="col-sm-2">
                 <img
                   src="<?= site_url(); ?>assets/images/user-placeholder.jpg"
                 />
@@ -68,13 +70,13 @@
                 </p>
               </div>
               <div class="col-sm-3">
-                Basic Overview
-                <p class="name"><?php echo $project['songs']; echo " songs"; ?></p>
-                <p class="name"><?php echo $project['name']; ?></p>
+                <h4>Basic Overview<h4>
+                <p class="name">- <?php echo $project['songs']; echo " songs"; ?></p>
+                <p class="name">- <?php echo $project['name']; ?></p>
               </div>
-              <div class="col-sm--3">
-                PDF
-                Change
+              <div class="col-sm--3 pdf-change">
+                <button>PDF</button>
+                <button>Change</button>
               </div>
             </div>
           </div>
