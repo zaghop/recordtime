@@ -79,28 +79,4 @@ class Project_model extends CI_Model {
 
         }
  }
- public function login_user($data){
-        // print_r($data);die;
-        $data = array(
-            'email' => $data['email'],
-            'password' => $data['password']
-        );
-        $query = $this->db->get_where('tbl_user', $data);
-        if ($query->num_rows() > 0) {
-            foreach ($query->result() as $rows) {
-                //add all data to session
-                $newdata = array(
-                    'userid' => $rows->id,
-                    'email'     => $rows->email,
-                    'user_logged_in' => TRUE
-                );
-            }
-            $this->session->set_userdata($newdata);
-            return true;
-        }
-        else{
-            return false;
-        }
-
-    }
 }
