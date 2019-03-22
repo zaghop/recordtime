@@ -1,4 +1,4 @@
-/* loaded in head.html */
+/* This is loaded in head.html */
 
 * {
   box-sizing: border-box !important;
@@ -10,23 +10,24 @@
   margin-right: 0 !important;
 }
 
-/*  */
+/*
+ *
+ *  Projects Dashboard Page
+ *  TODO: This should only be loaded on /project/dashboard, but is loaded on every page.
+ *
+ */
 
 .ProjectsDashboard__Title {
   position: relative;
 }
 
 .ProjectsDashboard__Title a {
-  /* position: absolute;
   bottom: 0;
   right: 0; */
   width: 200px;
-  /* text-align: center; */
   background-color: #E52806;
   color: white;
-  /* height: 50px; */
   border: 1px solid white;
-  /* line-height: 40px; */
   float: right;
   border-radius: 1px;
   text-align: left;
@@ -45,7 +46,6 @@
 }
 
 .ProjectsDashboard {
-  /* padding-top: 100px; */
   width: 100vw;
   margin: 0 auto;
 }
