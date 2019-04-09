@@ -19,6 +19,8 @@ class Search extends Public_controller
 
   public function index()
   {
+      $this->load->helper('form');
+
       $data['is_home'] = false;
       $data['title'] = get_option('companyname');
 

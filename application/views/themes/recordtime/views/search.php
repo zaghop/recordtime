@@ -8,12 +8,19 @@
      <div class="container-fluid">
         <h1>Search</h1>
         <div>
-          <input
-            type="text"
-            name="search"
-            placeholder="Search for producers, genres, and moreß"
-            value="<?php echo html_escape('search'); ?>"
-          />
+          <?php
+            echo form_open('search');
+            $data = array(
+              'type'  => 'text',
+              'name'  => 'email',
+              'id'    => 'hiddenemail',
+              'value' => 'Search for producers, genres, and more',
+              'class' => 'hiddenemail'
+              );
+
+              echo form_input($data);
+              echo form_close()
+          ?>
         <div>
      </div>
   </div>
