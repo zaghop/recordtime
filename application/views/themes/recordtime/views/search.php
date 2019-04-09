@@ -6,11 +6,18 @@
   </div>
   <div class="page-title box-shadow ProjectsDashboard__Title">
      <div class="container-fluid">
-        <h1>Projects</h1>
-        <a  class="btn" href="<?= site_url(); ?>/index.php/project/create">
-            New Project
-            <span class="fas fa-arrow-right fa-w-14"></span>
-        </a>
+        <h1>Search</h1>
+        <div>
+          <input
+            type="text"
+            name="search"
+            placeholder="Search for producers, genres, and moreß"
+            value="<?php echo html_escape('search'); ?>"
+          />
+        <div>
      </div>
   </div>
+</div>
+<div class="container">
+  <
 </div>
