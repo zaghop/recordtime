@@ -1,4 +1,4 @@
-<div class="middle-container">
+<div class="middle-container Search">
   <div class="banner-image">
      <div class="banner-content">
         <img src="<?= site_url().template_assets_path(); ?>/images/Big Logo-White.png">
@@ -8,7 +8,7 @@
     class="page-title box-shadow ProjectsDashboard__Title">
      <div class="container-fluid">
         <h1>Search</h1>
-        <div>
+        <div class="form-container">
           <?php
             echo form_open('index.php/search');
             $data = array(
@@ -26,7 +26,7 @@
         </div>
      </div>
   </div>
-  <div class="results">
+  <div class="Results">
     <?php
       if (count($results) > 0) {
         foreach($results as $row){

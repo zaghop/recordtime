@@ -121,3 +121,19 @@
   margin-top: 1em;
   height: 2em;
 }
+
+
+
+/*
+*
+* /search page
+*
+*/
+
+.Search .form-container {
+  width: 100%;
+}
+
+.Search .form-container input[type='text'] {
+  width: 60%;
+}
