@@ -10,7 +10,7 @@
         <h1>Search</h1>
         <div>
           <?php
-            echo form_open('search');
+            echo form_open('index.php/search');
             $data = array(
               'type'  => 'text',
               'name'  => 'search',
@@ -20,17 +20,19 @@
               );
 
               echo form_input($data);
+              echo form_submit('search_submit', 'Search');
               echo form_close()
           ?>
         </div>
      </div>
   </div>
-  <div class="result">
-    <table>
-<?php foreach($results as $row){ ?>
-    <tr>
-        <td><?php echo $row->Company?></td>
-    </tr>
-<?php } ?>
-</table>
+  <div class="results">
+    <?php
+      if (count($results) > 0) {
+        foreach($results as $row){
+          echo $row->firstname;
+          echo $row->philosophy;
+        }
+      }
+    ?>
 </div>

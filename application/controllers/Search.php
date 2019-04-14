@@ -15,6 +15,8 @@ class Search extends Public_controller
 
       // search model?
       $this->load->model('project_model','project');
+      $this->load->model('search_model');
+
   }
 
   public function index()
@@ -25,6 +27,14 @@ class Search extends Public_controller
       $data['title'] = get_option('companyname');
 
       $data['searches'] = array();
+
+      $data['results'] = array();
+
+
+      $search  = $this->input->post('search');
+      
+      $data['results'] = $this->search_model->search($search);
+
 
       $this->data    = $data;
       $this->view    = 'search';
