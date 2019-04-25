@@ -137,3 +137,37 @@
 .Search .form-container input[type='text'] {
   width: 60%;
 }
+
+.Search .ResultRow {
+  background: white;
+  border: 1px solid grey;
+  margin: 1em 0;
+}
+
+.Search .ResultRow img {
+  height: 3em;
+  display: inline-block;
+  border-radius: 3em;
+}
+
+.Search .ResultRow h4 {
+  display: inline-block;
+  padding-left: 1em;
+}
+
+.Search .ResultRow h4,
+.Search .ResultRow h5 {
+  font-size: 1.1em;
+  line-height: 3em;
+  font-weight: bold;
+  color: black;
+  font-weight: 500;
+}
+
+.Search .ResultRow > div {
+  display: inline-block;
+}
+
+.Search .ResultRow .MinorDetails {
+  padding-left: 4em;
+}

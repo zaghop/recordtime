@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+
 class Search extends Public_controller
 {
   public function __construct()
@@ -30,10 +31,18 @@ class Search extends Public_controller
 
       $data['results'] = array();
 
+      $search = NULL;
+      $data['results'] = NULL;
+
 
       $search  = $this->input->post('search');
-      
-      $data['results'] = $this->search_model->search($search);
+
+      if ($search) {
+        $data['results'] = $this->search_model->search($search);
+
+      };
+
+
 
 
       $this->data    = $data;
