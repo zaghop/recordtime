@@ -1,8 +1,10 @@
-<form action="" method="post" enctype="multipart/form-data">
+
  <div class="middle-container">
     <div class="banner-image">
        <div class="banner-content">
-          <img src="<?= site_url().template_assets_path(); ?>/images/Big Logo-White.png">
+          <img
+            src="<?= site_url().template_assets_path(); ?>/images/Big Logo-White.png"
+          >
        </div>
     </div>
     <div class="page-title box-shadow">
@@ -11,32 +13,42 @@
        </div>
     </div>
  </div>
+
+<div class="FormErrors">
+ <?php echo validation_errors(); ?>
+</div>
+
+<?php echo form_open('index.php/project/create'); ?>
+
+<!-- <form action="" method="post" enctype="multipart/form-data"> -->
+
+
 <div class="container new-project-container-padding" id="step-1">
-<div class="row project-inner-section">
-<div class="col-sm-4">
-  <div class="project-details-container">
-    <div class="new-project-section-title box-shadow white-bg same-height">
-      <h3>What will this project be called?</h3>
-      <p>Don’t worry—this isn’t official. </p>
-      <p>It’ll just help you identify it on RecordTime.</p>
-    </div>
-    <div class="project-section-input-box">
-      <input type="text" name="name" >
-    </div>
-  </div>
-</div>
-<div class="col-sm-4">
-  <div class="project-details-container">
-    <div class="new-project-section-title box-shadow white-bg same-height">
-      <h3>What's your budget per song?</h3>
-      <p>this will help us find you producers in your price range.</p>
-    </div>
-    <div class="project-section-input-box doller-sign-textbox">
-      <input type="text" name="budget" placeholder="$">
+  <div class="row project-inner-section">
+    <div class="col-sm-4">
+    <div class="project-details-container">
+      <div class="new-project-section-title box-shadow white-bg same-height">
+        <h3>What will this project be called?</h3>
+        <p>Don’t worry—this isn’t official. </p>
+        <p>It’ll just help you identify it on RecordTime.</p>
+      </div>
+      <div class="project-section-input-box">
+        <input type="text" name="name" />
+      </div>
     </div>
   </div>
-</div>
-<div class="col-sm-4">
+    <div class="col-sm-4">
+    <div class="project-details-container">
+      <div class="new-project-section-title box-shadow white-bg same-height">
+        <h3>What's your budget per song?</h3>
+        <p>this will help us find you producers in your price range.</p>
+      </div>
+      <div class="project-section-input-box doller-sign-textbox">
+        <input type="text" name="budget" placeholder="$" />
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
   <div class="project-details-container process-icon-section">
     <div class="process-stetus">
       <ul>
@@ -47,23 +59,23 @@
             </div>
           </div>
         </li>
-        <li>    
+        <li>
           <div class="number-arrow-section">
             <div class="number">
               2
             </div>
           </div>
         </li>
-        <li>  
+        <li>
           <div class="number-arrow-section">
             <div class="number">
               3
             </div>
           </div>
-        </li> 
+        </li>
       </ul>
     </div>
-    <div class="arrow-section number-arrow-section"> 
+    <div class="arrow-section number-arrow-section">
       <div class="arrow">
         <a href="javascript:void(0)" id="step-1-submit"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
       </div>
@@ -71,11 +83,14 @@
   </div>
 </div>
 </div>
+
 </div>
+
+
 <div class="container new-project-container-padding" id="step-2" style="display:none;">
       <div class="row project-inner-section">
         <div class="col-sm-4">
-          <div class="project-details-container">
+          <div class="project-details-container"s>
             <div class="new-project-section-title box-shadow white-bg same-height">
               <h3>How many songs would you like to record?</h3>
               <p>You can always change this number later on. </p>
@@ -83,11 +98,31 @@
             <div class="project-section-dropdown-box">
               <div class="custom-select" style="">
                 <select name="songs">
-                <option value="1"></option>
-                <option value="2"></option>
-                <option value="3"></option>
-                <option value="4"></option>
-                <option value="5"></option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
                 </select>
               </div>
             </div>
@@ -115,23 +150,23 @@
                     </div>
                   </div>
                 </li>
-                <li>    
+                <li>
                   <div class="number-arrow-section active">
                     <div class="number">
                       2
                     </div>
                   </div>
                 </li>
-                <li>  
+                <li>
                   <div class="number-arrow-section">
                     <div class="number">
                       3
                     </div>
                   </div>
-                </li> 
+                </li>
               </ul>
             </div>
-            <div class="arrow-section number-arrow-section two-arrow"> 
+            <div class="arrow-section number-arrow-section two-arrow">
               <div class="arrow left-arrow">
                 <a href="javascript:void(0)" id="step-1-back"><i class="fa fa-arrow-left" aria-hidden="true"></i>
               </div>
@@ -194,7 +229,7 @@
                   </div>
                 </li>
               </ul>
-                
+
             </div>
           </div>
         </div>
@@ -209,23 +244,23 @@
                     </div>
                   </div>
                 </li>
-                <li>    
+                <li>
                   <div class="number-arrow-section">
                     <div class="number">
                       2
                     </div>
                   </div>
                 </li>
-                <li>  
+                <li>
                   <div class="number-arrow-section active">
                     <div class="number">
                       3
                     </div>
                   </div>
-                </li> 
+                </li>
               </ul>
             </div>
-            <div class="arrow-section number-arrow-section two-arrow"> 
+            <div class="arrow-section number-arrow-section two-arrow">
               <div class="arrow left-arrow">
                 <a href="javascript:void(0)" id="step-2-back"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
               </div>
@@ -237,8 +272,8 @@
           </div>
         </div>
       </div>
-     </div>   
-   
+     </div>
+
 </div>
 <script type="text/javascript">
 $(document).ready(function(){

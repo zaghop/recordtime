@@ -83,8 +83,11 @@ $route['producer/signup']  = "User/producer_signup";
 $route['producer/how-it-works']  = "User/howItWorksProducers";
 $route['producer/profile']  = "User/producer_profile";
 
-$route['projects/create']  = "project/projects_add"; // added by prakash
+
+//$route['projects/create']  = "project/projects_add"; // added by prakash
+$route['project/create']  = "Project/create";
 $route['projects/summary']  = "User/projects_summary"; // added by prakash
+$route['project/dashboard'] = "Project/Dashboard";
 
 $route['viewinvoice/(:num)/(:any)']  = "clients/viewinvoice/$1/$2";
 
