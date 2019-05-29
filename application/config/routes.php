@@ -71,6 +71,7 @@ $route['login'] = "User/login";
 $route['/']  = "User";
 $route['artists/overview']  = "User/whyArtists";
 $route['artists/how-it-works']  = "User/howItWorksArtists";
+$route['artists/editprofile']  = "User/artistProfile";
 $route['artists/signup']  = "User/artists_signup"; // added by prakash
 $route['artists/login']  = "User/artists_login"; // added by prakash
 $route['artists/logout']  = "User/logout"; // added by prakash
