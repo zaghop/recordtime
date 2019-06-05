@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+
 class Project extends Public_controller
 {
     public function __construct()
@@ -24,6 +25,46 @@ class Project extends Public_controller
 
     public function dashboard()
     {
+        if ($this->input->server('REQUEST_METHOD') == 'POST'){
+          $stripeUrl = 'https://api.stripe.com';
+          $stripeKey = 'pk_test_yt3JpiGWmUvIWuAjlDL4c1Tb00lQvTOM5c';
+          $stripeSecret = 'sk_test_AjwJEVoEy3GdPMktt9cORFlR00c36Jt9Xc';
+          
+          \Stripe\Stripe::setApiKey($stripeSecret);
+          
+          print_r($_POST);
+          $token = $_POST['token'];
+          $amount = $_POST['amount'];
+          try{
+            
+            $charge = \Stripe\Charge::create([
+            "amount" => $amount,
+            "currency" => "usd",
+            "source" => $token, // obtained with Stripe.js
+            "description" => "Charge for RecordTime"
+          ]);
+            
+          } catch(\Stripe\Error\Card $e) {
+            // Since it's a decline, \Stripe\Error\Card will be caught
+            http_response_code(401);
+            die();
+          } catch (Exception $e) {
+            // Something else happened, completely unrelated to Stripe
+            http_response_code(401);
+            die();
+          }
+          
+          $data = [];
+          
+          $data['user_id'] = $this->session->userid;
+          $data['payment_id'] = $charge['id'];
+          $data['type'] = 'credit';
+          $data['amount'] = $amount;
+          $this->db->insert('tbl_payments', $data);
+          
+          http_response_code(200);
+          die();
+        }
         if (!$this->session->user_logged_in) {
           redirect(site_url('index.php/user/login'));
         }
