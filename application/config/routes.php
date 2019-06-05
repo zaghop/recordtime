@@ -94,3 +94,5 @@ $route['viewinvoice/(:num)/(:any)']  = "clients/viewinvoice/$1/$2";
 $route['knowledge_base/(:any)']  = "clients/knowledge_base/$1";
 
 $route['knowledge-base/(:any)']  = "clients/knowledge_base/$1";
+
+$route['search']  = "Search";

@@ -220,7 +220,7 @@
                 </li>
                 <li>
                   <div class="checkbox-text">
-                    <p>Do you want to</p>
+                    <p>Do you want to collaborate with songwriters?</p>
                   </div>
                   <div class="input_wrapper">
                     <input class="switch_4" type="checkbox" value="3" name="criteria[]">
