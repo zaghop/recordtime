@@ -7,7 +7,7 @@
   <div class="page-title box-shadow ProjectsDashboard__Title">
      <div class="container-fluid">
         <h1>Projects</h1>
-        <a  class="btn" href="<?= site_url(); ?>/index.php/project/create">
+        <a  class="btn" href="<?= site_url(); ?>project/create">
             New Project
             <span class="fas fa-arrow-right fa-w-14"></span>
         </a>
@@ -20,7 +20,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          Add Credits
+          <h3>Add Credits</h3>
         </div>
         <div class="modal-body">
           <div class='row'>
@@ -78,7 +78,7 @@
   <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          Payment Confirmation
+          <h3>Payment Confirmation</h3>
         </div>
         <div class="modal-body">
           You are about to submit a payment in the amount of <span id="payConfirmAmount"></span> using credit card ending in <span id="payConfirmLast4"></span> Press "Submit Payment" below to submit your payment.
@@ -94,6 +94,9 @@
 <div class="modal fade" tabindex="-1" role="dialog" id="completeModal">
   <div class="modal-dialog" role="document">
       <div class="modal-content">
+        <div class="modal-header">
+          <h3>Payment Received</h3>
+        </div>
         <div class="modal-body">
           Your credit card transaction was successful. A credit of <strong><span id="creditAmount"></span></strong> has been added to your account.
         </div>

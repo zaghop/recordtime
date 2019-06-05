@@ -1500,6 +1500,10 @@ class User extends Public_controller
             }
         }
     public function artists_profile(){
+        $this->load->helper('rt_payment_helper.php');
+        
+        $data['credits'] = money_format('%i', getUserCredits($this->session->userdata['userid']));
+        
         if ($this->session->userdata('email') === NULL){
                 redirect("/");
         }

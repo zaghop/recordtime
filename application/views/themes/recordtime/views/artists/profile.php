@@ -43,6 +43,9 @@ $base_rate_per_song = ($user_details[0]['base_production_rate'] + $base_producti
             <div class="producer-base-rate">
               <p>$<?php echo $user_details[0]['base_rate']; ?> Base Rate</p>
             </div>
+            <div>
+                <p><strong>Your current credits: $<?php echo $credits; ?></strong></p>
+            </div>
             <div class="producer-email-container">
               <a href="http://develop.zaghop.com/~zagdev/recordtime/message?recipient_id=18" class="email-icon">
                 <img src="<?= site_url().template_assets_path(); ?>/images/big-mail-icon.png">
