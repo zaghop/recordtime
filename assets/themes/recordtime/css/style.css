@@ -141,7 +141,7 @@ a:hover {
 	/*padding: 20px 0 5px;
     border: 5px solid #fff;*/
 	border-radius: 100%;
-	/*height: 120px;
+	/*height: 120px; 
     width: 120px; */
 	font-size: 52px;
 	margin-bottom: 15px !important;
@@ -1643,12 +1643,12 @@ a.email-icon {
 }
 
 .number-arrow-section.arrow-section {
-	/* position: absolute;
+	position: absolute;
 	bottom: -23px;
 	left: 0;
-	right: 0;*/
+	right: 0;
 	margin: 0 auto;
-	/* display: inline-table; */
+	display: inline-table;
 	max-width: 50px;
 }
 
@@ -1704,13 +1704,13 @@ a.email-icon {
 /*--------------------page 2 -----------------*/
 
 
-.project-section-dropdown-box select {
+/*.project-section-dropdown-box select {
     width: 40%;
 	border: 1px solid rgb(146, 145, 145);
 	margin: 0 auto;
 	display: block;
 	padding: 3px 10px;
-}
+} */
 
 .custom-select {
 	position: relative;
@@ -1718,9 +1718,9 @@ a.email-icon {
 	margin: 0 auto;
 }
 
-/* .custom-select select {
+.custom-select select {
 	display: none;
-} */
+}
 
 .select-selected {
 	background-color: #fff;
@@ -2875,7 +2875,7 @@ select.select-project {
 	-moz-appearance: none;
 	appearance: none;
 	 padding: 4px 5px;
-
+	 
 	background-image: url(../images/down-arror.png);
 	background-position: 97%;
 	background-repeat: no-repeat;
@@ -2906,6 +2906,16 @@ textarea.popup-messag-box {
 .message-popup-section .mfp-close:active, .success-message-popup-section .mfp-close:active {
 	top: -20px;
 }
+.check-box-icon1 {
+	border: 2px solid #000000;
+	border-radius: 50%;
+	width: 110px;
+	height: 110px;
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+}
+
 /*----------------------media query---------------------*/
 
 @media (max-width: 1224px) {}
