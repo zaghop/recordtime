@@ -17,7 +17,7 @@
         'type'  => 'text',
         'name'  => 'search',
         'id'    => 'search',
-        'value' => 'Search for producers, genres, and more',
+        'placeholder' => 'Search for producers, genres, and more',
         'class' => 'hiddenemail'
         );
 
@@ -26,11 +26,48 @@
         echo form_close()
     ?>
   </div>
+
+  <div class="Filter">
+    <span><?php echo count($results) ?> results </span>
+
+    <div>
+      Sort By Genre
+      <?php
+
+        // make genres array
+        if (count($results) > 0):
+          $genres = array();
+
+          foreach($results as $row):
+            if ($row->genres):
+              array_merge($genres, explode(",", $row->genres));
+            endif;
+          endfor;
+        endif;
+
+        // make an input box for each genre
+
+      ?>
+      <input type="checkbox"/>
+
+    <?php echo $row->genres; endif; endforeach; endif; ?>
+
+    </div>
+
+
+  </div>
   <div class="Results container">
     <?php
       if (count($results) > 0):
         foreach($results as $row):
     ?>
+        <!-- Add in classes using following schemas
+
+          location-<city>-<state>
+          relevance-<score>
+          genre-<genre>
+
+       -->
         <div class="ResultRow row">
           <div class="Details col-md-4">
             <div>
@@ -40,7 +77,7 @@
               <h4><?=$row->firstname?> <?=$row->lastname?></h4>
             </div>
             <div class="MinorDetails">
-              <p>Genres</p>
+              <p><?=$row->genres?></p>
               <p><?=$row->city?><?=$row->state?></p>
             </div>
           </div>
@@ -55,3 +92,8 @@
         </div>
     <?php endforeach; endif; ?>
 </div>
+<script>
+
+  const div = $('div');
+  console.dir($);
+</script>
