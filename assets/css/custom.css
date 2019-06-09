@@ -132,11 +132,34 @@
 
 .Search .form-container {
   width: 100%;
+  height: 6em;
+  padding: 1em;
+}
+
+.Search .form-container form {
+  display: inline-block;
+}
+
+.Search .form-container > div {
+  display: inline-block;
+}
+
+.Search .form-container input {
+  height: 4em;
 }
 
 .Search .form-container input[type='text'] {
-  width: 60%;
+
+  width: 50vw;
+  max-width: 500px;
 }
+
+.Search .form-container input[type='submit'] {
+  background-color: #545454;
+  width: 4em;
+  color: white;
+}
+
 
 .Search .ResultRow {
   background: white;

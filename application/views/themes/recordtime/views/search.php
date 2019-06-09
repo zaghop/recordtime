@@ -17,7 +17,7 @@
         'type'  => 'text',
         'name'  => 'search',
         'id'    => 'search',
-        'value' => 'Search for producers, genres, and more',
+        'placeholder' => 'Search for producers, genres, and more',
         'class' => 'hiddenemail'
         );
 
@@ -25,6 +25,21 @@
         echo form_submit('search_submit', html_escape('→'));
         echo form_close()
     ?>
+
+    <?php if (count($results) > 0): ?>
+       <div class="result count">
+        <?php echo count($results) ?>
+         Results
+       </div>
+       <div>
+         Sort by:
+         <button class="price-toggle">Price</button>
+         <button class="location-toggle">Local</button>
+       </div>
+
+    <?php endif; ?>
+
+
   </div>
   <div class="Results container">
     <?php

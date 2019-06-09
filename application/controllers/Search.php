@@ -14,8 +14,6 @@ class Search extends Public_controller
       $this->load->library('session');
       $this->load->library('form_validation');
 
-      // search model?
-      $this->load->model('project_model','project');
       $this->load->model('search_model');
 
   }
