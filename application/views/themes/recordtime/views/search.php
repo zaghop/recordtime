@@ -33,8 +33,8 @@
        </div>
        <div>
          Sort by:
-         <button class="price-toggle">Price</button>
-         <button class="location-toggle">Local</button>
+         <button id="price-toggle">Price</button>
+         <button id="location-toggle">Local</button>
        </div>
 
     <?php endif; ?>
@@ -57,6 +57,7 @@
             <div class="MinorDetails">
               <p>Genres</p>
               <p><?=$row->city?><?=$row->state?></p>
+              <p>Price: <?=$row->price?></p>
             </div>
           </div>
           <div class="Philosophy col-md-4">
@@ -70,3 +71,15 @@
         </div>
     <?php endforeach; endif; ?>
 </div>
+
+<script>
+  $('#price-toggle').click(function() {
+    console.log("LOLO");
+  })
+
+
+
+  $('#price-toggle').click(function() {
+      
+  });
+</script>
