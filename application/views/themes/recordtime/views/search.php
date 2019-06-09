@@ -80,6 +80,6 @@
 
 
   $('#price-toggle').click(function() {
-      
+
   });
 </script>
