@@ -12,6 +12,7 @@ Class Search_model Extends CI_Model
         $this->db->like('philosophy', $search);
         $this->db->or_like('skills', $search);
         $this->db->or_like('genres', $search);
+        $this->db->
         // $query = $this->db->get('producers');
         // $this->db->join('tbl_user', 'tbl_user.id = producers.user_id');
         // return $query->result();

@@ -31,7 +31,8 @@
     <span><?php echo count($results) ?> results </span>
 
     <div>
-      Sort By Genre
+      <!-- Sort By Genre
+      saving this code for later.
       <?php
 
         // make genres array
@@ -43,7 +44,7 @@
               array_merge($genres, explode(",", $row->genres));
             endif;
           endfor;
-        endif;
+        endif; -->
 
         // make an input box for each genre
 
