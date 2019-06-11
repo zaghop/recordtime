@@ -164,7 +164,7 @@ a:hover {
 	border: 0 none;
 	border-radius: 0;
 	outline: none;
-	padding: 17px 10px;
+	padding: 7px 10px;
 	text-transform: uppercase;
 	border: 3px solid #fff;
 	font-weight: 600;
@@ -308,10 +308,10 @@ a:hover {
 	background: #E52806;
 	color: #ffffff;
 	width: 100%;
-	text-align: left;
+	text-align: center;
 	border: 1px solid #fff;
 	margin: 20px 0 10px;
-	padding: 15px;
+	padding: 10px;
 	font-size: 20px;
 	font-weight: 400;
 	max-width: 300px;
@@ -325,7 +325,7 @@ a:hover {
 .orange.signup-btn span {
 	position: absolute;
 	right: 30px;
-	top: 19px;
+	top: 11px;
 }
 
 .white-bg {
@@ -385,6 +385,16 @@ a:hover {
 	background-repeat: no-repeat !important;
 	background-size: cover !important;
 }
+
+/* cpp start */
+.producer-section .artist-producer-section::after {
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.producer-section .artist-producer-block a {
+	margin: 50px auto;
+}
+/* cpp end */
 
 .artist-producer-section:after {
 	content: "";
@@ -1439,7 +1449,8 @@ a.email-icon {
 }
 
 .producer-section {
-	background: url(../images/producer-full-bg.png);
+	/*background: url(../images/producer-full-bg.png);*/
+	background: url(../images/project-banner.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 }

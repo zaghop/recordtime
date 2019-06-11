@@ -44,7 +44,11 @@
                 </div>
 
                 <div class="col-sm-12 form-button-container">
-				        <input type="submit" name="submit" value="Sign up to record" class="orange signup-btn" /><span class="align-right" ><i class="fa fa-arrow-right"></i></span>
+				        <input type="submit" name="submit" value="Sign up to record" class="orange signup-btn" style="padding: 0px;" /><span class="align-right" ><i class="fa fa-arrow-right"></i></span>
+                </div>
+
+                <div class="col-sm-12 form-button-container">
+                    <span>Already have an account? Login <a href="<?php echo site_url(); ?>/login"> Here!</a></span>
                 </div>
             </form>
             </div>
@@ -73,7 +77,7 @@
 				<div class="work-with-inner-text">
 					<img src="<?= site_url().template_assets_path(); ?>/images/Secure.png" alt="Secure" />
 					<h4 class="title">Secure</h4>
-					<p>Recording should be worry-free. That’s why we hold all funds until Artists mark the work as done, while providing legal framework to protect every project’s collaborators. </p>
+					<p>Recording should be worry-free. Thatï¿½s why we hold all funds until Artists mark the work as done, while providing legal framework to protect every projectï¿½s collaborators. </p>
 				</div>
             </div>
             <!-- div class="col-sm-12 mt-30 text-center process-vertical-line">
