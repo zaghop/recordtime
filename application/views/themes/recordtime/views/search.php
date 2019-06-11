@@ -11,22 +11,15 @@
      </div>
   </div>
   <div class="form-container">
-    <?php
-      echo form_open('index.php/search');
-      $data = array(
-        'type'  => 'text',
-        'name'  => 'search',
-        'id'    => 'search',
-        'placeholder' => 'Search for producers, genres, and more',
-        'class' => 'hiddenemail'
-        );
 
-        echo form_input($data);
-        echo form_submit('search_submit', html_escape('→'));
-        echo form_close()
-    ?>
+    <form id="searchForm" action="#">
+      <input type="text" name="search" id="search"
+             placeholder="Search for producers, genres, and more" />
+       <button type="submit">→</button>
+    </form>
 
-    <?php if (count($results) > 0): ?>
+
+    <!-- <?php if (count($results) > 0): ?>
        <div class="result count">
         <?php echo count($results) ?>
          Results
@@ -37,12 +30,12 @@
          <button id="location-toggle">Local</button>
        </div>
 
-    <?php endif; ?>
+    <?php endif; ?> -->
 
 
   </div>
   <div class="Results container">
-    <?php
+    <!-- <?php
       if (count($results) > 0):
         foreach($results as $row):
     ?>
@@ -69,17 +62,54 @@
             <?=$row->skills?>
           </div>
         </div>
-    <?php endforeach; endif; ?>
+    <?php endforeach; endif; ?> -->
 </div>
 
 <script>
+
+$(document).ready(function(){
   $('#price-toggle').click(function() {
     console.log("LOLO");
   })
+
+  $('#searchForm').submit(function(e) {
+
+    e.preventDefault();
+    e.stopPropagation();
+    // TODO: Get this more elegantly.
+    var search = document.forms[0][0].value;
+
+    var URL = 'search/producers?search=' + encodeURIComponent(search);
+
+    $.get(URL, function(data) {
+      console.dir(data);
+      // console.log("RETURNING");
+    });
+  });
+
+
+
+
+     // $(this).ajaxSubmit({
+     //     type : "POST",
+     //     //set the data type
+     //     dataType:'json',
+     //     url: 'index.php/search_producers', // target element(s) to be updated with server response
+     //     cache : false,
+     //     //check this in Firefox browser
+     //     success : function(response){
+     //       console.log(response);
+     //       alert(response)},
+     //       error: onFailRegistered
+     //   });
+     //   return false;
+     // });
 
 
 
   $('#price-toggle').click(function() {
 
   });
+
+});
 </script>
