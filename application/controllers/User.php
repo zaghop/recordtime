@@ -79,7 +79,7 @@ class User extends Public_controller
 	public function whyProducers()
     {
 
-        $data['title'] = _l('producers_overview');
+        $data['title'] = _l('Why Producer');
         $data['class'] = 'why-producers-page';
 
 
@@ -91,7 +91,7 @@ class User extends Public_controller
 	public function howItWorksProducers()
     {
 
-        $data['title'] = _l('producers_how_it_works');
+        $data['title'] = _l('How Producer Works');
         $data['class'] = 'how-it-works-producer-page';
 
         $this->data    = $data;

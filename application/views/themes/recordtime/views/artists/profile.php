@@ -21,7 +21,7 @@ $base_rate_per_song = ($user_details[0]['base_production_rate'] + $base_producti
           <div class="col-sm-1"></div>
           <div class="col-sm-4 producer-profile-img-container">
             <div class="producer-profile-img">
-				<?php if(isset($user_details[0]['profile_pic'])){ ?>
+				<?php if(!empty($user_details[0]['profile_pic']) && isset($user_details[0]['profile_pic'])){ ?>
               		<img src="<?= site_url().template_assets_path(); ?>/users/<?php echo $user_details[0]['profile_pic']; ?>">
 				<?php } else{ ?>
 					<img src="<?= site_url().template_assets_path(); ?>/images/profucer-profile-image.png">
@@ -44,7 +44,7 @@ $base_rate_per_song = ($user_details[0]['base_production_rate'] + $base_producti
               <p>$<?php echo $user_details[0]['base_rate']; ?> Base Rate</p>
             </div>
             <div class="producer-email-container">
-              <a href="http://develop.zaghop.com/~zagdev/recordtime/message?recipient_id=18" class="email-icon">
+              <a href="http://develop.zaghop.com/~zagdev/recordtime/message?recipient_id=<?php echo $user_id; ?>" class="email-icon">
                 <img src="<?= site_url().template_assets_path(); ?>/images/big-mail-icon.png">
               </a>
               <a href="<?= site_url('artists/editprofile')?>" class="check-box-icon1">
