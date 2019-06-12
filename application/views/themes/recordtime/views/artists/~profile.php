@@ -1,5 +1,5 @@
-<?php $user_id = $this->session->userdata['userid'];
-$ID = $user_details[0]['user_id'];
+<?php $user_id = $this->session->userdata['userid']; 
+
 $base_production_expenses = ($user_details[0]['mix_engineer_rate'] + $user_details[0]['mastering_engineer_rate'] + $user_details[0]['programmer_rate']);
 
 $base_rate_per_song = ($user_details[0]['base_production_rate'] + $base_production_expenses);
@@ -44,17 +44,9 @@ $base_rate_per_song = ($user_details[0]['base_production_rate'] + $base_producti
               <p>$<?php echo $user_details[0]['base_rate']; ?> Base Rate</p>
             </div>
             <div class="producer-email-container">
-               <?php if($ID == $user_id){ ?>
-                   <a href="#" class="email-icon">
-                       <img src="<?= site_url().template_assets_path(); ?>/images/big-mail-icon.png">
-                   </a>
-               <?php }else{ ?>
-                   <a href="http://develop.zaghop.com/~zagdev/recordtime/message?recipient_id=<?php echo $user_id; ?>" class="email-icon">
-                       <img src="<?= site_url().template_assets_path(); ?>/images/big-mail-icon.png">
-                   </a>
-                <?php } ?>
-
-
+              <a href="http://develop.zaghop.com/~zagdev/recordtime/message?recipient_id=<?php echo $user_id; ?>" class="email-icon">
+                <img src="<?= site_url().template_assets_path(); ?>/images/big-mail-icon.png">
+              </a>
               <a href="<?= site_url('artists/editprofile')?>" class="check-box-icon1">
 				  <img src="https://img.icons8.com/ios/50/000000/pencil.png">
 <!--                <img src="<?= site_url().template_assets_path(); ?>/images/Checkbox.png">-->
