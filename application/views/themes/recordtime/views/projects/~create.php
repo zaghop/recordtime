@@ -53,7 +53,7 @@
 	
 	#project-overview .input_fields_inner {
 		margin-bottom: 5px;
-		border: 1px solid #707070;
+		border: 1px solid #2e2e2e;
 		padding: 15px;
 		display: inline-block;
 		width: 100%;
@@ -61,21 +61,11 @@
 	
 	#project-overview .input_fields_inner h3 {
 		float: left;
-		color: #707070;
 	}
 	
 	#project-overview .input_fields_inner input {
 		float: right;
 		width: 22%;
-	}
-	#project-overview .player-inner {
-		padding: 10px;
-		margin-bottom: 10px;
-		border: 1px solid #707070;
-	}
-	#project-overview .player-inner h3 {
-		margin-bottom: 10px;
-		color: #707070;
 	}
 </style>
 <div class="middle-container">
@@ -100,10 +90,10 @@
 <div id="project-overview">
 	<div class="container new-project-container-padding" id="step-1">
 		<div class="row project-inner-section">
-			<div class="col-md-4">
+			<div class="col-sm-4">
 				<div class="project-details-container">
 					<div class="new-project-section-title box-shadow white-bg same-height">
-						<h3>What does your client want this
+						<h3>What does your client want this 1 2 3
             project to be called?</h3>
 						<!--        <p>Don’t worry—this isn’t official. </p>-->
 						<!--        <p>It’ll just help you identify it on RecordTime.</p>-->
@@ -113,7 +103,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-sm-4">
 				<div class="project-details-container">
 					<div class="new-project-section-title box-shadow white-bg same-height">
 						<h3>When will you have it done?</h3>
@@ -128,7 +118,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-sm-4">
 				<div class="project-details-container process-icon-section">
 					<div class="process-stetus">
 						<ul>
@@ -163,10 +153,11 @@
 				</div>
 			</div>
 		</div>
+
 	</div>
 	<div class="container new-project-container-padding" id="step-2" style="display:none;">
 		<div class="row project-inner-section">
-			<div class="col-md-4">
+			<div class="col-sm-4">
 				<div class="project-details-container">
 					<div class="new-project-section-title box-shadow white-bg same-height">
 						<h3>Songs to be recorded </h3>
@@ -205,23 +196,23 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-sm-4">
 				<div class="project-details-container">
 					<div class="input_fields_wrap new-project-section-title same-height" style="overflow-y: scroll; height: 300px;">
 						<div class="box-shadow white-bg input_fields_inner">
 							<h3>Song1</h3><input type="text" name="mytext[]">
 						</div>
 						<div class="box-shadow white-bg input_fields_inner">
-							<h3>Song2</h3><input type="text" name="mytext[]">
+							<h3>Song1</h3><input type="text" name="mytext[]">
 						</div>
 						<div class="box-shadow white-bg input_fields_inner">
-							<h3>Song3</h3><input type="text" name="mytext[]">
+							<h3>Song1</h3><input type="text" name="mytext[]">
 						</div>
 						<div class="box-shadow white-bg input_fields_inner">
-							<h3>Song4</h3><input type="text" name="mytext[]">
+							<h3>Song1</h3><input type="text" name="mytext[]">
 						</div>
 					</div>
-					<div class="text-center">
+					<div class="text-center" style="text-align: center;">
 						<img class="add_field_button" style="width: 39px; border-radius: 18px;" src="<?= site_url() . template_assets_path(); ?>/images/plus.jpg">
 					</div>
 					<!--            <div class="project-section-input-box doller-sign-textbox">-->
@@ -229,7 +220,7 @@
 					<!--            </div>-->
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-sm-4">
 				<div class="project-details-container process-icon-section">
 					<div class="process-stetus">
 						<ul>
@@ -270,7 +261,7 @@
 	</div>
 	<div class="container new-project-container-padding" id="step-3" style="display:none;">
 		<div class="row project-inner-section">
-			<div class="col-md-4">
+			<div class="col-sm-4">
 				<div class="project-details-container">
 					<div class="new-project-section-title upload-file-height-auto box-shadow white-bg same-height">
 						<h3>List any additional musicians or
@@ -285,21 +276,14 @@
 					<!--            </div>-->
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-sm-4">
 				<div class="project-details-container">
-					<div class="input_fields_wrap_player new-project-section-title new-project-section-checkbox same-height" style="overflow-y: scroll; height: 300px;">
-						<div class="box-shadow white-bg player-inner">
+					<div class="input_fields_wrap_player new-project-section-title new-project-section-checkbox box-shadow white-bg same-height">
+
+
 						<h3>Player1</h3><input type="text" name="mytext[]">
-						</div>
-						<div class="box-shadow white-bg player-inner">
-						<h3>Player2</h3><input type="text" name="mytext[]">
-						</div>
-						<div class="box-shadow white-bg player-inner">
-						<h3>Player3</h3><input type="text" name="mytext[]">
-						</div>
-						<div class="box-shadow white-bg player-inner">
-						<h3>Player4</h3><input type="text" name="mytext[]">
-						</div>
+
+
 
 
 
@@ -337,12 +321,10 @@
 						<!--              </ul>-->
 
 					</div>
-					<div class="text-center">
 					<img class="add_field_button_player" style="width: 39px; border-radius: 18px;" src="<?= site_url() . template_assets_path(); ?>/images/plus.jpg">
-					</div>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-sm-4">
 				<div class="project-details-container process-icon-section">
 					<div class="process-stetus">
 						<ul>
@@ -390,7 +372,7 @@
 		var add_button = $( ".add_field_button" ); //Add button ID
 
 		var x = 1; //initlal text box count
-		var y = 5;
+		var y = 2;
 		$( add_button ).click( function ( e ) { //on add input button click
 			e.preventDefault();
 			if ( x < max_fields ) { //max input box allowed
@@ -414,13 +396,13 @@
 		var add_button = $( ".add_field_button_player" ); //Add button ID
 
 		var x = 1; //initlal text box count
-		var y = 5;
+		var y = 2;
 		$( add_button ).click( function ( e ) { //on add input button click
 			e.preventDefault();
 			if ( x < max_fields ) { //max input box allowed
 				x++; //text box increment
 				//$(wrapper).append('<div><h3>Song1</h3><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
-				$( wrapper ).append( '<div class="box-shadow white-bg player-inner"><h3>Player' + y + '</h3><input type="text" name="mytext[]"/></div>' );
+				$( wrapper ).append( '<div><h3>Player' + y + '</h3><input type="text" name="mytext[]"/></div>' );
 				y++;
 			}
 		} );
