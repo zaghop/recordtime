@@ -5,13 +5,13 @@
    <div class="col-sm-1"></div>
    <div class="col-sm-4 mt-130 sign-up-form-containr">
         <div class="col-sm-12  text-center">
-         <p class="text-center">Login</p>
+            <p class="text-center">Login</p>
             <div class="mt-50"></div>
-         <div class="col-sm-12 signup-form">
-          <?php 
-            echo ($this->session->error) ? $this->session->error : ''; 
-            echo ($this->session->success) ? $this->session->success : ''; 
-          ?>
+            <div class="col-sm-12 signup-form">
+                <?php
+                    echo ($this->session->error) ? $this->session->error : '';
+                    echo ($this->session->success) ? $this->session->success : '';
+                ?>
                <div class="form-group">
                   <input type="email" class="form-control" id="email" placeholder="Email" name="email">
                 </div>
@@ -19,9 +19,10 @@
                   <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="password">
                 </div>
                 <div class="form-group">
-                  <input type="submit" class="btn btn-block btn-recording" name="submit">
+                  <input type="submit" class="btn btn-block btn-recording" value="Submit" name="submit">
                 </div>
             </div>
+            <span>Don't have an account, create one <a href="<?= site_url('artists/signup')?>">here</a></span>
         </div>
         
     </div>
