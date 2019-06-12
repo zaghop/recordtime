@@ -1704,7 +1704,7 @@ a.email-icon {
 
 .process-icon-section .process-stetus {
 	margin: 0 auto;
-	/*display: table;*/
+	display: table;
 }
 
 .project-inner-section .project-details-container {
@@ -3304,11 +3304,11 @@ textarea.popup-messag-box {
 	}
 	.process-icon-section .process-stetus {
 		margin: 30px auto 0;
-		/*display: table;*/
+		display: table;
 	}
-	/*.number-arrow-section.arrow-section {
+	.number-arrow-section.arrow-section {
 		bottom: 20px;
-	}*/
+	}
 	.new-project-container-padding {
 		padding: 60px 20px 40px;
 	}
