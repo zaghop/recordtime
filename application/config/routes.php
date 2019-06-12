@@ -71,22 +71,28 @@ $route['login'] = "User/login";
 $route['/']  = "User";
 $route['artists/overview']  = "User/whyArtists";
 $route['artists/how-it-works']  = "User/howItWorksArtists";
+$route['artists/editprofile']  = "User/artistProfile";
 $route['artists/signup']  = "User/artists_signup"; // added by prakash
 $route['artists/login']  = "User/artists_login"; // added by prakash
 $route['artists/logout']  = "User/logout"; // added by prakash
 $route['artists/profile']  = "User/artists_profile"; // added by prakash
 
-$route['producer/login']  = "User/producer_login"; // added by prakash
-$route['producer/overview']  = "User/whyProducers";
-$route['producer/signup']  = "User/producer_signup";
-$route['producer/how-it-works']  = "User/howItWorksProducers";
-$route['producer/profile']  = "User/producer_profile";
+$route['producers/login']  = "User/producer_login"; // added by prakash
+$route['producers/overview']  = "User/whyProducers";
+$route['producers/signup']  = "User/producer_signup";
+$route['producers/how-it-works']  = "User/howItWorksProducers";
+$route['producers/profile']  = "User/producer_profile";
 
-$route['projects/create']  = "project/projects_add"; // added by prakash
+
+//$route['projects/create']  = "project/projects_add"; // added by prakash
+$route['project/create']  = "Project/create";
 $route['projects/summary']  = "User/projects_summary"; // added by prakash
+$route['project/dashboard'] = "Project/Dashboard";
 
 $route['viewinvoice/(:num)/(:any)']  = "clients/viewinvoice/$1/$2";
 
 $route['knowledge_base/(:any)']  = "clients/knowledge_base/$1";
 
 $route['knowledge-base/(:any)']  = "clients/knowledge_base/$1";
+
+$route['search']  = "Search";

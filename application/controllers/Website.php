@@ -41,6 +41,17 @@ class Website extends Public_controller
         $this->view    = 'artists/how-it-works';
         $this->layout();
     }
+	
+	public function editprofile()
+    {
+		//echo "test"; exit;
+        $data['title'] = _l('artists_how_it_works');
+        $data['class'] = 'how-it-works-page';
+
+        $this->data    = $data;
+        $this->view    = 'artists/editprofile';
+        $this->layout();
+    }
 
 	public function whyProducers()
     {

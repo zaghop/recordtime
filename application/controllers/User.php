@@ -7,6 +7,7 @@ class User extends Public_controller
         parent::__construct();
 //        $this->form_validation->set_error_delimiters('<p class="text-danger alert-validation">', '</p>');
         do_action('after_website_init');
+		
         $this->load->library('form_validation');
         $this->load->model('user_model','user');
     }
@@ -40,11 +41,45 @@ class User extends Public_controller
         $this->view    = 'artists/how-it-works';
         $this->layout();
     }
+	
+	
+	
+	public function artistProfile()
+    {
+		$data['user_id'] = $this->session->userdata['userid'];
+		$data['user_details'] = $this->user->getArtistdetails($data);
+		
+        $data['title'] = _l('edit_artist');
+        $data['class'] = 'edit-artist-page';
+
+        $this->data    = $data;
+        $this->view    = 'artists/editprofile';
+        $this->layout();
+		
+		if($this->input->post('submit')){
+		
+			$uid = $this->input->post('user_id');
+
+			$config['upload_path']="./assets/themes/recordtime/users/";
+			$config['allowed_types']='gif|jpg|png';
+			$this->load->library('upload',$config);
+
+			$updateArtistprofile = $this->user->updateartistprofile($uid);
+			if($updateArtistprofile){
+				redirect('/artists/profile');
+
+			}else{
+				$data['error_msg'] = 'Some problems occured, please try again.';
+			}
+       }
+		
+		
+    }
 
 	public function whyProducers()
     {
 
-        $data['title'] = _l('producers_overview');
+        $data['title'] = _l('Why Producer');
         $data['class'] = 'why-producers-page';
 
 
@@ -56,7 +91,7 @@ class User extends Public_controller
 	public function howItWorksProducers()
     {
 
-        $data['title'] = _l('producers_how_it_works');
+        $data['title'] = _l('How Producer Works');
         $data['class'] = 'how-it-works-producer-page';
 
         $this->data    = $data;
@@ -1468,6 +1503,10 @@ class User extends Public_controller
         if ($this->session->userdata('email') === NULL){
                 redirect("/");
         }
+		
+		$data['user_id'] = $this->session->userdata['userid'];
+		$data['user_details'] = $this->user->getArtistdetails($data);
+		
         $data['title'] = _l('artists_profile');
 
         $this->data    = $data;
@@ -1543,4 +1582,7 @@ class User extends Public_controller
         $this->view    = 'producers/signup';
         $this->layout();
     }
+	
+
+	
 }

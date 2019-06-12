@@ -1,7 +1,13 @@
-  <div class="middle-container">
+<?php $user_id = $this->session->userdata['userid'];
+$ID = $user_details[0]['user_id'];
+$base_production_expenses = ($user_details[0]['mix_engineer_rate'] + $user_details[0]['mastering_engineer_rate'] + $user_details[0]['programmer_rate']);
+
+$base_rate_per_song = ($user_details[0]['base_production_rate'] + $base_production_expenses);
+?>  
+<div class="middle-container">
     <div class="banner-image">
       <div class="banner-content">
-        <img src="images/Big Logo-White.png">
+        <img src="<?= site_url().template_assets_path(); ?>/images/Big Logo-White.png">
       </div>
     </div>
     <div class="page-title box-shadow">
@@ -15,29 +21,43 @@
           <div class="col-sm-1"></div>
           <div class="col-sm-4 producer-profile-img-container">
             <div class="producer-profile-img">
-              <img src="<?= site_url().template_assets_path(); ?>/images/profucer-profile-image.png">
+				<?php if(!empty($user_details[0]['profile_pic']) && isset($user_details[0]['profile_pic'])){ ?>
+              		<img src="<?= site_url().template_assets_path(); ?>/users/<?php echo $user_details[0]['profile_pic']; ?>">
+				<?php } else{ ?>
+					<img src="<?= site_url().template_assets_path(); ?>/images/profucer-profile-image.png">
+				<?php } ?>
+			
             </div>
 
           </div>
           <div class="col-sm-7 producer-profile-contact-details-container">
             <div class="producer-name">
-              <h1>Name Surname</h1>
+              <h1><?php echo $user_details[0]['firstname'].' '.$user_details[0]['lastname']; ?></h1>
             </div>
             <div class="producer-type">
-              <p>Genres</p>
+              <p><?php echo $user_details[0]['genre']; ?></p>
             </div>
             <div class="producer-city">
-              <p>City, State</p>
+              <p><?php echo $user_details[0]['city']; ?>, <?php echo $user_details[0]['state']; ?></p>
             </div>
             <div class="producer-base-rate">
-              <p>$700 Base Rate</p>
+              <p>$<?php echo $user_details[0]['base_rate']; ?> Base Rate</p>
             </div>
             <div class="producer-email-container">
-              <a href="mailto:test@test.com" class="email-icon">
-                <img src="<?= site_url().template_assets_path(); ?>/images/big-mail-icon.png">
-              </a>
-              <a href="##" class="check-box-icon">
-                <img src="<?= site_url().template_assets_path(); ?>/images/Checkbox.png">
+               <?php if($ID == $user_id){ ?>
+                   <a href="#" class="email-icon">
+                       <img src="<?= site_url().template_assets_path(); ?>/images/big-mail-icon.png">
+                   </a>
+               <?php }else{ ?>
+                   <a href="http://develop.zaghop.com/~zagdev/recordtime/message?recipient_id=<?php echo $user_id; ?>" class="email-icon">
+                       <img src="<?= site_url().template_assets_path(); ?>/images/big-mail-icon.png">
+                   </a>
+                <?php } ?>
+
+
+              <a href="<?= site_url('artists/editprofile')?>" class="check-box-icon1">
+				  <img src="https://img.icons8.com/ios/50/000000/pencil.png">
+<!--                <img src="<?= site_url().template_assets_path(); ?>/images/Checkbox.png">-->
               </a>
             </div>
           </div>
@@ -51,17 +71,13 @@
           <div class="col-sm-6">
             <div class="production-philosphy-container profile-card box-shadow">
               <h3>Production Philosphy</h3>
-              <p>Blah blah blah blah <br>
-              Some stuff<br>
-              Limited characters</p>
+              <p><?php echo nl2br($user_details[0]['philosphy']); ?></p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="credits-container profile-card box-shadow">
               <h3>Credits</h3>
-              <p>Blah blah blah blah <br>
-                AllMusic Link can go here too<br>
-              <p>For inexperienced producers, this section can be deselected.</p>
+              <p><?php echo nl2br($user_details[0]['credits']); ?></p>
             </div>
           </div>
         </div>
@@ -72,13 +88,11 @@
             <div class="">
               <div class="skill-container profile-card box-shadow">
                 <h3>Skills and Specialties</h3>
-                <p>What kind of music do you gravitate towards?<br>
-                  What are you good at? <br>
-                  When are you at your best? </p>
+                <p><?php echo nl2br($user_details[0]['skills']); ?></p>
               </div>
               <div class="base-rate-container profile-card box-shadow">
                 <h3>Base Rates Per Song</h3>
-                <p>This is the minimum rate per song for this producer. Rates may change with the addition of other studio professionals or musicians. Contact this producer to lock in your rate. </p>
+                <p><?php echo $user_details[0]['base_rate_text']; ?></p>
                 <div class="rate-table-container">
                   <table>
                     <tr>
@@ -86,7 +100,7 @@
                         <h4>Base Production Rate</h4>
                       </td>
                       <td>
-                        <h4>$200</h4>
+                        <h4>$<?php echo $user_details[0]['base_production_rate']; ?></h4>
                       </td>
                     </tr>
                     <tr>
@@ -94,7 +108,7 @@
                         <h4>Base Production Expenses</h4>
                       </td>
                       <td>
-                        <h4>$500</h4>
+                        <h4>$<?php echo $base_production_expenses; ?></h4>
                       </td>
                     </tr>
                     <tr>
@@ -104,7 +118,7 @@
                             <h5>Mix Engineer</h5>
                           </td>
                           <td>
-                            <h5>$100</h5>
+                            <h5>$<?php echo $user_details[0]['mix_engineer_rate']; ?></h5>
                           </td>
                         </tr>
                         <tr>
@@ -112,7 +126,7 @@
                             <h5>Mastering Engineer</h5>
                           </td>
                           <td>
-                            <h5>$200</h5>
+                            <h5>$<?php echo $user_details[0]['mastering_engineer_rate']; ?></h5>
                           </td>
                         </tr>
                         <tr>
@@ -120,11 +134,9 @@
                             <h5>Programmer</h5>
                           </td>
                           <td>
-                            <h5>$100</h5>
+                            <h5>$<?php echo $user_details[0]['programmer_rate']; ?></h5>
                           </td>
                         </tr>
-
-
 
                       </table>
                     </tr>
@@ -141,7 +153,7 @@
                         <h4><b>Base Rate Per Song</b></h4>
                       </td>
                       <td>
-                        <p><span>$700</span></p>
+                        <p><span>$<?php echo $base_rate_per_song; ?></span></p>
                       </td>
                     </tr>
                   </table>
