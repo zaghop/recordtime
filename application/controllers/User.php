@@ -42,7 +42,16 @@ class User extends Public_controller
         $this->layout();
     }
 	
-	
+	public function editProductionRates()
+    {
+
+        $data['title'] = _l('production_rates');
+        $data['class'] = 'production_rates';
+
+        $this->data    = $data;
+        $this->view    = 'artists/editproductionrates'; 
+        $this->layout();
+    }
 	
 	public function artistProfile()
     {
