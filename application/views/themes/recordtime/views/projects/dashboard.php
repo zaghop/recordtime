@@ -28,6 +28,70 @@
         width: 33px;
         height: auto;
     }
+    
+    .new-project-title .btn {
+		padding: 15px 30px;
+		border: 2px solid #fff;
+		top: 3em;
+		width: 12%;
+	}
+	
+	.middle-part .ProjectList {
+		width: 95%;
+	}
+	
+	.middle-part .ProjectItem {
+		height: 16em;
+		width: 94vw;
+		padding: 35px;
+		background: #FFFFFF;
+	}
+	
+	.middle-part .ProjectList .started {
+		margin-top: 2em;
+	}
+	
+	.middle-part .ProjectItem__Details {
+		position: static;
+	}
+	
+	.middle-part .first-part img {
+		height: 11em;
+		margin: 0;
+	}
+	
+	.middle-part .second-part h3 {
+		font-size: 45px;
+		margin-top: 10px;
+	}
+	
+	.middle-part .third-part h4 {
+		font-size: 24px;
+	}
+	
+	.four-part button {
+		width: 145px;
+		height: 4em;
+		border: 2px solid #707070;
+	}
+	
+	@media (max-width:1224px) {
+		.new-project-title .btn {
+			width: auto;
+		}
+	}
+	
+	@media (min-width:768px) and (max-width:991px) {
+		.middle-part .first-part img {
+			height: auto;
+		}
+	}
+	
+	@media (max-width:767px) {
+		.middle-part .ProjectItem {
+			height: auto;
+		}
+	}
 </style>
 
 <div class="middle-container">
@@ -147,6 +211,8 @@
                 <!--                </div>-->
                 <!--              </div>-->
                 <?php endif; ?>
+                
+                
 
 
                 <div class="ProjectItem__Details row">
@@ -360,5 +426,3 @@ input:focus,
   color: red;
 }
 </style>
-
-

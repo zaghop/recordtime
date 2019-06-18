@@ -77,6 +77,13 @@
 		margin-bottom: 10px;
 		color: #707070;
 	}
+	#project-overview .add_field_button {
+		width: 39px; 
+		border-radius: 18px; 
+		border-radius: 18px; 
+		background: #189bd4; 
+		border: 2px solid #fff;
+	}
 </style>
 <div class="middle-container">
 	<div class="banner-image">
@@ -86,7 +93,10 @@
 	</div>
 	<div class="page-title box-shadow">
 		<div class="container-fluid">
-			<h1>Project―Overview</h1>
+			<div id="title-1"><h1>Project―Overview</h1></div>
+            <div id="title-2" style="display:none;"><h1>Project―Songs</h1></div>
+            <div id="title-3" style="display:none;"><h1>Project―Musicians</h1></div>
+            <div id="title-4" style="display:none;"><h1>Project―Summary</h1></div>
 		</div>
 	</div>
 </div>
@@ -222,7 +232,7 @@
 						</div>
 					</div>
 					<div class="text-center">
-						<img class="add_field_button" style="width: 39px; border-radius: 18px;" src="<?= site_url() . template_assets_path(); ?>/images/plus.jpg">
+						<img class="add_field_button" src="<?= site_url() . template_assets_path(); ?>/images/plus.png">
 					</div>
 					<!--            <div class="project-section-input-box doller-sign-textbox">-->
 					<!--               <input type="date" name="complete_time">-->
@@ -287,19 +297,11 @@
 			</div>
 			<div class="col-md-4">
 				<div class="project-details-container">
-					<div class="input_fields_wrap_player new-project-section-title new-project-section-checkbox same-height" style="overflow-y: scroll; height: 300px;">
+					<div class="input_fields_wrap_player new-project-section-title new-project-section-checkbox same-height" style="overflow-y: auto; height: 300px;">
 						<div class="box-shadow white-bg player-inner">
 						<h3>Player1</h3><input type="text" name="mytext[]">
 						</div>
-						<div class="box-shadow white-bg player-inner">
-						<h3>Player2</h3><input type="text" name="mytext[]">
-						</div>
-						<div class="box-shadow white-bg player-inner">
-						<h3>Player3</h3><input type="text" name="mytext[]">
-						</div>
-						<div class="box-shadow white-bg player-inner">
-						<h3>Player4</h3><input type="text" name="mytext[]">
-						</div>
+
 
 
 
@@ -338,7 +340,8 @@
 
 					</div>
 					<div class="text-center">
-					<img class="add_field_button_player" style="width: 39px; border-radius: 18px;" src="<?= site_url() . template_assets_path(); ?>/images/plus.jpg">
+					
+					<img class="add_field_button_player add_field_button" src="<?= site_url() . template_assets_path(); ?>/images/plus.png">
 					</div>
 				</div>
 			</div>
@@ -382,6 +385,26 @@
 			</div>
 		</div>
 	</div>
+
+    <div class="container new-project-container-padding" id="step-4" style="display:none;">
+        <div class="row project-inner-section">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="project-details-container">
+                    <div class="new-project-section-title upload-file-height-auto box-shadow white-bg same-height">
+                        <h1 style="color: #000;">You're all set!</h1>
+                        <p>Search for products that can make our project amazing.</p>
+                    </div>
+                    <div class="arrow-section number-arrow-section two-arrow">
+                        <div class="arrow right-arrow">
+                            <a href="<?= site_url('search')?>" id="#"><i class="fa fa-arrow-right " aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
 </div>
 <script type="text/javascript">
 	$( document ).ready( function () {
@@ -414,7 +437,7 @@
 		var add_button = $( ".add_field_button_player" ); //Add button ID
 
 		var x = 1; //initlal text box count
-		var y = 5;
+		var y = 2;
 		$( add_button ).click( function ( e ) { //on add input button click
 			e.preventDefault();
 			if ( x < max_fields ) { //max input box allowed
@@ -435,21 +458,38 @@
 
 	$( document ).ready( function () {
 		$( '#step-1-submit' ).click( function () {
-			$( '#step-1' ).hide();
-			$( '#step-2' ).show();
-			var id = $( '.user-type' ).attr( "id" );
-		} );
-		$( '#step-2-submit' ).click( function () {
-			$( '#step-2' ).hide();
-			$( '#step-3' ).show();
-		} );
-		$( '#step-1-back' ).click( function () {
-			$( '#step-2' ).hide();
-			$( '#step-1' ).show();
-		} );
-		$( '#step-2-back' ).click( function () {
-			$( '#step-3' ).hide();
-			$( '#step-2' ).show();
-		} );
+            $( '#step-1' ).hide();
+            $( '#title-1' ).hide();
+            $( '#step-2' ).show();
+            $( '#title-2' ).show();
+            var id = $( '.user-type' ).attr( "id" );
+        } );
+        $( '#step-2-submit' ).click( function () {
+            $( '#step-2' ).hide();
+            $( '#step-3' ).show();
+            $( '#title-2' ).hide();
+            $( '#title-3' ).show();
+        } );
+        $( '#step-1-back' ).click( function () {
+            $( '#step-2' ).hide();
+            $( '#step-1' ).show();
+            $( '#title-2' ).hide();
+            $( '#title-1' ).show();
+        } );
+        $( '#step-2-back' ).click( function () {
+            $( '#step-3' ).hide();
+            $( '#step-2' ).show();
+            $( '#title-3' ).hide();
+            $( '#title-2' ).show();
+        } );
+
+        $( '#step-3-submit' ).click( function () {
+            $( '#step-3' ).hide();
+            $( '#step-4' ).show();
+            $( '#title-3' ).hide();
+            $( '#title-4' ).show();
+        } );
+
+
 	} )
 </script>

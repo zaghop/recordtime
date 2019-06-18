@@ -93,7 +93,12 @@ $base_rate_per_song = ($user_details[0]['base_production_rate'] + $base_producti
                 <h3>Skills and Specialties</h3>
                 <p><?php echo nl2br($user_details[0]['skills']); ?></p>
               </div>
+
+
               <div class="base-rate-container profile-card box-shadow">
+                  <a href="<?= site_url('artists/editproductionrates')?>" class="" style="float: right; width: 6%; text-align: right;">
+                      <img src="https://img.icons8.com/ios/50/000000/pencil.png" style="width: 40%;">
+                  </a>
                 <h3>Base Rates Per Song</h3>
                 <p><?php echo $user_details[0]['base_rate_text']; ?></p>
                 <div class="rate-table-container">
