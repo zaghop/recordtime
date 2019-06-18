@@ -43,6 +43,9 @@ $base_rate_per_song = ($user_details[0]['base_production_rate'] + $base_producti
             <div class="producer-base-rate">
               <p>$<?php echo $user_details[0]['base_rate']; ?> Base Rate</p>
             </div>
+            <div>
+                <p><strong>Your current credits: $<?php echo $credits; ?></strong></p>
+            </div>
             <div class="producer-email-container">
                <?php if($ID == $user_id){ ?>
                    <a href="#" class="email-icon">
