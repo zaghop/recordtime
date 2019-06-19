@@ -18,18 +18,18 @@
        <button type="submit">→</button>
     </form>
 
-
-    <!-- <?php if (count($results) > 0): ?>
-
-
-    <?php endif; ?> -->
+    <div id="user-city" style="display:none">
+   <?php
+    echo $user[0]['city']
+    ?>
+  </div>
 
 
   </div>
   <div class="result count">
     Results
   </div>
-  <div>
+  <div class="filter-buttons">
     Sort by:
     <button id="price-ascending">Price (low to high)</button>
     <button id="price-descending"> Price (high to low)</button>
@@ -39,17 +39,18 @@
 
 </div>
 
+<!-- SEARCH RESULT TEMPLATE -->
 <script id="resultRow" type="text/x-handlebars-template">
   <div class="ResultRow row">
     <div class="Details col-md-4">
       <div>
-        <img
-          src="/assets/images/user-placeholder.jpg">
+
+      <img src="<?= site_url().template_assets_path(); ?>/images/user-placeholder.jpg">
         <h4>{{firstname}} {{lastname}}</h4>
       </div>
       <div class="MinorDetails">
-        <p>Genres</p>
-        <p>{{city}}, {{state}}</p>
+        <!-- <p>Genres</p> -->
+        <p>{{city}}, {{state}} </p>
         <p>Price: {{price}}</p>
       </div>
     </div>
@@ -82,16 +83,31 @@ $(document).ready(function(){
     return a.price - b.price;
   }
 
+  function local(result) {
+    var city = $('#user-city').text();
+    console.log(city);
+    console.log(result.city);
+    return result.city.replace(/ /g,'') === city.replace(/ /g,'');
+  }
+
   function renderResults(data, config) {
+
+    $('.result.count').prepend(data.length);
+
+
     $ResultsContainer.empty();
     //sort + filter data
-    if (config) {
+    if (config.price) {
       // if price ascending
       if (config.price === "ascending") {
         data = data.sort(ascendingPrice);
       } else if (config.price === "descending") {
         data = data.sort(descendingPrice)
       }
+    }
+
+    if (config.localOnly) {
+      data = data.filter(local)
     }
 
     // attach sorted data.
@@ -113,11 +129,10 @@ $(document).ready(function(){
 
     $.get(URL, function(data) {
       console.dir(data);
-      // console.log("RETURNING");
 
       globalData = data;
 
-      renderResults(data);
+      renderResults(data, {});
     });
   });
 
@@ -129,7 +144,9 @@ $(document).ready(function(){
     renderResults(globalData, {price: 'ascending'});
   });
 
-
+  $('#location-toggle').click(function() {
+    renderResults(globalData, {localOnly: true});
+  })
 
 
 });
