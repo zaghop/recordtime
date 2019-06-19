@@ -16,6 +16,8 @@ class Search extends Public_controller
 
       $this->load->model('search_model');
 
+      $this->load->model('user_model','user');
+
   }
 
   public function index()
@@ -49,7 +51,24 @@ class Search extends Public_controller
       // };
 
 
+      // $this->db->where('tbl_user.id', $this->session->userdata['userid']);
+      // // $data['user'] = $this->session->userdata['city'];
+      //
+      // $user = $this->db->get();
+      //
+      // $data['user'] = $user['city'];
 
+      // $user_id = $data['user_id'];
+
+      $user_id = $this->session->userdata['userid'];
+
+			$this->db->select('tbl_user.firstname,tbl_user.lastname,tbl_user.state,tbl_user.city');
+			$this->db->from('tbl_user');
+
+      $this->db->where('tbl_user.id', $user_id);
+      $query=$this->db->get();
+
+      $data['user'] = $query->result_array();
 
       $this->data    = $data;
       $this->view    = 'search';
