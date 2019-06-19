@@ -27,38 +27,7 @@ class Search extends Public_controller
       $data['is_home'] = false;
       $data['title'] = get_option('companyname');
 
-      // $data['searches'] = array();
-
-      // $data['results'] = array();
-
       $search = NULL;
-      // $data['results'] = NULL;
-
-      //
-      // if ($this->input->post('search_producers')) {
-      //
-      //   if ($search) {
-      //     $data['results'] = $this->search_model->search($search);
-      //
-      //     // $this->output
-      //     // ->set_content_type('application/json')
-      //     // ->set_output(json_encode(array('foo' => 'bar')));
-      //
-      //     //add the header here
-      //     header('Content-Type: application/json');
-      //     echo json_encode( $this->search_model->search($search) );
-      //   };
-      // };
-
-
-      // $this->db->where('tbl_user.id', $this->session->userdata['userid']);
-      // // $data['user'] = $this->session->userdata['city'];
-      //
-      // $user = $this->db->get();
-      //
-      // $data['user'] = $user['city'];
-
-      // $user_id = $data['user_id'];
 
       $user_id = $this->session->userdata['userid'];
 
