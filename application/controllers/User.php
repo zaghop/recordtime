@@ -42,7 +42,16 @@ class User extends Public_controller
         $this->layout();
     }
 	
-	
+	public function editProductionRates()
+    {
+
+        $data['title'] = _l('production_rates');
+        $data['class'] = 'production_rates';
+
+        $this->data    = $data;
+        $this->view    = 'artists/editproductionrates'; 
+        $this->layout();
+    }
 	
 	public function artistProfile()
     {
@@ -79,7 +88,7 @@ class User extends Public_controller
 	public function whyProducers()
     {
 
-        $data['title'] = _l('producers_overview');
+        $data['title'] = _l('Why Producer');
         $data['class'] = 'why-producers-page';
 
 
@@ -91,7 +100,7 @@ class User extends Public_controller
 	public function howItWorksProducers()
     {
 
-        $data['title'] = _l('producers_how_it_works');
+        $data['title'] = _l('How Producer Works');
         $data['class'] = 'how-it-works-producer-page';
 
         $this->data    = $data;
@@ -1500,6 +1509,10 @@ class User extends Public_controller
             }
         }
     public function artists_profile(){
+        $this->load->helper('rt_payment_helper.php');
+        
+        $data['credits'] = money_format('%i', getUserCredits($this->session->userdata['userid']));
+        
         if ($this->session->userdata('email') === NULL){
                 redirect("/");
         }

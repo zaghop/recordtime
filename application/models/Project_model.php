@@ -13,7 +13,8 @@ class Project_model extends CI_Model {
     }
 
  public function dashboard($user_id) {
-    $query = "SELECT * FROM tbl_projects LEFT JOIN tbl_user ON tbl_projects.producer_id = tbl_user.id WHERE user_id = " . $user_id . " ORDER BY start_date DESC;";
+    //$query = "SELECT * FROM tbl_projects LEFT JOIN tbl_user ON tbl_projects.producer_id = tbl_user.id WHERE user_id = " . $user_id . " ORDER BY start_date DESC;";
+     $query = "SELECT tu.*,tp.*,tud.profile_pic FROM tbl_projects tp LEFT JOIN tbl_user tu ON tp.producer_id = tu.id LEFT JOIN tbl_userdetails tud ON tu.id = tud.user_id WHERE tp.user_id = " . $user_id . " ORDER BY tp.start_date DESC";
 
     $projects = $this->db->query($query);
 
