@@ -97,3 +97,4 @@ $route['knowledge_base/(:any)']  = "clients/knowledge_base/$1";
 $route['knowledge-base/(:any)']  = "clients/knowledge_base/$1";
 
 $route['search']  = "Search";
+$route['search/producers'] = "Search/producers";

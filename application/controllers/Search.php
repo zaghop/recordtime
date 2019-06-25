@@ -14,9 +14,9 @@ class Search extends Public_controller
       $this->load->library('session');
       $this->load->library('form_validation');
 
-      // search model?
-      $this->load->model('project_model','project');
       $this->load->model('search_model');
+
+      $this->load->model('user_model','user');
 
   }
 
@@ -27,26 +27,33 @@ class Search extends Public_controller
       $data['is_home'] = false;
       $data['title'] = get_option('companyname');
 
-      $data['searches'] = array();
-
-      $data['results'] = array();
-
       $search = NULL;
-      $data['results'] = NULL;
 
+      $user_id = $this->session->userdata['userid'];
 
-      $search  = $this->input->post('search');
+			$this->db->select('tbl_user.firstname,tbl_user.lastname,tbl_user.state,tbl_user.city');
+			$this->db->from('tbl_user');
 
-      if ($search) {
-        $data['results'] = $this->search_model->search($search);
+      $this->db->where('tbl_user.id', $user_id);
+      $query=$this->db->get();
 
-      };
-
-
-
+      $data['user'] = $query->result_array();
 
       $this->data    = $data;
       $this->view    = 'search';
       $this->layout();
+  }
+
+  public function producers()
+  {
+
+      parse_str($_SERVER['QUERY_STRING'], $_GET);
+
+      $results = $this->search_model->search($_GET['search']);
+
+      header('Content-Type: application/json');
+      // echo json_encode( "HELLO THAR" );
+      echo json_encode($results);
+
   }
 }
