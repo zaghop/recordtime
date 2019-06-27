@@ -22,6 +22,10 @@ class Search extends Public_controller
 
   public function index()
   {
+      if (!$this->session->user_logged_in) {
+        redirect(site_url('/index.php/user/login'));
+      }
+
       $this->load->helper('form');
 
       $data['is_home'] = false;
