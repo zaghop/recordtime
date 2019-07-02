@@ -73,7 +73,7 @@ $route['/']  = "User";
 $route['artists/overview']  = "User/whyArtists";
 $route['artists/how-it-works']  = "User/howItWorksArtists";
 $route['artists/editprofile']  = "User/artistProfile";
-$route['artists/editproductionrates']  = "User/editProductionRates"; // cp
+$route['artists/editproductionrates']  = "User/editProductionRates";
 $route['artists/summary']  = "User/productionRateSummary"; // cp
 $route['artists/signup']  = "User/artists_signup"; // added by prakash
 $route['artists/login']  = "User/artists_login"; // added by prakash
@@ -84,14 +84,14 @@ $route['producers/login']  = "User/producer_login"; // added by prakash
 $route['producers/overview']  = "User/whyProducers";
 $route['producers/signup']  = "User/producer_signup";
 $route['producers/how-it-works']  = "User/howItWorksProducers";
-$route['producers/profile']  = "User/producer_profile";
 $route['producers/editproductionrates']  = "User/editProducerProductionRates"; // cp
+$route['producers/profile']  = "User/producer_profile";
 $route['producers/editprofile']  = "User/producerProfile";
 $route['producers/summary']  = "User/producerProductionRateSummary"; // cp
 
 
 //$route['projects/create']  = "project/projects_add"; // added by prakash
-$route['project/create']  = "Project/create"; // cp
+$route['project/create']  = "Project/create";
 $route['project/artist_create']  = "Project/artist_create"; // cp
 $route['project/producer_create']  = "Project/producer_create"; // cp
 $route['projects/summary']  = "User/projects_summary"; // added by prakash
@@ -104,3 +104,4 @@ $route['knowledge_base/(:any)']  = "clients/knowledge_base/$1";
 $route['knowledge-base/(:any)']  = "clients/knowledge_base/$1";
 
 $route['search']  = "Search";
+$route['search/producers'] = "Search/producers";
