@@ -85,13 +85,12 @@ $(document).ready(function(){
 
   function local(result) {
     var city = $('#user-city').text();
-    console.log(city);
-    console.log(result.city);
     return result.city.replace(/ /g,'') === city.replace(/ /g,'');
   }
 
   function renderResults(data, config) {
 
+    $('.result.count').empty();
     $('.result.count').prepend(data.length);
 
 
