@@ -35,6 +35,10 @@
 	<link href="<?php echo base_url('assets/css/custom.css'); ?>" rel="stylesheet" type='text/css'>
 	<?php } ?>
 
+	<?php if(file_exists(FCPATH.'assets/css/dev.css')){ ?>
+	<link href="<?php echo base_url('assets/css/dev.css'); ?>" rel="stylesheet" type='text/css'>
+	<?php } ?>
+
 	<?php //render_custom_styles(array('general','tabs','buttons','customers','modals')); ?>
 	<?php $isRTL = (is_rtl(true) ? 'true' : 'false'); ?>
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

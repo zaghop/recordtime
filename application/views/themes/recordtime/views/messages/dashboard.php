@@ -204,127 +204,112 @@
 <section id="msg_mod">
 	<div class="header-section-how-artist">
 		<div class="how-it-work-banner why-artist-banner">
-
 		</div>
 		<h2>Messages </h2>
-		<?php 
-			 echo $this->session->flashdata('email_sent'); 
-
-		 ?>
+		<?php
+			echo $this->session->flashdata('email_sent');
+		?>
 	</div>
 
 	<div class="">
-
 		<div class="row white-bg">
 			<div class="clearfix"></div>
 			<div class="col-sm-12 how-it-work-process-section">
 				<div class="row process-section">
 					<div class="col-sm-2 white-space-div"></div>
 					<div class="col-sm-12 process-how-it-work process-why-artist">
-
 						<div class="col-sm-3 work-with-text1">
 							<?php //foreach( $recipients_details as $index => $msg ) {
+							if(!empty($recipients_details)){
+								foreach($recipients_details as $recipients_detail){
+									//echo "<pre>"; print_r($details); exit;
 							
-							foreach($recipients_details as $recipients_detail){
-							//echo "<pre>"; print_r($details); exit;
 							?>
-								
+							
 								<a href="message?recipient_id=<?php echo $recipients_detail[0]['id']; ?>">
 									<div class="container">
 										<img src="http://develop.zaghop.com/~zagdev/recordtime/assets/themes/recordtime/messagefiles/avatar.png" alt="Avatar" style="width:100%;">
 										<a href="message?recipient_id=<?php echo $recipients_detail[0]['id']; ?>"><h4><?php echo $recipients_detail[0]['firstname'].' '.$recipients_detail[0]['lastname']; ?></h4></a>
 										<p><?php //echo $msg[0]['id']; ?></p>
-<!--										<span class="time-right">11:00</span>-->
+										<!--										<span class="time-right">11:00</span>-->
 									</div>
 								</a>
+							
+							<?php } 
+							}else{ ?>
+								<div class="container">No conversation found</div>
 							
 							<?php } ?>
 							
 						</div>
-
 						<div class="col-sm-8">
 							<div class="work-with-text">
-								<?php //echo "<pre>"; print_r($messages); 
-								foreach($messages as $message){
-
-									$getTimeStamp = $message['sent'];
-									$date = new \DateTime($getTimeStamp);
-									$hourString = $date->format('H:i');
-									$msg = $message['message'];
-
-									//echo "<pre>"; print_r($message);
-									if(substr($message['thread_id'], 0, 2) == $user_id){
-							?>
-
-								<div class="container">
-
-									<div class="pull-right darker">
-										<!-- <img src="https://www.w3schools.com/w3images/bandmember.jpg" alt="Avatar" class="right" style="width:100%;"> -->
-
-										<?php if(!empty($message['attachments'])){
+								<?php //echo "<pre>"; print_r($messages);
+									foreach($messages as $message){
+										$getTimeStamp = $message['sent'];
+										$date = new \DateTime($getTimeStamp);
+										$hourString = $date->format('H:i');
+										$msg = $message['message'];
+										//echo "<pre>"; print_r($message);
+										if(substr($message['thread_id'], 0, 2) == $user_id){
+								?>
+										<div class="container">
+											<div class="pull-right darker">
+												<!-- <img src="https://www.w3schools.com/w3images/bandmember.jpg" alt="Avatar" class="right" style="width:100%;"> -->
+												<?php if(!empty($message['attachments'])){
 												$filename = $message['attachments'];
 												$ext = pathinfo($filename, PATHINFO_EXTENSION);
 												if($ext == 'jpg' || $ext == 'png' || $ext == 'gif'){
-										?>
-										<div class="attach" style="width: 300px; height: auto">
-											<img src="http://develop.zaghop.com/~zagdev/recordtime/assets/themes/recordtime/messagefiles/<?php echo $message['attachments']; ?>" style="max-width: none; border-radius: 0; height: auto; float: none;">
+												?>
+												<div class="attach" style="width: 300px; height: auto">
+													<img src="http://develop.zaghop.com/~zagdev/recordtime/assets/themes/recordtime/messagefiles/<?php echo $message['attachments']; ?>" style="max-width: none; border-radius: 0; height: auto; float: none;">
+												</div>
+												<?php }elseif($ext == 'pdf' || $ext == 'txt' || $ext == 'doc' || $ext == 'csv'){ ?>
+												<div class="attach" style="width: auto; height: auto">
+													<a href="http://develop.zaghop.com/~zagdev/recordtime/assets/themes/recordtime/messagefiles/<?php echo $message['attachments']; ?>">PDF</a>
+												</div>
+												<?php } } ?>
+												<?php if(!empty($msg)){ ?>
+												<p class="msgtext-right">
+													<?php echo $message['message']; ?>
+												</p>
+												<?php } ?>
+												<span class="time-right">
+													<?php echo $hourString; ?>
+												</span>
+											</div>
 										</div>
-										<?php }elseif($ext == 'pdf' || $ext == 'txt' || $ext == 'doc' || $ext == 'csv'){ ?>
-
-										<div class="attach" style="width: auto; height: auto">
-											<a href="http://develop.zaghop.com/~zagdev/recordtime/assets/themes/recordtime/messagefiles/<?php echo $message['attachments']; ?>">PDF</a>
-										</div>
-
-										<?php } } ?>
-										<?php if(!empty($msg)){ ?>
-											<p class="msgtext-right">
-												<?php echo $message['message']; ?>
-											</p>
-										<?php } ?>
-										<span class="time-right">
-											<?php echo $hourString; ?>
-										</span>
-									</div>
-								</div>
-
 								<?php } else { ?>
-
-								<div class="container">
-									<img src="http://develop.zaghop.com/~zagdev/recordtime/assets/themes/recordtime/messagefiles/avatar.png" alt="Avatar" style="width:100%;">
-									<div class="pull-left lighter">
-
-										<?php if(!empty($message['attachments'])){ 
-											$filename = $message['attachments'];
+										<div class="container">
+											<img src="http://develop.zaghop.com/~zagdev/recordtime/assets/themes/recordtime/messagefiles/avatar.png" alt="Avatar" style="width:100%;">
+											<div class="pull-left lighter">
+												<?php if(!empty($message['attachments'])){
+												$filename = $message['attachments'];
 												$ext = pathinfo($filename, PATHINFO_EXTENSION);
 												if($ext == 'jpg' || $ext == 'png' || $ext == 'gif'){
-										?>
-										<div class="attach" style="width: 300px; height: auto">
-											<img src="http://develop.zaghop.com/~zagdev/recordtime/assets/themes/recordtime/messagefiles/<?php echo $message['attachments']; ?>" style="max-width: none; border-radius: 0; height: auto; float: none;">
+												?>
+												<div class="attach" style="width: 300px; height: auto">
+													<img src="http://develop.zaghop.com/~zagdev/recordtime/assets/themes/recordtime/messagefiles/<?php echo $message['attachments']; ?>" style="max-width: none; border-radius: 0; height: auto; float: none;">
+												</div>
+												<?php }elseif($ext == 'pdf' || $ext == 'txt' || $ext == 'doc' || $ext == 'csv'){ ?>
+												<div class="attach" style="width: auto; height: auto">
+													<a href="http://develop.zaghop.com/~zagdev/recordtime/assets/themes/recordtime/messagefiles/<?php echo $message['attachments']; ?>">PDF</a>
+												</div>
+												<?php } } ?>
+												<?php ?>
+												<?php if(!empty($msg)){ ?>
+												<p class="msgtext-right">
+													<?php echo $message['message']; ?>
+												</p>
+												<?php } ?>
+												<span class="time-left">
+													<?php echo $hourString; ?>
+												</span>
+											</div>
 										</div>
-										<?php }elseif($ext == 'pdf' || $ext == 'txt' || $ext == 'doc' || $ext == 'csv'){ ?>
-
-										<div class="attach" style="width: auto; height: auto">
-											<a href="http://develop.zaghop.com/~zagdev/recordtime/assets/themes/recordtime/messagefiles/<?php echo $message['attachments']; ?>">PDF</a>
-										</div>
-										<?php } } ?>
-										<?php ?>
-										<?php if(!empty($msg)){ ?>
-											<p class="msgtext-right">
-												<?php echo $message['message']; ?>
-											</p>
-										<?php } ?>
-
-										<span class="time-left">
-											<?php echo $hourString; ?>
-										</span>
-									</div>
-								</div>
-
 								<?php } } ?>
 							</div>
-
-
-
+							
 							<div class="work-with-text">
 								<div class="container">
 									<div class="col-md-12" id="msg_block">
@@ -336,34 +321,32 @@
 												<!--											<input id="attachments" name="file" type="file" />-->
 												<div class="image-upload filebutton">
 													<label class="">
-													<i class="fa fa-camera" aria-hidden="true"></i>
-													<span style=""><input id="attachments" name="attachments" type="file" /></span>
-												</label>
-												
+														<i class="fa fa-camera" aria-hidden="true"></i>
+														<span style=""><input id="attachments" name="attachments" type="file" /></span>
+													</label>
+													
 												</div>
 												<div class="image-upload filebutton">
 													<label class="">
-													<i class="fa fa-file-image" aria-hidden="true"></i>
-													<span style=""><input id="attachments1" name="attachments" type="file" /></span>
-												</label>
-												
+														<i class="fa fa-file-image" aria-hidden="true"></i>
+														<span style=""><input id="attachments1" name="attachments" type="file" /></span>
+													</label>
+													
 												</div>
-
-
 												<!--
-											<div class="image-upload">
-											  <label for="file-input">
-												<i class="fa fa-microphone" aria-hidden="true"></i>
-											  </label>
-											  <input id="file-input" type="file" />
-											</div>
-											<div class="image-upload">
-											  <label for="file-input">
-												<i class="fa fa-camera" aria-hidden="true"></i>
-											  </label>
-											  <input id="file-input" type="file" />
-											</div>
--->
+												<div class="image-upload">
+													  <label for="file-input">
+														<i class="fa fa-microphone" aria-hidden="true"></i>
+													  </label>
+													  <input id="file-input" type="file" />
+												</div>
+												<div class="image-upload">
+													  <label for="file-input">
+														<i class="fa fa-camera" aria-hidden="true"></i>
+													  </label>
+													  <input id="file-input" type="file" />
+												</div>
+												-->
 												<input id="message" name="message" type="text" class="form-control input-sm" placeholder="Type your message here..."/>
 												<span class="input-group-btn"><input type="submit" value="SEND" class="btn btn-warning btn-sm" id="submit"></span>
 											</form>

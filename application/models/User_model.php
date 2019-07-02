@@ -25,6 +25,7 @@ class User_model extends CI_Model {
             $data['password'] = md5($data['password']);
             $this->db->insert('tbl_user', $data);
             $lastId = $this->db->insert_id();
+            $this->db->insert('tbl_userdetails', array('user_id' => $lastId));
             return $lastId;
 
         }
@@ -74,16 +75,36 @@ class User_model extends CI_Model {
         }
  	}
 	
-	// Artist edit profile module start 
+	// Artist edit profile module start cpp
 	
 		public function getArtistdetails($data){
 
 			$user_id = $data['user_id'];
 
-			$this->db->select('tbl_user.firstname,tbl_user.lastname,tbl_user.state,tbl_user.city,tbl_user.genre,tbl_userdetails.*');
-			$this->db->from('tbl_user');
-			$this->db->join('tbl_userdetails','tbl_userdetails.user_id=tbl_user.id');
-			$this->db->where('tbl_user.id', $user_id);
+			$this->db->select('user_id');
+			$this->db->from('tbl_userdetails');
+			$this->db->where('user_id', $user_id);
+			$query=$this->db->get();
+
+			if ( $query->num_rows() > 0 )
+			{
+				$this->db->select('tbl_user.firstname,tbl_user.lastname,tbl_user.state,tbl_user.city,tbl_user.genre,tbl_userdetails.*');
+				$this->db->from('tbl_user');
+				$this->db->join('tbl_userdetails','tbl_userdetails.user_id=tbl_user.id');
+				$this->db->where('tbl_user.id', $user_id);
+
+			}else{
+
+				$this->db->select('id as user_id,firstname,lastname,state,city,genre');
+				$this->db->from('tbl_user');
+				$this->db->where('id', $user_id);
+			}
+
+
+			// $this->db->select('tbl_user.firstname,tbl_user.lastname,tbl_user.state,tbl_user.city,tbl_user.genre,tbl_userdetails.*');
+			// $this->db->from('tbl_user');
+			// $this->db->join('tbl_userdetails','tbl_userdetails.user_id=tbl_user.id');
+			// $this->db->where('tbl_user.id', $user_id);
 			$query=$this->db->get();
 
 			if ( $query->num_rows() > 0 )
@@ -173,6 +194,145 @@ class User_model extends CI_Model {
 		}
 	
 	// Artist edit profile module end
+
+
+	// Producer edit profile start
+
+		public function getProducerdetails($data){
+
+			$user_id = $data['user_id'];
+
+			$this->db->select('user_id');
+			$this->db->from('tbl_userdetails');
+			$this->db->where('user_id', $user_id);
+			$query=$this->db->get();
+
+			if ( $query->num_rows() > 0 )
+			{
+				$this->db->select('tbl_user.firstname,tbl_user.lastname,tbl_user.state,tbl_user.city,tbl_user.genre,tbl_userdetails.*');
+				$this->db->from('tbl_user');
+				$this->db->join('tbl_userdetails','tbl_userdetails.user_id=tbl_user.id');
+				$this->db->where('tbl_user.id', $user_id);
+
+			}else{
+
+				$this->db->select('id as user_id,firstname,lastname,state,city,genre');
+				$this->db->from('tbl_user');
+				$this->db->where('id', $user_id);
+			}
+
+			$query=$this->db->get();
+   
+			if ( $query->num_rows() > 0 )
+			{
+				$row = $query->result_array();
+				return $row;
+			}
+
+		}
+
+
+		public function updateproducerprofile($id) {
+			//add created and modified data if not included
+
+			$fname = $this->input->post('fname');
+			$lname = $this->input->post('lname');
+			$state = $this->input->post('state');
+			$city = $this->input->post('city');
+			$genre = $this->input->post('genre');
+			$philosphy = $this->input->post('philosphy');
+			$credits = $this->input->post('credits');
+			$skills = $this->input->post('skills');
+
+			//insert user data to users table
+
+			$this->db->set('firstname', $fname);
+			$this->db->set('lastname', $lname);
+			$this->db->set('state', $state);
+			$this->db->set('city', $city);
+			$this->db->set('genre', $genre);
+			$this->db->where('id', $id);  
+			$updateuser = $this->db->update('tbl_user'); 
+
+			if($this->upload->do_upload("profile_pic")){
+
+				$data = array('upload_data' => $this->upload->data());
+
+				$profile_pic = $data['upload_data']['file_name'];
+
+				$this->db->set('profile_pic', $profile_pic);
+				$this->db->set('philosphy', $philosphy);
+				$this->db->set('credits', $credits);
+				$this->db->set('skills', $skills);
+				$this->db->where('user_id', $id);  
+				$updateuserdetails = $this->db->update('tbl_userdetails'); 
+
+			}else{
+				$this->db->set('philosphy', $philosphy);
+				$this->db->set('credits', $credits);
+				$this->db->set('skills', $skills);
+				$this->db->where('user_id', $id);  
+				$updateuserdetails = $this->db->update('tbl_userdetails'); 
+			}
+
+			//return the status
+			if($updateuser && $updateuserdetails){
+				return true;
+			}else{
+				return false;
+			}
+		}
+
+	// end
+
+	// Production rate module start by Cp
+
+		public function insertprorates($data){
+
+			$user_id = $data['user_id'];
+
+			$this->db->select('user_id');
+			$this->db->from('tbl_productionexpenses');
+			$this->db->where('user_id', $user_id);
+			$query=$this->db->get();
+
+			if ( $query->num_rows() > 0 )
+			{
+				$this->db->where('user_id',$user_id);
+            	return $this->db->update('tbl_productionexpenses',$data);
+			}else{
+				return $this->db->insert('tbl_productionexpenses', $data);
+            	
+			}
+
+
+            
+		}
+
+	// Production rate module end
+
+
+
+	// get production rate summary start
+
+		public function getSummary($data){
+
+			$user_id = $data['user_id'];
+
+			$this->db->select('*');
+			$this->db->from('tbl_productionexpenses');
+			$this->db->where('user_id', $user_id);
+			$query=$this->db->get();
+
+			if ( $query->num_rows() > 0 )
+			{
+				$row = $query->result_array();
+				return $row;
+			}
+
+		}
+
+	// end
 	
 	
 }

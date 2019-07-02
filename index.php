@@ -61,7 +61,7 @@ if( ! ini_get('date.timezone') )
  */
 	define('ENVIRONMENT', 'development');
 	
-	require __DIR__ . '/vendor/autoload.php';
+	//require __DIR__ . '/vendor/autoload.php';
 
 /*
  *---------------------------------------------------------------

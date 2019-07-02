@@ -1,60 +1,4 @@
 <?php $user_id = $this->session->userdata['userid']; ?>
-
-<style>
-	body {
-		font-family: Arial, Helvetica, sans-serif;
-	}
-	
-	* {
-		box-sizing: border-box;
-	}
-	
-	input[type=text],
-	select,
-	textarea {
-		width: 100%;
-		padding: 12px;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		box-sizing: border-box;
-		margin-top: 6px;
-		margin-bottom: 16px;
-		resize: vertical;
-	}
-	
-	input[type=submit] {
-		background-color: #141313;
-		color: white;
-		padding: 12px 20px;
-		border: none;
-		border-radius: 4px;
-		cursor: pointer;
-	}
-	
-	input[type=submit]:hover {
-		background-color: #141313;
-	}
-	
-	.container {
-		border-radius: 5px;
-		background-color: #f2f2f2;
-		padding: 20px;
-	}
-	
-	#rt-profile .producer-profile-img-container {
-		text-align: center;
-		padding-bottom: 20px;
-	}
-	
-	#profile_pic {
-		margin: 0 auto;
-	}
-	
-	#rt-profile .profile-change {
-		text-align: center;
-		padding-bottom: 20px;
-	}
-</style>
 <div id="rt-profile">
 	<div class="middle-container">
 		<div class="banner-image">
@@ -98,28 +42,28 @@
 							<label for="genre">Genres</label>
 							<input type="text" id="genre" name="genre" value="<?php echo $user_details[0]['genre']; ?>" placeholder="Your Genres..">
 
-							<label for="base_rate">Base Rate</label>
+							<!-- <label for="base_rate">Base Rate</label>
 							<input type="text" id="base_rate" name="base_rate" value="<?php echo $user_details[0]['base_rate']; ?>" placeholder="Your Base Rate Text..">
 							
 							<label for="base_rate">Base Rates Text</label>
 							<input type="text" id="base_rate_text" name="base_rate_text" value="<?php echo $user_details[0]['base_rate_text']; ?>" placeholder="Your Base Rate..">
 							
 							<label for="base_rate">Base Production Rates</label>
-							<input type="text" id="base_production_rate" name="base_production_rate" value="<?php echo $user_details[0]['base_production_rate']; ?>" placeholder="Your Base Production Rate..">
+							<input type="text" id="base_production_rate" name="base_production_rate" value="<?php echo $user_details[0]['base_production_rate']; ?>" placeholder="Your Base Production Rate.."> -->
 							
 							
 							
 						</div>
 						<div class="col-sm-6">
 							
-							<label for="base_rate">Mix Engineer</label>
+							<!-- <label for="base_rate">Mix Engineer</label>
 							<input type="text" id="mix_engineer_rate" name="mix_engineer_rate" value="<?php echo $user_details[0]['mix_engineer_rate']; ?>" placeholder="Your Mix Engineer Rate..">
 							
 							<label for="base_rate">Mastering Engineer</label>
 							<input type="text" id="mastering_engineer_rate" name="mastering_engineer_rate" value="<?php echo $user_details[0]['mastering_engineer_rate']; ?>" placeholder="Your Mastering Engineer Rate..">
 							
 							<label for="base_rate">Programmer</label>
-							<input type="text" id="programmer_rate" name="programmer_rate" value="<?php echo $user_details[0]['programmer_rate']; ?>" placeholder="Your Programmer Rate..">
+							<input type="text" id="programmer_rate" name="programmer_rate" value="<?php echo $user_details[0]['programmer_rate']; ?>" placeholder="Your Programmer Rate.."> -->
 						
 						
 							<label for="philosphy">Production Philosphy</label>

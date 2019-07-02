@@ -1,98 +1,3 @@
-<style>
-
-    .start {
-        padding: 15px 55px 15px 54px;
-        background: #337ab7;
-        color: #fff;
-        font-size: 20px;
-        border: 2px solid white;
-    }
-
-    .ProjectItem .details h3 {
-        color: #fff !important;
-        margin-bottom: 25px;
-        font-size: 32px;
-        font-weight: bold;
-    }
-
-    .ProjectItem .details h5 {
-        color: #fff !important;
-        /*margin-bottom: 25px;*/
-        /*font-size: 32px;*/
-        /*font-weight: bold;*/
-        padding: 17px;
-    }
-
-    .ProjectItem .details img {
-        margin: 13px 0px 0px 0px;
-        width: 33px;
-        height: auto;
-    }
-    
-    .new-project-title .btn {
-		padding: 15px 30px;
-		border: 2px solid #fff;
-		top: 3em;
-		width: 12%;
-	}
-	
-	.middle-part .ProjectList {
-		width: 95%;
-	}
-	
-	.middle-part .ProjectItem {
-		height: 16em;
-		width: 94vw;
-		padding: 35px;
-		background: #FFFFFF;
-	}
-	
-	.middle-part .ProjectList .started {
-		margin-top: 2em;
-	}
-	
-	.middle-part .ProjectItem__Details {
-		position: static;
-	}
-	
-	.middle-part .first-part img {
-		height: 11em;
-		margin: 0;
-	}
-	
-	.middle-part .second-part h3 {
-		font-size: 45px;
-		margin-top: 10px;
-	}
-	
-	.middle-part .third-part h4 {
-		font-size: 24px;
-	}
-	
-	.four-part button {
-		width: 145px;
-		height: 4em;
-		border: 2px solid #707070;
-	}
-	
-	@media (max-width:1224px) {
-		.new-project-title .btn {
-			width: auto;
-		}
-	}
-	
-	@media (min-width:768px) and (max-width:991px) {
-		.middle-part .first-part img {
-			height: auto;
-		}
-	}
-	
-	@media (max-width:767px) {
-		.middle-part .ProjectItem {
-			height: auto;
-		}
-	}
-</style>
 
 <div class="middle-container">
   <div class="banner-image">
@@ -103,7 +8,12 @@
   <div class="page-title box-shadow ProjectsDashboard__Title">
      <div class="container-fluid">
         <h1>Projects</h1>
-        <a  class="btn" href="<?= site_url(); ?>project/create">
+        <?php if($userdatas['type'] == 1){ ?>
+            <a  class="btn" href="<?= site_url(); ?>project/artist_create">
+        <?php }else{ ?>
+            <a  class="btn" href="<?= site_url(); ?>project/producer_create">
+        <?php } ?>
+        
             New Project
             <span class="fas fa-arrow-right fa-w-14"></span>
         </a>
@@ -216,11 +126,11 @@
 
 
                 <div class="ProjectItem__Details row">
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <?php if (!empty($project['profile_pic']) && isset($project['profile_pic'])) { ?>
-                            <img src="<?= site_url() . template_assets_path(); ?>/users/<?php echo $project['profile_pic']; ?>">
+                            <img class="responsive-img" src="<?= site_url() . template_assets_path(); ?>/users/<?php echo $project['profile_pic']; ?>">
                         <?php } else { ?>
-                            <img src="<?= site_url(); ?>assets/images/user-placeholder.jpg"/>
+                            <img class="responsive-img" src="<?= site_url(); ?>assets/images/user-placeholder.jpg"/>
                         <?php } ?>
                     </div>
                     <div class="col-sm-3">
@@ -246,7 +156,7 @@
                 <p class="name">- <?php echo $project['songs']; echo " songs"; ?></p>
                 <p class="name">- <?php echo $project['name']; ?></p>
               </div>
-              <div class="col-sm--3 pdf-change">
+              <div class="col-sm-3 pdf-change">
                 <button data-toggle="modal" data-target="#paymentModal">Add Credits</button>
                 <button>Change</button>
               </div> 
@@ -256,12 +166,24 @@
 
         <?php endforeach; ?>
         <?php } ?>
-            <div class="ProjectItem" style="max-width: 100%; height: 13em;">
+            <div class="ProjectItem create" style="max-width: 100%;">
               <div class="ProjectItem--overlay">
                 <div class="details">
-                    <img src="<?= site_url() . template_assets_path(); ?>/images/plus.jpg">
+					 <?php if($userdatas['type'] == 1){ ?>
+                        <a href="<?= site_url(); ?>project/artist_create"><img src="<?= site_url() . template_assets_path(); ?>/images/plus.jpg"></a>
+                    <?php }else{ ?>
+                        <a href="<?= site_url(); ?>project/producer_create"><img src="<?= site_url() . template_assets_path(); ?>/images/plus.jpg"></a>
+                    <?php } ?>
                   <h3><?php echo "New Project"; ?></h3>
-                    <a class="start" href="<?php echo site_url(); ?>project/create">Start</a>
+
+                    <?php if($userdatas['type'] == 1){ ?>
+                        <a  class="start" href="<?= site_url(); ?>project/artist_create">Start</a>
+                    <?php }else{ ?>
+                        <a  class="start" href="<?= site_url(); ?>project/producer_create">Start</a>
+                    <?php } ?>
+
+
+                    <!-- <a class="start" href="<?php// echo site_url(); ?>project/create">Start</a> -->
                     <h5><?php echo "Payment Pending"; ?></h5>
                 </div>
               </div>

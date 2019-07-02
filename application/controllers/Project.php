@@ -74,6 +74,8 @@ class Project extends Public_controller
         $data['title'] = _l('Projects');
         $data['projects'] = $this->project->dashboard($user_id);
 
+        $data['userdatas'] = $this->project->userdata($user_id);
+
         $this->data    = $data;
         $this->view    = 'projects/dashboard';
         $this->layout();
@@ -113,4 +115,55 @@ class Project extends Public_controller
         redirect('index.php/project/dashboard');
       }
     }
+
+
+      public function artist_create() {
+
+        if (!$this->session->user_logged_in) {
+          redirect(site_url('/index.php/user/login'));
+        }
+
+        $this->form_validation->set_rules('project_name', 'Project Name', 'required');
+        $this->form_validation->set_rules('budget', 'Budget', 'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+          $data['title'] = _l('add project');
+          $this->data    = $data;
+          $this->view    = 'projects/artist_create';
+          $this->layout();
+        }
+        else
+        {
+          //echo "<pre>"; print_r($_POST); exit;
+          $formData = $this->input->post();
+          $insert = $this->project->projects_add($formData);
+          redirect('project/dashboard');
+        }
+      }
+
+      public function producer_create() {
+
+        if (!$this->session->user_logged_in) {
+          redirect(site_url('/index.php/user/login'));
+        }
+
+        $this->form_validation->set_rules('name', 'Project Name', 'required');
+        //$this->form_validation->set_rules('budget', 'Budget', 'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+          $data['title'] = _l('add project');
+          $this->data    = $data;
+          $this->view    = 'projects/producer_create';
+          $this->layout();
+        }
+        else
+        {
+          $formData = $this->input->post();
+          $insert = $this->project->producer_projects_add($formData);
+          redirect('project/dashboard');
+        }
+      }
+
   }
