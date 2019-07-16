@@ -24,7 +24,33 @@ class Project extends Public_controller
     }
 
     public function dashboard()
-    {
+    {   
+
+        if($this->input->post('accept')){
+           
+
+            $data = array(
+                'project_id' => $this->input->post('project_id') ,
+                'status ' => $this->input->post('status') ,
+                'creative ' => $this->input->post('creative') ,
+                'candor' => $this->input->post('candor') ,
+                'workload ' => $this->input->post('workload') ,
+                'flexibility ' => $this->input->post('flexibility') ,
+                'feedback ' => $this->input->post('feedback') ,
+                'updated_at' => date('Y-m-d H:i:s')                 
+            );
+
+            $getfeedback = $this->project->updateFeedback($data);
+
+            if($getfeedback){
+                redirect('project/dashboard');
+
+            }else{
+                $data['error_msg'] = 'Some problems occured, please try again.';
+            }
+        }
+
+
         if ($this->input->server('REQUEST_METHOD') == 'POST'){
           $stripeUrl = 'https://api.stripe.com';
           $stripeKey = 'pk_test_yt3JpiGWmUvIWuAjlDL4c1Tb00lQvTOM5c';
@@ -68,6 +94,9 @@ class Project extends Public_controller
         if (!$this->session->user_logged_in) {
           redirect(site_url('index.php/user/login'));
         }
+
+
+        
 
         $user_id = $this->session->userid;
 
@@ -164,6 +193,43 @@ class Project extends Public_controller
           $insert = $this->project->producer_projects_add($formData);
           redirect('project/dashboard');
         }
+      }
+
+
+      public function artist_project_view() {
+
+        if (!$this->session->user_logged_in) {
+          redirect(site_url('/index.php/user/login'));
+        }
+
+        $user_id = $this->session->userdata['userid']; 
+        $project_id = $_GET['project_id'];
+        $data['projectdetails'] = $this->project->prodetails($project_id);
+
+
+          $data['title'] = _l('View project details');
+          $this->data    = $data;
+          $this->view    = 'projects/artist_project_view';
+          $this->layout();
+       
+      }
+
+      public function producer_project_view() {
+
+        if (!$this->session->user_logged_in) {
+          redirect(site_url('/index.php/user/login'));
+        }
+
+        $user_id = $this->session->userdata['userid']; 
+        $project_id = $_GET['project_id'];
+        $data['projectdetails'] = $this->project->prodetails($project_id);
+
+
+          $data['title'] = _l('View project details');
+          $this->data    = $data;
+          $this->view    = 'projects/producer_project_view';
+          $this->layout();
+       
       }
 
   }

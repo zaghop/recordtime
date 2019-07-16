@@ -57,11 +57,11 @@ $ID = $user_details[0]['user_id'];
           <?php } ?>
           <div class="producer-email-container">
             <?php if($ID == $user_id){ ?>
-            <a href="#" class="email-icon">
+            <a href="<?php echo site_url(); ?>message?recipient_id=<?php echo $user_id; ?>" class="email-icon">
               <img src="<?= site_url().template_assets_path(); ?>/images/big-mail-icon.png">
             </a>
             <?php }else{ ?>
-            <a href="http://develop.zaghop.com/~zagdev/recordtime/message?recipient_id=<?php echo $user_id; ?>" class="email-icon">
+            <a href="<?php echo site_url(); ?>message?recipient_id=<?php echo $user_id; ?>" class="email-icon">
               <img src="<?= site_url().template_assets_path(); ?>/images/big-mail-icon.png">
             </a>
             <?php } ?>
@@ -193,57 +193,62 @@ $ID = $user_details[0]['user_id'];
                 <h3>Reviews</h3>
                 <div class="song-track-container">
                   <div class="song-track-block">
-                    <div class="play-btn-container">
-                      <a href="##" class="play-btn"><img src="<?= site_url().template_assets_path(); ?>/images/play-icon.png"></a>
-                    </div>
-                    <div class="song-track-container">
-                      <div class="song-track-img">
-                        <img src="<?= site_url().template_assets_path(); ?>/images/song-track-grid.png">
-                      </div>
-                      <div class="song-details">
-                        <p>Song One by <a href="##">Bob Loblaw</a></p>
-                      </div>
-                    </div>
+                    <?php
+                      if(!empty($user_details[0]['song1'])){
+                        $url= $user_details[0]['song1'];
+                        $getValues=file_get_contents('http://soundcloud.com/oembed?format=js&url='.$url.'&iframe=true');
+                        $decodeiFrame=substr($getValues, 1, -2);
+                        $jsonObj = json_decode($decodeiFrame);
+                        echo str_replace('height="400"', 'height="140"', $jsonObj->html);
+                      }
+                    ?>
+                 
                   </div>
                   <div class="song-track-block">
-                    <div class="play-btn-container">
-                      <a href="##" class="play-btn"><img src="<?= site_url().template_assets_path(); ?>/images/play-icon.png"></a>
-                    </div>
-                    <div class="song-track-container">
-                      <div class="song-track-img">
-                        <img src="<?= site_url().template_assets_path(); ?>/images/song-track-grid.png">
-                      </div>
-                      <div class="song-details">
-                        <p>Song One by <a href="##">Bob Loblaw</a></p>
-                      </div>
-                    </div>
+                    <?php
+                      if(!empty($user_details[0]['song2'])){
+                        $url1= $user_details[0]['song2'];
+                        $getValues1=file_get_contents('http://soundcloud.com/oembed?format=js&url='.$url1.'&iframe=true');
+                        $decodeiFrame1=substr($getValues1, 1, -2);
+                        $jsonObj1 = json_decode($decodeiFrame1);
+                        echo str_replace('height="400"', 'height="140"', $jsonObj1->html);
+                      }
+                    ?>
                   </div>
                   <div class="song-track-block">
-                    <div class="play-btn-container">
-                      <a href="##" class="play-btn"><img src="<?= site_url().template_assets_path(); ?>/images/play-icon.png"></a>
-                    </div>
-                    <div class="song-track-container">
-                      <div class="song-track-img">
-                        <img src="<?= site_url().template_assets_path(); ?>/images/song-track-grid.png">
-                      </div>
-                      <div class="song-details">
-                        <p>Song One by <a href="##">Bob Loblaw</a></p>
-                      </div>
-                    </div>
+                    <?php
+                      if(!empty($user_details[0]['song3'])){
+                        $url1= $user_details[0]['song3'];
+                        $getValues1=file_get_contents('http://soundcloud.com/oembed?format=js&url='.$url1.'&iframe=true');
+                        $decodeiFrame1=substr($getValues1, 1, -2);
+                        $jsonObj1 = json_decode($decodeiFrame1);
+                        echo str_replace('height="400"', 'height="140"', $jsonObj1->html);
+                      }
+                    ?>
                   </div>
                   <div class="song-track-block">
-                    <div class="play-btn-container">
-                      <a href="##" class="play-btn"><img src="<?= site_url().template_assets_path(); ?>/images/play-icon.png"></a>
-                    </div>
-                    <div class="song-track-container">
-                      <div class="song-track-img">
-                        <img src="<?= site_url().template_assets_path(); ?>/images/song-track-grid.png">
-                      </div>
-                      <div class="song-details">
-                        <p>Song One by <a href="##">Bob Loblaw</a></p>
-                      </div>
-                    </div>
+                    <?php
+                      if(!empty($user_details[0]['song4'])){
+                        $url1= $user_details[0]['song4'];
+                        $getValues1=file_get_contents('http://soundcloud.com/oembed?format=js&url='.$url1.'&iframe=true');
+                        $decodeiFrame1=substr($getValues1, 1, -2);
+                        $jsonObj1 = json_decode($decodeiFrame1);
+                        echo str_replace('height="400"', 'height="140"', $jsonObj1->html);
+                      }
+                    ?>
                   </div>
+                  <div class="song-track-block">
+                    <?php
+                      if(!empty($user_details[0]['song5'])){
+                        $url1= $user_details[0]['song5'];
+                        $getValues1=file_get_contents('http://soundcloud.com/oembed?format=js&url='.$url1.'&iframe=true');
+                        $decodeiFrame1=substr($getValues1, 1, -2);
+                        $jsonObj1 = json_decode($decodeiFrame1);
+                        echo str_replace('height="400"', 'height="140"', $jsonObj1->html);
+                      }
+                     ?>
+                  </div>
+                  
                 </div>
                 <div class="rating-container">
                   <div class="row">
@@ -256,13 +261,18 @@ $ID = $user_details[0]['user_id'];
                   <div class="row">
                     <div class="col-sm-3">
                       <h4>Creative</h4>
+                      <?php if(!empty($user_details[0]['creative'])){ $creative = $user_details[0]['creative']; }else{ $creative = 0; };
+                            if(!empty($user_details[0]['candor'])){ $candor = $user_details[0]['candor']; }else{ $candor = 0; };
+                            if(!empty($user_details[0]['workload'])){ $workload = $user_details[0]['workload']; }else{ $workload = 0; };
+                            if(!empty($user_details[0]['flexibility'])){ $flexibility = $user_details[0]['flexibility']; }else{ $flexibility = 0; };
+                       ?>
                     </div>
                     <div class="col-sm-9 low-high-image-container">
-                      <span class="rating-circle creatinv-rating">1</span>
-                      <span class="rating-circle creatinv-rating">2</span>
-                      <span class="rating-circle creatinv-rating">3</span>
-                      <span class="rating-circle creatinv-rating circle-bg-rd">4</span>
-                      <span class="rating-circle creatinv-rating">5</span>
+                      <span class="rating-circle creatinv-rating <?php if($creative == 1){ echo "circle-bg-rd"; } ?>">1</span>
+                      <span class="rating-circle creatinv-rating <?php if($creative == 2){ echo "circle-bg-rd"; } ?>">2</span>
+                      <span class="rating-circle creatinv-rating <?php if($creative == 3){ echo "circle-bg-rd"; } ?>">3</span>
+                      <span class="rating-circle creatinv-rating <?php if($creative == 4){ echo "circle-bg-rd"; } ?>">4</span>
+                      <span class="rating-circle creatinv-rating <?php if($creative == 5){ echo "circle-bg-rd"; } ?>">5</span>
                     </div>
                   </div>
                   <div class="row">
@@ -270,11 +280,11 @@ $ID = $user_details[0]['user_id'];
                       <h4>Candor</h4>
                     </div>
                     <div class="col-sm-9 low-high-image-container">
-                      <span class="rating-circle candor-rating">1</span>
-                      <span class="rating-circle candor-rating">2</span>
-                      <span class="rating-circle candor-rating circle-bg-rd">3</span>
-                      <span class="rating-circle candor-rating">4</span>
-                      <span class="rating-circle candor-rating">5</span>
+                      <span class="rating-circle candor-rating <?php if($candor == 1){ echo "circle-bg-rd"; } ?>">1</span>
+                      <span class="rating-circle candor-rating <?php if($candor == 2){ echo "circle-bg-rd"; } ?>">2</span>
+                      <span class="rating-circle candor-rating <?php if($candor == 3){ echo "circle-bg-rd"; } ?>">3</span>
+                      <span class="rating-circle candor-rating <?php if($candor == 4){ echo "circle-bg-rd"; } ?>">4</span>
+                      <span class="rating-circle candor-rating <?php if($candor == 5){ echo "circle-bg-rd"; } ?>">5</span>
                     </div>
                   </div>
                   <div class="row">
@@ -282,11 +292,11 @@ $ID = $user_details[0]['user_id'];
                       <h4>Workload</h4>
                     </div>
                     <div class="col-sm-9 low-high-image-container">
-                      <span class="rating-circle workload-rating">1</span>
-                      <span class="rating-circle workload-rating circle-bg-rd">2</span>
-                      <span class="rating-circle workload-rating">3</span>
-                      <span class="rating-circle workload-rating">4</span>
-                      <span class="rating-circle workload-rating">5</span>
+                      <span class="rating-circle workload-rating <?php if($workload == 1){ echo "circle-bg-rd"; } ?>">1</span>
+                      <span class="rating-circle workload-rating <?php if($workload == 2){ echo "circle-bg-rd"; } ?>">2</span>
+                      <span class="rating-circle workload-rating <?php if($workload == 3){ echo "circle-bg-rd"; } ?>">3</span>
+                      <span class="rating-circle workload-rating <?php if($workload == 4){ echo "circle-bg-rd"; } ?>">4</span>
+                      <span class="rating-circle workload-rating <?php if($workload == 5){ echo "circle-bg-rd"; } ?>">5</span>
                     </div>
                   </div>
                   <div class="row">
@@ -294,11 +304,11 @@ $ID = $user_details[0]['user_id'];
                       <h4>Flexibility</h4>
                     </div>
                     <div class="col-sm-9 low-high-image-container">
-                      <span class="rating-circle flexibility-rating circle-bg-rd">1</span>
-                      <span class="rating-circle flexibility-rating">2</span>
-                      <span class="rating-circle flexibility-rating">3</span>
-                      <span class="rating-circle flexibility-rating">4</span>
-                      <span class="rating-circle flexibility-rating">5</span>
+                      <span class="rating-circle flexibility-rating <?php if($flexibility == 1){ echo "circle-bg-rd"; } ?>">1</span>
+                      <span class="rating-circle flexibility-rating <?php if($flexibility == 2){ echo "circle-bg-rd"; } ?>">2</span>
+                      <span class="rating-circle flexibility-rating <?php if($flexibility == 3){ echo "circle-bg-rd"; } ?>">3</span>
+                      <span class="rating-circle flexibility-rating <?php if($flexibility == 4){ echo "circle-bg-rd"; } ?>">4</span>
+                      <span class="rating-circle flexibility-rating <?php if($flexibility == 5){ echo "circle-bg-rd"; } ?>">5</span>
                     </div>
                   </div>
                 </div>

@@ -67,104 +67,91 @@ class Message_model extends CI_Model {
 	
 	function getRecipientdetails($params = array()){
 		//echo "test"; exit;
-			$user_id = $params['id'];
-			$rec_id = $params['rec_id'];
-			
-			$this->db->select('to_id,from_id');
-			$this->db->distinct();
-			$this->db->from('tblmessages');
-			$this->db->where('from_id', $user_id );
-			
-			$query = $this->db->get();
-			if ( $query->num_rows() > 0 )
-			{
-				$row = $query->result_array();
-				//echo "<pre>"; print_r($row);
-				$row1 = array();
-				$row2 = array();
-				foreach($row as $rows) {
-					$userto_id = $rows['to_id'];
-					$userfrom_id = $rows['to_id'];
-					//
-					$this->db->select('id,firstname,lastname');
-					$this->db->from('tbl_user');
-					$this->db->where('id', $userto_id );
-					$query1 = $this->db->get();
-					$row1[] = $query1->result_array();
-					
-					
-					$this->db->select('message');
-					$this->db->from('tblmessages');
-					$this->db->limit(1);
-					$this->db->order_by('id',"DESC");
-					$where = '(to_id='.$userto_id.' OR from_id = '.$userto_id.')';
-					$this->db->where($where);
-					$query2 = $this->db->get();
-					$row2[] = $query2->result_array();
-					 
-					
-				}
-				return $row1;
-				
-//				if ( $query1->num_rows() > 0 )
-//				{
-//					$row1 = $query1->result_array();
-//					//echo "<pre>"; print_r($row1);
-//					foreach($row1 as $rows1) {
-//						return $rows1;
-//					}
-//
-//				}
+		$user_id = $params['id'];
+		$rec_id = $params['rec_id'];
+		
+		$this->db->select('to_id,from_id');
+		$this->db->distinct();
+		$this->db->from('tblmessages');
+		$this->db->where('from_id', $user_id );
+		$this->db->or_where('to_id', $user_id );
+		
+		$query = $this->db->get();
+		if ( $query->num_rows() > 0 )
+		{
+			$row = $query->result_array();
+			//echo "<pre>"; print_r($row);
+			$row1 = array();
+			$row2 = array();
+			foreach($row as $rows) {
+				$userto_id = $rows['to_id'];
+				$userfrom_id = $rows['to_id'];
+				//
+				$this->db->select('id,firstname,lastname');
+				$this->db->from('tbl_user');
+				$this->db->where('id', $userto_id );
+				$query1 = $this->db->get();
+				$row1[] = $query1->result_array();
 				
 				
-				
+				$this->db->select('message');
+				$this->db->from('tblmessages');
+				$this->db->limit(1);
+				$this->db->order_by('id',"DESC");
+				$where = '(to_id='.$userto_id.' OR from_id = '.$userto_id.')';
+				$this->db->where($where);
+				$query2 = $this->db->get();
+				$row2[] = $query2->result_array();
+				 
 				
 			}
+			return $row1;
+		
+		}
+	}
 
-		//return fetched data
-		//return $result;
+	function getAllRecipients($id){
+		
+		$this->db->select('id,firstname,lastname');
+		$this->db->from('tbl_user');
+		$this->db->where('id !=', $id );
+		$query1 = $this->db->get();
+		return $query1->result_array();
 	}
 	
 	function getRecipientmsg($params = array()){
 		//echo "test"; exit;
-			$user_id = $params['id'];
-			$rec_id = $params['rec_id'];
+		$user_id = $params['id'];
+		$rec_id = $params['rec_id'];
+		
+		$this->db->select('to_id,from_id');
+		$this->db->distinct();
+		$this->db->from('tblmessages');
+		$this->db->where('from_id', $user_id );
+		
+		$query = $this->db->get();
+		if ( $query->num_rows() > 0 )
+		{
+			$row = $query->result_array();
+			//echo "<pre>"; print_r($row);
 			
-			$this->db->select('to_id,from_id');
-			$this->db->distinct();
-			$this->db->from('tblmessages');
-			$this->db->where('from_id', $user_id );
+			$row2 = array();
+			foreach($row as $rows) {
+				$userto_id = $rows['to_id'];
+				//$userfrom_id = $rows['from_id'];
 			
-			$query = $this->db->get();
-			if ( $query->num_rows() > 0 )
-			{
-				$row = $query->result_array();
-				//echo "<pre>"; print_r($row);
-				
-				$row2 = array();
-				foreach($row as $rows) {
-					$userto_id = $rows['to_id'];
-					//$userfrom_id = $rows['from_id'];
-				
-					$this->db->select('message');
-					$this->db->from('tblmessages');
-					$this->db->limit(1);
-					$this->db->order_by('id',"DESC");
-					$where = '(to_id='.$userto_id.' OR from_id = '.$userto_id.')';
-					$this->db->where($where);
-					$query2 = $this->db->get();
-					$row2[] = $query2->result_array();
-					 
-					
-				}
-				return $row2;
-				
+				$this->db->select('message');
+				$this->db->from('tblmessages');
+				$this->db->limit(1);
+				$this->db->order_by('id',"DESC");
+				$where = '(to_id='.$userto_id.' OR from_id = '.$userto_id.')';
+				$this->db->where($where);
+				$query2 = $this->db->get();
+				$row2[] = $query2->result_array();
+
 			}
-
+			return $row2;
 		}
+	}
 	
-
- 
-
-
 }

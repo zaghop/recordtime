@@ -124,20 +124,21 @@ class User_model extends CI_Model {
 			$city = $this->input->post('city');
 			$base_rate = $this->input->post('base_rate');
 			$genre = $this->input->post('genre');
-			$base_rate_text = $this->input->post('base_rate_text');
-			$base_production_rate = $this->input->post('base_production_rate');
-			$mix_engineer_rate = $this->input->post('mix_engineer_rate');
-			$mastering_engineer_rate = $this->input->post('mastering_engineer_rate');
-			$programmer_rate = $this->input->post('programmer_rate');
 			$philosphy = $this->input->post('philosphy');
 			$credits = $this->input->post('credits');
 			$skills = $this->input->post('skills');
-
-
-
-
+			$song1 = $this->input->post('song1');
+			$song2 = $this->input->post('song2');
+			$song3 = $this->input->post('song3');
+			$song4 = $this->input->post('song4');
+			$song5 = $this->input->post('song5');
+			$creative = $this->input->post('creative');
+			$candor = $this->input->post('candor');
+			$workload = $this->input->post('workload');
+			$flexibility = $this->input->post('flexibility');
 
 			//echo $profile_pic = $data['upload_data']['file_name']; exit;
+
 
 			//insert user data to users table
 
@@ -156,32 +157,24 @@ class User_model extends CI_Model {
 				$profile_pic = $data['upload_data']['file_name'];
 
 				$this->db->set('profile_pic', $profile_pic);
-				$this->db->set('base_rate', $base_rate);
-				$this->db->set('base_rate_text', $base_rate_text);
-				$this->db->set('base_production_rate', $base_production_rate);
-				$this->db->set('mix_engineer_rate', $mix_engineer_rate);
-				$this->db->set('mastering_engineer_rate', $mastering_engineer_rate);
-				$this->db->set('programmer_rate', $programmer_rate);
-				$this->db->set('philosphy', $philosphy);
-				$this->db->set('credits', $credits);
-				$this->db->set('skills', $skills);
-				$this->db->where('user_id', $id);  
-				$updateuserdetails = $this->db->update('tbl_userdetails'); 
-
-			}else{
-				$this->db->set('base_rate', $base_rate);
-				$this->db->set('base_rate_text', $base_rate_text);
-				$this->db->set('base_production_rate', $base_production_rate);
-				$this->db->set('mix_engineer_rate', $mix_engineer_rate);
-				$this->db->set('mastering_engineer_rate', $mastering_engineer_rate);
-				$this->db->set('programmer_rate', $programmer_rate);
-				$this->db->set('philosphy', $philosphy);
-				$this->db->set('credits', $credits);
-				$this->db->set('skills', $skills);
-				$this->db->where('user_id', $id);  
-				$updateuserdetails = $this->db->update('tbl_userdetails'); 
+				
 			}
+			
 
+			$this->db->set('philosphy', $philosphy);
+			$this->db->set('credits', $credits);
+			$this->db->set('skills', $skills);
+			$this->db->set('song1', $song1);
+			$this->db->set('song2', $song2);
+			$this->db->set('song3', $song3);
+			$this->db->set('song4', $song4);
+			$this->db->set('song5', $song5);
+			$this->db->set('creative', $creative);
+			$this->db->set('candor', $candor);
+			$this->db->set('workload', $workload);
+			$this->db->set('flexibility', $flexibility);
+			$this->db->where('user_id', $id);  
+			$updateuserdetails = $this->db->update('tbl_userdetails'); 
 
 
 			//print_r($this->db->last_query()); exit;
@@ -243,6 +236,15 @@ class User_model extends CI_Model {
 			$philosphy = $this->input->post('philosphy');
 			$credits = $this->input->post('credits');
 			$skills = $this->input->post('skills');
+			$song1 = $this->input->post('song1');
+			$song2 = $this->input->post('song2');
+			$song3 = $this->input->post('song3');
+			$song4 = $this->input->post('song4');
+			$song5 = $this->input->post('song5');
+			$creative = $this->input->post('creative');
+			$candor = $this->input->post('candor');
+			$workload = $this->input->post('workload');
+			$flexibility = $this->input->post('flexibility');
 
 			//insert user data to users table
 
@@ -260,21 +262,24 @@ class User_model extends CI_Model {
 
 				$profile_pic = $data['upload_data']['file_name'];
 
-				$this->db->set('profile_pic', $profile_pic);
-				$this->db->set('philosphy', $philosphy);
-				$this->db->set('credits', $credits);
-				$this->db->set('skills', $skills);
-				$this->db->where('user_id', $id);  
-				$updateuserdetails = $this->db->update('tbl_userdetails'); 
-
-			}else{
-				$this->db->set('philosphy', $philosphy);
-				$this->db->set('credits', $credits);
-				$this->db->set('skills', $skills);
-				$this->db->where('user_id', $id);  
-				$updateuserdetails = $this->db->update('tbl_userdetails'); 
 			}
 
+			$this->db->set('philosphy', $philosphy);
+			$this->db->set('credits', $credits);
+			$this->db->set('skills', $skills);
+			$this->db->set('song1', $song1);
+			$this->db->set('song2', $song2);
+			$this->db->set('song3', $song3);
+			$this->db->set('song4', $song4);
+			$this->db->set('song5', $song5);
+			$this->db->set('creative', $creative);
+			$this->db->set('candor', $candor);
+			$this->db->set('workload', $workload);
+			$this->db->set('flexibility', $flexibility);
+			$this->db->where('user_id', $id);  
+			$updateuserdetails = $this->db->update('tbl_userdetails'); 
+
+			
 			//return the status
 			if($updateuser && $updateuserdetails){
 				return true;

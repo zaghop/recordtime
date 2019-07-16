@@ -200,7 +200,8 @@
 	}
 </style>
 
-<?php //echo "<pre>"; print_r($recipients_details); ?>
+<?php $user_id = $this->session->userdata['userid'];
+ //echo "<pre>"; print_r($recipients_details); ?>
 <section id="msg_mod">
 	<div class="header-section-how-artist">
 		<div class="how-it-work-banner why-artist-banner">
@@ -219,6 +220,7 @@
 					<div class="col-sm-2 white-space-div"></div>
 					<div class="col-sm-12 process-how-it-work process-why-artist">
 						<div class="col-sm-3 work-with-text1">
+							<h2>All Conversations</h2>
 							<?php //foreach( $recipients_details as $index => $msg ) {
 							if(!empty($recipients_details)){
 								foreach($recipients_details as $recipients_detail){
@@ -238,6 +240,27 @@
 							<?php } 
 							}else{ ?>
 								<div class="container">No conversation found</div>
+							
+							<?php } ?>
+							<br>
+
+							---------------------------------------------------------------
+							<h2>All Recipients</h2>
+
+							<?php 
+							if(!empty($all_recipients)){
+								foreach($all_recipients as $all_recipient){
+							?>
+							
+								<a href="message?recipient_id=<?php echo $all_recipient['id']; ?>">
+									<div class="container">
+										<img src="http://develop.zaghop.com/~zagdev/recordtime/assets/themes/recordtime/messagefiles/avatar.png" alt="Avatar" style="width:100%;">
+										<a href="message?recipient_id=<?php echo $all_recipient['id']; ?>"><h4><?php echo $all_recipient['firstname'].' '.$all_recipient['lastname']; ?></h4></a>
+									</div>
+								</a>
+							
+							<?php } }else{ ?>
+								<div class="container">No User found</div>
 							
 							<?php } ?>
 							
@@ -310,52 +333,43 @@
 								<?php } } ?>
 							</div>
 							
-							<div class="work-with-text">
-								<div class="container">
-									<div class="col-md-12" id="msg_block">
-										<div class="input-group">
-											<form method="post" id="chatform" action="" enctype="multipart/form-data">
-												<input type="hidden" id="to_id" name="to_id" value="<?php echo $recipient_id; ?>">
-												<input type="hidden" id="thread_id" name="thread_id" value="<?php echo $user_id.$recipient_id; ?>">
-												<input type="hidden" id="from_id" name="from_id" value="<?php echo $user_id; ?>">
-												<!--											<input id="attachments" name="file" type="file" />-->
-												<div class="image-upload filebutton">
-													<label class="">
-														<i class="fa fa-camera" aria-hidden="true"></i>
-														<span style=""><input id="attachments" name="attachments" type="file" /></span>
-													</label>
+							<?php if($user_id == $_GET['recipient_id']){ ?>
+								<div class="container">No Recipient selected</div>
+							<?php }else{ ?>
+								<div class="work-with-text">
+									<div class="container">
+										<div class="col-md-12" id="msg_block">
+											<div class="input-group">
+												<form method="post" id="chatform" action="" enctype="multipart/form-data">
+													<input type="hidden" id="to_id" name="to_id" value="<?php echo $recipient_id; ?>">
+													<input type="hidden" id="thread_id" name="thread_id" value="<?php echo $user_id.$recipient_id; ?>">
+													<input type="hidden" id="from_id" name="from_id" value="<?php echo $user_id; ?>">
+													<!--											<input id="attachments" name="file" type="file" />-->
+													<div class="image-upload filebutton">
+														<label class="">
+															<i class="fa fa-camera" aria-hidden="true"></i>
+															<span style=""><input id="attachments" name="attachments" type="file" /></span>
+														</label>
+														
+													</div>
+													<div class="image-upload filebutton">
+														<label class="">
+															<i class="fa fa-file-image" aria-hidden="true"></i>
+															<span style=""><input id="attachments1" name="attachments" type="file" /></span>
+														</label>
+														
+													</div>
 													
-												</div>
-												<div class="image-upload filebutton">
-													<label class="">
-														<i class="fa fa-file-image" aria-hidden="true"></i>
-														<span style=""><input id="attachments1" name="attachments" type="file" /></span>
-													</label>
-													
-												</div>
-												<!--
-												<div class="image-upload">
-													  <label for="file-input">
-														<i class="fa fa-microphone" aria-hidden="true"></i>
-													  </label>
-													  <input id="file-input" type="file" />
-												</div>
-												<div class="image-upload">
-													  <label for="file-input">
-														<i class="fa fa-camera" aria-hidden="true"></i>
-													  </label>
-													  <input id="file-input" type="file" />
-												</div>
-												-->
-												<input id="message" name="message" type="text" class="form-control input-sm" placeholder="Type your message here..."/>
-												<span class="input-group-btn"><input type="submit" value="SEND" class="btn btn-warning btn-sm" id="submit"></span>
-											</form>
+													<input id="message" name="message" type="text" class="form-control input-sm" placeholder="Type your message here..."/>
+													<span class="input-group-btn"><input type="submit" value="SEND" class="btn btn-warning btn-sm" id="submit"></span>
+												</form>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
+							<?php } ?>
 
+						</div>
 					</div>
 				</div>
 			</div>

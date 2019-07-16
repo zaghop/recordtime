@@ -39,7 +39,6 @@
             
            <?php }?>
                 <li><a href="<?= site_url('project/dashboard')?>" class="txt-upper mobile-hide"><strong>My Projects</strong></a></li>
-                <li><a href="<?= site_url('search')?>" class="txt-upper mobile-hide"><strong>Find a Project</strong></a></li>
                 <li><a href="<?= site_url('logout')?>" class="txt-upper mobile-hide"><strong>Logout</strong></a></li>
                 <li class="active mobile-hide" ><a href="<?php echo site_url(); ?>/search">Start Recording</a></li>
     	<?php } else { ?>

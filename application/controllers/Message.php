@@ -62,7 +62,7 @@ class Message extends Public_controller
 		//$this->sendMail();
 
 		
-		
+		$data['all_recipients'] = $this->message->getAllRecipients($this->session->userdata['userid']);
 		$data['recipients_details'] = $this->message->getRecipientdetails(array('id'=>$this->session->userdata['userid'], 'rec_id'=>$data['recipient_id']));
 		$data['recipients_msg'] = $this->message->getRecipientmsg(array('id'=>$this->session->userdata['userid'], 'rec_id'=>$data['recipient_id']));
 		//echo "<pre>"; print_r($data['recipients_msg']); exit;

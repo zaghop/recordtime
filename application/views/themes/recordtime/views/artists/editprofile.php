@@ -16,8 +16,13 @@
 				<div class="container">
 					<div class="col-sm-12 producer-profile-img-container">
 						<div class="producer-profile-img">
-							<img src="<?= site_url().template_assets_path(); ?>/users/<?php echo $user_details[0]['profile_pic']; ?>">
-						</div>
+				            <?php if(!empty($user_details[0]['profile_pic']) && isset($user_details[0]['profile_pic'])){ ?>
+				            <img src="<?= site_url().template_assets_path(); ?>/users/<?php echo $user_details[0]['profile_pic']; ?>">
+				            <?php } else{ ?>
+				            <img src="<?= site_url().template_assets_path(); ?>/images/profucer-profile-image.png">
+				            <?php } ?>
+				        </div>
+						
 					</div>
 					<?php //echo "<pre>"; print_r($user_details); ?>
 					<form method="post" action="" enctype="multipart/form-data">
@@ -33,6 +38,33 @@
 							<label for="lname">Last Name</label>
 							<input type="text" id="lname" name="lname" value="<?php echo $user_details[0]['lastname']; ?>" placeholder="Your Last Name..">
 
+							
+							<label for="base_rate">Song1</label>
+							<input type="text" id="song1" name="song1" value="<?php echo $user_details[0]['song1']; ?>" placeholder="Add SoundCloud Link..">
+							
+							<label for="base_rate">Song2</label>
+							<input type="text" id="song2" name="song2" value="<?php echo $user_details[0]['song2']; ?>" placeholder="Add SoundCloud Link..">
+							
+							<label for="base_rate">Song3</label>
+							<input type="text" id="song3" name="song3" value="<?php echo $user_details[0]['song3']; ?>" placeholder="Add SoundCloud Link..">
+
+
+							<label for="base_rate">Song4</label>
+							<input type="text" id="song4" name="song4" value="<?php echo $user_details[0]['song4']; ?>" placeholder="Add SoundCloud Link..">
+							
+							<label for="base_rate">Song5</label>
+							<input type="text" id="song5" name="song5" value="<?php echo $user_details[0]['song5']; ?>" placeholder="Add SoundCloud Link..">
+							
+							
+
+							<label for="philosphy">Production Philosphy</label>
+							<textarea id="philosphy" name="philosphy" style="height:200px"><?php echo $user_details[0]['philosphy']; ?></textarea>
+							
+							
+							
+						</div>
+						<div class="col-sm-6">
+
 							<label for="country">State</label>
 							<input type="text" id="state" value="<?php echo $user_details[0]['state']; ?>" name="state" placeholder="Your Country..">
 
@@ -42,32 +74,17 @@
 							<label for="genre">Genres</label>
 							<input type="text" id="genre" name="genre" value="<?php echo $user_details[0]['genre']; ?>" placeholder="Your Genres..">
 
-							<!-- <label for="base_rate">Base Rate</label>
-							<input type="text" id="base_rate" name="base_rate" value="<?php echo $user_details[0]['base_rate']; ?>" placeholder="Your Base Rate Text..">
+							<label for="base_rate">Creative</label>
+							<input type="text" id="creative" name="creative" value="<?php echo $user_details[0]['creative']; ?>" placeholder="Add Rate between 1 to 5...">
+
+							<label for="base_rate">Candor</label>
+							<input type="text" id="candor" name="candor" value="<?php echo $user_details[0]['candor']; ?>" placeholder="Add Rate between 1 to 5...">
 							
-							<label for="base_rate">Base Rates Text</label>
-							<input type="text" id="base_rate_text" name="base_rate_text" value="<?php echo $user_details[0]['base_rate_text']; ?>" placeholder="Your Base Rate..">
+							<label for="base_rate">Workload</label>
+							<input type="text" id="workload" name="workload" value="<?php echo $user_details[0]['workload']; ?>" placeholder="YAdd Rate between 1 to 5...">
 							
-							<label for="base_rate">Base Production Rates</label>
-							<input type="text" id="base_production_rate" name="base_production_rate" value="<?php echo $user_details[0]['base_production_rate']; ?>" placeholder="Your Base Production Rate.."> -->
-							
-							
-							
-						</div>
-						<div class="col-sm-6">
-							
-							<!-- <label for="base_rate">Mix Engineer</label>
-							<input type="text" id="mix_engineer_rate" name="mix_engineer_rate" value="<?php echo $user_details[0]['mix_engineer_rate']; ?>" placeholder="Your Mix Engineer Rate..">
-							
-							<label for="base_rate">Mastering Engineer</label>
-							<input type="text" id="mastering_engineer_rate" name="mastering_engineer_rate" value="<?php echo $user_details[0]['mastering_engineer_rate']; ?>" placeholder="Your Mastering Engineer Rate..">
-							
-							<label for="base_rate">Programmer</label>
-							<input type="text" id="programmer_rate" name="programmer_rate" value="<?php echo $user_details[0]['programmer_rate']; ?>" placeholder="Your Programmer Rate.."> -->
-						
-						
-							<label for="philosphy">Production Philosphy</label>
-							<textarea id="philosphy" name="philosphy" style="height:200px"><?php echo $user_details[0]['philosphy']; ?></textarea>
+							<label for="base_rate">Flexibility</label>
+							<input type="text" id="flexibility" name="flexibility" value="<?php echo $user_details[0]['flexibility']; ?>" placeholder="Add Rate between 1 to 5..."> 
 							
 							<label for="credits">Credits</label>
 							<textarea id="credits" name="credits" style="height:200px"><?php echo $user_details[0]['credits']; ?></textarea>

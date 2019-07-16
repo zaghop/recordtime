@@ -96,6 +96,8 @@ $route['project/artist_create']  = "Project/artist_create"; // cp
 $route['project/producer_create']  = "Project/producer_create"; // cp
 $route['projects/summary']  = "User/projects_summary"; // added by prakash
 $route['project/dashboard'] = "Project/Dashboard";
+$route['project/artist_project_view'] = "Project/artist_project_view"; // cp
+$route['project/producer_project_view'] = "Project/producer_project_view"; // cp
 
 $route['viewinvoice/(:num)/(:any)']  = "clients/viewinvoice/$1/$2";
 

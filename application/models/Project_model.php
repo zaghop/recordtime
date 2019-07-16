@@ -137,5 +137,51 @@ class Project_model extends CI_Model {
     }
   }
 
+  public function prodetails($project_id) {
+
+      $this->db->select('tbl_projects.*,tbl_project_docs.doc_name');
+      $this->db->from('tbl_projects');
+      $this->db->join('tbl_project_docs','tbl_project_docs.project_id=tbl_projects.project_id');
+      $this->db->where('tbl_projects.project_id', $project_id);
+      $query=$this->db->get();
+
+      if ( $query->num_rows() > 0 )
+      {
+        $row = $query->result_array()[0];
+        return $row;
+      }else{
+        $this->db->select('*');
+        $this->db->from('tbl_projects');
+        $this->db->where('project_id', $project_id);
+        $query=$this->db->get();
+        $row = $query->result_array()[0];
+        return $row;
+      }
+
+  }
+
+  //  start by Cp
+
+    public function updateFeedback($data){
+//echo "<pre>"; print_r($data); exit;
+      $project_id = $data['project_id'];
+
+      $this->db->select('project_id');
+      $this->db->from('tbl_projects');
+      $this->db->where('project_id', $project_id);
+      $query=$this->db->get();
+
+
+      if ( $query->num_rows() > 0 )
+      {
+          $this->db->where('project_id',$project_id);
+          $row = $this->db->update('tbl_projects',$data);
+          //echo $this->db->last_query(); exit;
+          return $row;
+      }   
+    }
+
+  //  end
+
 
 }
