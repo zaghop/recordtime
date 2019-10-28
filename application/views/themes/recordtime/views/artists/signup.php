@@ -9,7 +9,7 @@
             <div class="col-sm-6 text-center account-block"><div class="round-white-border row"><img src="<?= site_url().template_assets_path(); ?>/images/Artist-icon.png" alt="Artist Icon" class="user-type" id="1" /></div> <p class="text-center">Artist</p></div>
             <div class="col-sm-6 text-center account-block"><div class="round-white-border row"><img src="<?= site_url().template_assets_path(); ?>/images/Producer Icon.png" alt="Producer Icon"  class="user-type" id="2" /></div> <p class="text-center">Producer</p></div>
             <img src="<?= site_url().template_assets_path(); ?>/images/sign-up-1d-process.png" alt="Prcess" class="mt-30"  />
-            <input type="hidden" name="type" id="type" value="1" />
+            <input type="hidden" name="type" id="type" value="" />
          </div>
          <div class="col-sm-12 mt-20 recording-btn-container" style="display:none"><a href="javascript:void()" id="step-1-submit" class="btn btn-block btn-recording">Start Recording</a></div>
       </div>
@@ -79,7 +79,8 @@ $(document).ready(function(){
    $('#step-1-submit').click(function(){
       $('#step-1').hide();
       $('#step-2').show();
-      var id = $('.user-type').attr("id");
+      var id = $('.round-white-border.active .user-type').attr("id");
+      $('#type').val(id);
    });
    $('#step-2-submit').click(function(){
       $('#step-2').hide();

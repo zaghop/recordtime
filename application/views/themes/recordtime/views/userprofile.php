@@ -9,19 +9,13 @@ $expense_value = explode(",", $production_rates[0]['expensevalue']);
 $combine = array_combine($expense_name, $expense_value);
 
 ?>  
-
-
 <div class="middle-container art-profile">
   <div class="banner-image">
     <div class="banner-content">
       <img src="<?php echo site_url().template_assets_path(); ?>/images/Big Logo-White.png">
     </div>
   </div>
-  <div class="page-title box-shadow">
-    <div class="container-fluid">
-      <h1>My Profile</h1>
-    </div>
-  </div>
+  
   <div class="producer-contact-details-container box-shadow">
     <div class="container">
       <div class="row desktop-section">
@@ -45,26 +39,14 @@ $combine = array_combine($expense_name, $expense_value);
           <div class="producer-city">
             <p><?php echo $user_details[0]['city']; ?>, <?php echo $user_details[0]['state']; ?></p>
           </div>
-          <div class="producer-base-rate">
-            <p>Base Rate: $<?php echo $production_rates[0]['base_rate']; ?></p>
-          </div>
-          <div>
-            <p><strong>Your current credits: $<?php echo $credits; ?></strong></p>
-          </div>
+         
           <div class="producer-email-container">
-            <?php if($ID == $user_id){ ?>
-            <a href="<?php echo site_url(); ?>message?recipient_id=<?php echo $user_id; ?>" class="email-icon">
-              <img src="<?php echo site_url().template_assets_path(); ?>/images/big-mail-icon.png">
-            </a>
-            <?php }else{ ?>
-            <a href="<?php echo site_url(); ?>message?recipient_id=<?php echo $user_id; ?>" class="email-icon">
-              <img src="<?php echo site_url().template_assets_path(); ?>/images/big-mail-icon.png">
-            </a>
+
+          	<?php if($ID != $user_id){ ?>
+	            <a href="<?php echo site_url(); ?>message?recipient_id=<?php echo $ID; ?>" class="email-icon">
+	              <img src="<?php echo site_url().template_assets_path(); ?>/images/big-mail-icon.png">
+	            </a>
             <?php } ?>
-            <a href="<?php echo site_url('artists/editprofile')?>" class="check-box-icon1" style="display: none;">
-              <img src="https://img.icons8.com/ios/50/000000/pencil.png">
-              <!--                <img src="<?php //echo site_url().template_assets_path(); ?>/images/Checkbox.png">-->
-            </a>
           </div>
         </div>
         </div>  <!----------desktop-------->
@@ -95,10 +77,7 @@ $combine = array_combine($expense_name, $expense_value);
                 <h3>Skills and Specialties</h3>
                 <p><?php if(!empty($user_details[0]['skills'])){ echo nl2br($user_details[0]['skills']); } ?></p>
               </div>
-              <div class="base-rate-container profile-card box-shadow" style="display: none;">
-                <a href="<?= site_url('artists/editproductionrates')?>" class="" style="float: right; width: 6%; text-align: right;">
-                  <img src="https://img.icons8.com/ios/50/000000/pencil.png" style="width: 40%;">
-                </a>
+              <div class="base-rate-container profile-card box-shadow">
                 <h3>Base Rates Per Song</h3>
                 <p>This is the minimum rate per song for this producer. Rates may change with the addition of other studio professionals or musicians. Contact this producer to lock in your rate. </p>
                 <div class="rate-table-container">
@@ -173,14 +152,8 @@ $combine = array_combine($expense_name, $expense_value);
               </div>
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6 ">
             <div class="reviews-container profile-card box-shadow" >
-              <?php if(!empty($user_details[0]['song1'])){ ?>
-                <a href="<?= site_url('artists/editsound')?>" class="" style="float: right; width: 6%; text-align: right;">
-                  <img src="https://img.icons8.com/ios/50/000000/pencil.png" style="width: 40%;">
-                </a>
-              <?php } ?>
-              
               <h3>Reviews</h3>
 
               <div class="song-track-container">
@@ -240,38 +213,26 @@ $combine = array_combine($expense_name, $expense_value);
                     }
                    ?>
                 </div>
-              
+                
               </div>
-              <!-- class = rating-container -->
-              <div class="">
+              <div class="rating-container">
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-sm-3">
                   </div>
-                  <div class="col-md-8 low-high-image-container">
+                  <div class="col-sm-9 low-high-image-container">
                     <img src="<?= site_url().template_assets_path(); ?>/images/low-high-image.png">
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-4">
-                  	<div class="row">
-	                    <h4>Creative 
-	                    	<span class="help-tip">
-	                    		<p><b>1 is Low Involvement</b><br> 
-								Producer primarily keeps musicians on task but allows the artist to call most shots. Best for artists with a good deal of studio experience.
-								<br><br>
-								<b>5 is High Involvement</b><br>
-								Producer has creative control over virtually all aspects of production. Best for artists who want to push their song in a new direction and those with little studio experience. 
-								</p>
-	                    	</span>
-	                	</h4>
-	                </div>
+                  <div class="col-sm-3">
+                    <h4>Creative</h4>
                     <?php if(!empty($user_details[0]['creative'])){ $creative = $user_details[0]['creative']; }else{ $creative = 0; };
                           if(!empty($user_details[0]['candor'])){ $candor = $user_details[0]['candor']; }else{ $candor = 0; };
                           if(!empty($user_details[0]['workload'])){ $workload = $user_details[0]['workload']; }else{ $workload = 0; };
                           if(!empty($user_details[0]['flexibility'])){ $flexibility = $user_details[0]['flexibility']; }else{ $flexibility = 0; };
                      ?>
                   </div>
-                  <div class="col-md-8 low-high-image-container">
+                  <div class="col-sm-9 low-high-image-container">
                     <span class="rating-circles creatinv-rating <?php if($creative == 1){ echo "circle-bg-rd"; } ?>">1</span>
                     <span class="rating-circles creatinv-rating <?php if($creative == 2){ echo "circle-bg-rd"; } ?>">2</span>
                     <span class="rating-circles creatinv-rating <?php if($creative == 3){ echo "circle-bg-rd"; } ?>">3</span>
@@ -280,21 +241,10 @@ $combine = array_combine($expense_name, $expense_value);
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-4">
-                  		<div class="row">
-		                    <h4>Assertion 
-		                    	<span class="help-tip">
-		                    		<p><b>1 is Low Assertiveness</b><br> 
-									Producer is very sensitive to the feelings of an artist and asks for corrections delicately.
-									<br><br>
-									<b>5 is High Assertiveness</b><br>
-									Producer is very direct with the Artist and asks for corrections with emphasis on honest direction. 
-									</p>
-		                    	</span>
-		                    </h4>
-		                </div>
-                  	</div>
-                  <div class="col-md-8 low-high-image-container">
+                  <div class="col-sm-3">
+                    <h4>Candor</h4>
+                  </div>
+                  <div class="col-sm-9 low-high-image-container">
                     <span class="rating-circles candor-rating <?php if($candor == 1){ echo "circle-bg-rd"; } ?>">1</span>
                     <span class="rating-circles candor-rating <?php if($candor == 2){ echo "circle-bg-rd"; } ?>">2</span>
                     <span class="rating-circles candor-rating <?php if($candor == 3){ echo "circle-bg-rd"; } ?>">3</span>
@@ -303,21 +253,10 @@ $combine = array_combine($expense_name, $expense_value);
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-4">
-                    	<div class="row">
-		                    <h4>Workload
-		                    	<span class="help-tip">
-		                    		<p><b>1 is Small Workload</b><br> 
-									Producer only makes Artist come in for parts in which the Artist is to contribute directly to the song. Producers on this end of the spectrum also require fewer takes typically.
-									<br><br>
-									<b>5 is Large Workload</b><br>
-									Producer requires Artist to attend virtually all stages of the recording process and requests many takes for all of the Artist’s contributions. 
-									</p>
-		                    	</span>
-		                    </h4>
-		                </div>
+                  <div class="col-sm-3">
+                    <h4>Workload</h4>
                   </div>
-                  <div class="col-md-8 low-high-image-container">
+                  <div class="col-sm-9 low-high-image-container">
                     <span class="rating-circles workload-rating <?php if($workload == 1){ echo "circle-bg-rd"; } ?>">1</span>
                     <span class="rating-circles workload-rating <?php if($workload == 2){ echo "circle-bg-rd"; } ?>">2</span>
                     <span class="rating-circles workload-rating <?php if($workload == 3){ echo "circle-bg-rd"; } ?>">3</span>
@@ -326,27 +265,16 @@ $combine = array_combine($expense_name, $expense_value);
                   </div>
                 </div>
                 <div class="row">
-                  	<div class="col-md-4">
-	                  	<div class="row">
-		                    <h4>Flexibility
-		                    	<span class="help-tip">
-		                    		<p><b>1 is Low Flexibility</b><br> 
-									Producer sticks to the terms of the recording contract and the agreed upon production and artistic styles requested by the Artist. These producers are best for Artists wishing to finish on time and under budget.
-									<br><br>
-									<b>5 is High Flexibility</b><br>
-									Producer is open to changes in creative direction during the recording and is open to amending the recording terms to push back deadlines, adjust pricing, or change session style as needed. These Producers are best for Artists who want to explore different approaches and styles with less regard for time of completion or additional costs. 
-									</p>
-		                    	</span>
-		                    </h4>
-		                </div>
-                  	</div>
-                  	<div class="col-md-8 low-high-image-container">
-                    	<span class="rating-circles flexibility-rating <?php if($flexibility == 1){ echo "circle-bg-rd"; } ?>">1</span>
-                    	<span class="rating-circles flexibility-rating <?php if($flexibility == 2){ echo "circle-bg-rd"; } ?>">2</span>
-                    	<span class="rating-circles flexibility-rating <?php if($flexibility == 3){ echo "circle-bg-rd"; } ?>">3</span>
-                    	<span class="rating-circles flexibility-rating <?php if($flexibility == 4){ echo "circle-bg-rd"; } ?>">4</span>
-                    	<span class="rating-circles flexibility-rating <?php if($flexibility == 5){ echo "circle-bg-rd"; } ?>">5</span>
-                  	</div>
+                  <div class="col-sm-3">
+                    <h4>Flexibility</h4>
+                  </div>
+                  <div class="col-sm-9 low-high-image-container">
+                    <span class="rating-circles flexibility-rating <?php if($flexibility == 1){ echo "circle-bg-rd"; } ?>">1</span>
+                    <span class="rating-circles flexibility-rating <?php if($flexibility == 2){ echo "circle-bg-rd"; } ?>">2</span>
+                    <span class="rating-circles flexibility-rating <?php if($flexibility == 3){ echo "circle-bg-rd"; } ?>">3</span>
+                    <span class="rating-circles flexibility-rating <?php if($flexibility == 4){ echo "circle-bg-rd"; } ?>">4</span>
+                    <span class="rating-circles flexibility-rating <?php if($flexibility == 5){ echo "circle-bg-rd"; } ?>">5</span>
+                  </div>
                 </div>
               </div>
             </div>

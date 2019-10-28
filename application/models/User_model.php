@@ -127,11 +127,6 @@ class User_model extends CI_Model {
 			$philosphy = $this->input->post('philosphy');
 			$credits = $this->input->post('credits');
 			$skills = $this->input->post('skills');
-			$song1 = $this->input->post('song1');
-			$song2 = $this->input->post('song2');
-			$song3 = $this->input->post('song3');
-			$song4 = $this->input->post('song4');
-			$song5 = $this->input->post('song5');
 			$creative = $this->input->post('creative');
 			$candor = $this->input->post('candor');
 			$workload = $this->input->post('workload');
@@ -164,11 +159,6 @@ class User_model extends CI_Model {
 			$this->db->set('philosphy', $philosphy);
 			$this->db->set('credits', $credits);
 			$this->db->set('skills', $skills);
-			$this->db->set('song1', $song1);
-			$this->db->set('song2', $song2);
-			$this->db->set('song3', $song3);
-			$this->db->set('song4', $song4);
-			$this->db->set('song5', $song5);
 			$this->db->set('creative', $creative);
 			$this->db->set('candor', $candor);
 			$this->db->set('workload', $workload);
@@ -236,11 +226,6 @@ class User_model extends CI_Model {
 			$philosphy = $this->input->post('philosphy');
 			$credits = $this->input->post('credits');
 			$skills = $this->input->post('skills');
-			$song1 = $this->input->post('song1');
-			$song2 = $this->input->post('song2');
-			$song3 = $this->input->post('song3');
-			$song4 = $this->input->post('song4');
-			$song5 = $this->input->post('song5');
 			$creative = $this->input->post('creative');
 			$candor = $this->input->post('candor');
 			$workload = $this->input->post('workload');
@@ -267,11 +252,6 @@ class User_model extends CI_Model {
 			$this->db->set('philosphy', $philosphy);
 			$this->db->set('credits', $credits);
 			$this->db->set('skills', $skills);
-			$this->db->set('song1', $song1);
-			$this->db->set('song2', $song2);
-			$this->db->set('song3', $song3);
-			$this->db->set('song4', $song4);
-			$this->db->set('song5', $song5);
 			$this->db->set('creative', $creative);
 			$this->db->set('candor', $candor);
 			$this->db->set('workload', $workload);
@@ -314,8 +294,33 @@ class User_model extends CI_Model {
             
 		}
 
-	// Production rate module end
 
+	// Edit Sounds
+
+		public function updatesound($id) {
+			
+			$song1 = $this->input->post('song1');
+			$song2 = $this->input->post('song2');
+			$song3 = $this->input->post('song3');
+			$song4 = $this->input->post('song4');
+			$song5 = $this->input->post('song5');
+		
+			$this->db->set('song1', $song1);
+			$this->db->set('song2', $song2);
+			$this->db->set('song3', $song3);
+			$this->db->set('song4', $song4);
+			$this->db->set('song5', $song5);
+			$this->db->where('user_id', $id);  
+			$updatesound = $this->db->update('tbl_userdetails'); 
+
+			
+			//return the status
+			if($updatesound && $updatesound){
+				return true;
+			}else{
+				return false;
+			}
+		}
 
 
 	// get production rate summary start

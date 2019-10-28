@@ -73,6 +73,7 @@ $route['/']  = "User";
 $route['artists/overview']  = "User/whyArtists";
 $route['artists/how-it-works']  = "User/howItWorksArtists";
 $route['artists/editprofile']  = "User/artistProfile";
+$route['artists/editsound']  = "User/editArtistSound";
 $route['artists/editproductionrates']  = "User/editProductionRates";
 $route['artists/summary']  = "User/productionRateSummary"; // cp
 $route['artists/signup']  = "User/artists_signup"; // added by prakash
@@ -85,6 +86,7 @@ $route['producers/overview']  = "User/whyProducers";
 $route['producers/signup']  = "User/producer_signup";
 $route['producers/how-it-works']  = "User/howItWorksProducers";
 $route['producers/editproductionrates']  = "User/editProducerProductionRates"; // cp
+$route['producers/editsound']  = "User/editProducerSound"; // CP
 $route['producers/profile']  = "User/producer_profile";
 $route['producers/editprofile']  = "User/producerProfile";
 $route['producers/summary']  = "User/producerProductionRateSummary"; // cp
@@ -98,6 +100,9 @@ $route['projects/summary']  = "User/projects_summary"; // added by prakash
 $route['project/dashboard'] = "Project/Dashboard";
 $route['project/artist_project_view'] = "Project/artist_project_view"; // cp
 $route['project/producer_project_view'] = "Project/producer_project_view"; // cp
+$route['project/artist_project_edit'] = "Project/artist_project_edit"; // cp
+$route['project/producer_project_edit'] = "Project/producer_project_edit"; // cp
+$route['project/my_projects'] = "Project/my_projects"; // cp
 
 $route['viewinvoice/(:num)/(:any)']  = "clients/viewinvoice/$1/$2";
 
@@ -106,4 +111,8 @@ $route['knowledge_base/(:any)']  = "clients/knowledge_base/$1";
 $route['knowledge-base/(:any)']  = "clients/knowledge_base/$1";
 
 $route['search']  = "Search";
+$route['terms']  = "Common/terms";
+$route['privacy']  = "Common/privacy";
+$route['contact']  = "Common/contact";
 $route['search/producers'] = "Search/producers";
+$route['userprofile']  = "User/userProfile"; // cp

@@ -118,8 +118,11 @@ class Project_model extends CI_Model {
     }
     else {
         unset($data['submit']);
-        $songcost = implode(',', $data['songcost']);
+        $songcost1 = implode(',', $data['songcost']);
+        $songcost = rtrim($songcost1,",");  
         $players = implode(',', $data['players']);
+        $songcost = rtrim($songcost1,","); 
+      
         $origDate = $data['complete_time'];
         $date = date("Y-m-d", strtotime($origDate));
         $proj_data  = array(
@@ -129,7 +132,7 @@ class Project_model extends CI_Model {
             'players' => $players,
             'user_id' => $this->session->userdata['userid']
          );
-        //echo "<pre>"; print_r($proj_data); exit;
+        
         $this->db->insert('tbl_projects', $proj_data);
         $lastId = $this->db->insert_id();
         return $lastId;
@@ -181,7 +184,128 @@ class Project_model extends CI_Model {
       }   
     }
 
+
+    public function updateProducer($data){
+      $project_id = $data['project_id'];
+
+          $this->db->set('producer_id','producer_id', true);
+          $this->db->where('project_id',$project_id);
+          $row = $this->db->update('tbl_projects',$data);
+         // echo $this->db->last_query(); exit;
+          return $row;
+        
+    }
+
+
   //  end
+
+
+  // update artist project
+    public function update_artist_projects($data){
+    
+      $project_id = $data['project_id'];
+      $this->db->where("project_id", $project_id);
+      $query = $this->db->get("tbl_projects");
+
+      if ($query->num_rows() > 0) {
+        
+        unset($data['submit']);
+        
+        $criteria = implode(',', $data['criteria']);
+        $origDate = $data['complete_time'];
+        $date = date("Y-m-d", strtotime($origDate));
+        $proj_data  = array(
+            'name' => $data['project_name'],
+            'budget' => $data['budget'],
+            'songs' => $data['songs'],
+            'complete_time' => $date,
+            'criteria' => $criteria,
+            'user_id' => $this->session->userdata['userid'],
+            'updated_at' => date('Y-m-d H:i:s')
+         );
+     
+        $this->db->where('project_id',$project_id);
+        
+        $this->db->update('tbl_projects',$proj_data);
+
+        //$this->db->insert('tbl_projects', $proj_data);
+       // $lastId = $this->db->insert_id();
+        if(isset($_FILES['doc_name']) && $_FILES['doc_name'] != ''){
+            $proj_doc_data = array(
+                'doc_name' => $_FILES['doc_name']['name'],
+                'project_id' => $project_id
+             );
+
+            $config['upload_path']="./assets/themes/recordtime/project_files/";
+            $config['allowed_types']='gif|jpg|jpeg|png|iso|dmg|avi|mpeg|mp3|mp4|3gp';
+            $this->upload->initialize($config);
+            $this->load->library('upload',$config);
+
+            if($this->upload->do_upload("doc_name")){              
+              $data = array('upload_data' => $this->upload->data());
+            }
+
+
+        }
+        $this->db->where('project_id',$project_id);
+        $this->db->update('tbl_project_docs', $proj_doc_data);
+        return $project_id;
+
+      }else {
+        return false;
+
+      }
+    } 
+
+
+    public function update_producer_projects($data){
+
+      $project_id = $data['project_id'];
+      $this->db->where("project_id", $project_id);
+      $query = $this->db->get("tbl_projects");
+
+      if ($query->num_rows() > 0) {
+
+          unset($data['submit']);
+          $songcost1 = implode(',', $data['songcost']);
+          $songcost = rtrim($songcost1,",");  
+          $players = implode(',', $data['players']);
+          $origDate = $data['complete_time'];
+          $date = date("Y-m-d", strtotime($origDate));
+          $proj_data  = array(
+              'name' => $data['name'],
+              'complete_time' => $date,
+              'songs_cost' => $songcost,
+              'players' => $players,
+              'user_id' => $this->session->userdata['userid'],
+              'updated_at' => date('Y-m-d H:i:s')
+           );
+          
+          $this->db->where('project_id',$project_id); 
+          $this->db->update('tbl_projects',$proj_data);
+
+          return true;
+
+      }else {    
+         return false;
+      }
+    }
+
+
+    public function myprojects($user_id,$project_id) {
+
+        $query = "SELECT tu.*,tp.*,tud.profile_pic FROM tbl_projects tp LEFT JOIN tbl_user tu ON tp.producer_id = tu.id LEFT JOIN tbl_userdetails tud ON tu.id = tud.user_id WHERE tp.user_id = " . $user_id . " AND tp.project_id = " . $project_id . " ORDER BY tp.start_date DESC"; 
+
+      $projects = $this->db->query($query);
+
+      if ($projects->num_rows() < 1) {
+        return false;
+      }
+      else {
+        return $projects->result_array();
+      }
+   }
+
 
 
 }

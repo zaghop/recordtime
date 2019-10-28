@@ -75,8 +75,8 @@ class Message_model extends CI_Model {
 		$this->db->from('tblmessages');
 		$this->db->where('from_id', $user_id );
 		$this->db->or_where('to_id', $user_id );
-		
 		$query = $this->db->get();
+		//print_r($this->db->last_query());    exit;
 		if ( $query->num_rows() > 0 )
 		{
 			$row = $query->result_array();
@@ -84,8 +84,16 @@ class Message_model extends CI_Model {
 			$row1 = array();
 			$row2 = array();
 			foreach($row as $rows) {
+
+
 				$userto_id = $rows['to_id'];
 				$userfrom_id = $rows['to_id'];
+
+				if($user_id == $userto_id){
+					$userto_id = $rows['from_id'];
+				}else{
+					$userto_id = $rows['to_id'];
+				}
 				//
 				$this->db->select('id,firstname,lastname');
 				$this->db->from('tbl_user');
@@ -101,6 +109,7 @@ class Message_model extends CI_Model {
 				$where = '(to_id='.$userto_id.' OR from_id = '.$userto_id.')';
 				$this->db->where($where);
 				$query2 = $this->db->get();
+				//print_r($this->db->last_query());    exit;
 				$row2[] = $query2->result_array();
 				 
 				
@@ -115,6 +124,26 @@ class Message_model extends CI_Model {
 		$this->db->select('id,firstname,lastname');
 		$this->db->from('tbl_user');
 		$this->db->where('id !=', $id );
+		$query1 = $this->db->get();
+		//print_r($this->db->last_query());    exit;
+		return $query1->result_array();
+	}
+
+	function getAllProjects($id){
+		
+		$this->db->select('project_id,name,producer_id,user_id');
+		$this->db->from('tbl_projects');
+		$this->db->where('user_id', $id );
+		$query1 = $this->db->get();
+		//print_r($this->db->last_query());    exit;
+		return $query1->result_array();
+	}
+
+	function selectType($id){
+		
+		$this->db->select('type');
+		$this->db->from('tbl_user');
+		$this->db->where('id', $id );
 		$query1 = $this->db->get();
 		return $query1->result_array();
 	}

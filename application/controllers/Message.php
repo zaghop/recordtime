@@ -13,11 +13,11 @@ class Message extends Public_controller
 	public function sendMail($msg, $attach)
 	{
 		
-			$mailto = 'chaitanya.21twelve@gmail.com';
+			$mailto = 'recordtime@yopmail.com';
     		$subject = 'Recordtimes Chat';
 		
 			$filename = $attach;
-			$path = 'http://develop.zaghop.com/~zagdev/recordtime/assets/themes/recordtime/messagefiles/';
+			$path = '<?php echo site_url(); ?>assets/themes/recordtime/messagefiles/';
 		
 			$file = $path.$filename;
 			$content = file_get_contents( $file);
@@ -26,7 +26,7 @@ class Message extends Public_controller
 			$name = basename($file);
 
 			// header
-			$header = "From: Recordtime <chaitanya@21twelveinteractive.com>\r\n";
+			$header = "From: Recordtime <recordtime@yopmail.com>\r\n";
 			//$header .= "Reply-To: ".$replyto."\r\n";
 			$header .= "MIME-Version: 1.0\r\n";
 			$header .= "Content-Type: multipart/mixed; boundary=\"".$uid."\"\r\n\r\n";
@@ -60,6 +60,7 @@ class Message extends Public_controller
 		$data['recipient_id'] = $_SESSION['recipient_id'];
 		
 		//$this->sendMail();
+		$data['select_type'] = $this->message->selectType($data['recipient_id']);
 
 		
 		$data['all_recipients'] = $this->message->getAllRecipients($this->session->userdata['userid']);
@@ -67,6 +68,7 @@ class Message extends Public_controller
 		$data['recipients_msg'] = $this->message->getRecipientmsg(array('id'=>$this->session->userdata['userid'], 'rec_id'=>$data['recipient_id']));
 		//echo "<pre>"; print_r($data['recipients_msg']); exit;
 		$data['messages'] = $this->message->getRows(array('from_id'=>$this->session->userdata['userid'], 'to_id'=>$data['recipient_id']));
+		$data['all_projects'] = $this->message->getAllProjects($this->session->userdata['userid']);
 		
 
 		
@@ -81,7 +83,7 @@ class Message extends Public_controller
 	public function add_message(){
 		
 		// $this->form_validation->set_rules('message', 'Message', 'required');
-		// echo "<pre>"; print_r($_POST);
+		 //echo "<pre>"; print_r($_POST); exit;
 		//echo "<pre>"; print_r($_FILES); exit;
 		
 	
@@ -98,6 +100,7 @@ class Message extends Public_controller
 				'from_id' => $this->input->post('from_id'),
 				'thread_id' => $this->input->post('thread_id'),
 				'attachments' => $data['upload_data']['file_name'],
+				'project' => $this->input->post('project'),
 				'message' => $this->input->post('message')
                 
             );
@@ -108,6 +111,7 @@ class Message extends Public_controller
 				'from_id' => $this->input->post('from_id'),
 				'thread_id' => $this->input->post('thread_id'),
 				//'attachments' => $data['upload_data']['file_name'],
+				'project' => $this->input->post('project'),
 				'message' => $this->input->post('message')
                 
             );

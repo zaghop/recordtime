@@ -9,12 +9,16 @@
         <h1>Projects</h1>
         <?php if($userdatas['type'] == 1){ ?>
           <a  class="btn" href="<?= site_url(); ?>project/artist_create">
-        <?php }else{ ?>
-          <a  class="btn" href="<?= site_url(); ?>project/producer_create">
-        <?php } ?>     
-              New Project
+            New Project
             <span class="fas fa-arrow-right fa-w-14"></span>
           </a>
+        <?php }else{ ?>
+          <!-- <a  class="btn" href="<?= site_url(); ?>project/producer_create">
+          New Project
+            <span class="fas fa-arrow-right fa-w-14"></span>
+          </a> -->
+        <?php } ?>     
+              
       </div>
     </div>
   </div>
@@ -202,7 +206,6 @@
                 
           <?php endif; ?>
                 
-
               <div class="ProjectItem__Details row">
                 <div class="col-sm-3">
                   <?php if (!empty($project['profile_pic']) && isset($project['profile_pic'])) { ?>
@@ -246,7 +249,20 @@
                 </div>
                 <div class="col-sm-3 pdf-change">
                   <button data-toggle="modal" data-target="#paymentModal">Add Credits</button>
-                  <button>Change</button>
+                  
+                  <?php
+                  if($project['status'] != 1){ 
+                     if($userdatas['type'] == 1){ ?>
+                      <a href="<?php echo site_url(); ?>project/artist_project_edit?project_id=<?php echo $project['project_id']; ?>">
+                    <?php }else{ ?>
+                      <a href="<?php echo site_url(); ?>project/producer_project_edit?project_id=<?php echo $project['project_id']; ?>">
+                    <?php } ?>
+                        <button>Change</button>
+                      </a>
+                  <?php } ?>
+
+
+                  
                    <?php if($project['status'] != 1){ ?>
                     <button data-toggle="modal" data-target="#markedModal">End Project</button>
 				          <?php } ?>
@@ -255,26 +271,29 @@
             </div>
       <?php }} ?>
 
-      <div class="ProjectItem create" style="max-width: 100%;">
-        <div class="ProjectItem--overlay">
-          <div class="details">
-		        <?php if($userdatas['type'] == 1){ ?>
-              <a href="<?= site_url(); ?>project/artist_create"><img src="<?= site_url() . template_assets_path(); ?>/images/plus.jpg"></a>
-            <?php }else{ ?>
-              <a href="<?= site_url(); ?>project/producer_create"><img src="<?= site_url() . template_assets_path(); ?>/images/plus.jpg"></a>
-            <?php } ?>
-            <h3><?php echo "New Project"; ?></h3>
+      <?php if($userdatas['type'] == 1){ ?>
+        <div class="ProjectItem create" style="max-width: 100%;">
+          <div class="ProjectItem--overlay">
+            <div class="details">
+  		        <?php if($userdatas['type'] == 1){ ?>
+                <a href="<?= site_url(); ?>project/artist_create"><img src="<?= site_url() . template_assets_path(); ?>/images/plus.jpg"></a>
+              <?php }else{ ?>
+                <a href="<?= site_url(); ?>project/producer_create"><img src="<?= site_url() . template_assets_path(); ?>/images/plus.jpg"></a>
+              <?php } ?>
+              <h3><?php echo "New Project"; ?></h3>
 
-            <?php if($userdatas['type'] == 1){ ?>
-                <a  class="start" href="<?= site_url(); ?>project/artist_create">Start</a>
-            <?php }else{ ?>
-                <a  class="start" href="<?= site_url(); ?>project/producer_create">Start</a>
-            <?php } ?>
-              <!-- <a class="start" href="<?php// echo site_url(); ?>project/create">Start</a> -->
-            <h5><?php echo "Payment Pending"; ?></h5>
+              <?php if($userdatas['type'] == 1){ ?>
+                  <a  class="start" href="<?= site_url(); ?>project/artist_create">Start</a>
+              <?php }else{ ?>
+                  <a  class="start" href="<?= site_url(); ?>project/producer_create">Start</a>
+              <?php } ?>
+                <!-- <a class="start" href="<?php// echo site_url(); ?>project/create">Start</a> -->
+              <h5 style="display: none;"><?php echo "Payment Pending"; ?></h5>
+            </div>
           </div>
         </div>
-      </div>
+      <?php } ?>
+
     </div>
   <div>
   
@@ -375,7 +394,8 @@
         $('.InputContainer input, input').val('');
         var elements = stripe.elements();
       },
-      error: function(){
+      error: function(e){
+        console.log(e);
         var errorElement = document.getElementById('card-errors');
         $('#confirmModal').modal('hide');
         $('#paymentModal').modal('show');

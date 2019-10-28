@@ -393,7 +393,7 @@
                 <div class="project-details-container">
                     <div class="new-project-section-title upload-file-height-auto box-shadow white-bg same-height">
                         <h1 style="color: #000;">You're all set!</h1>
-                        <p>Search for products that can make our project amazing.</p>
+                        <p>Search for producers that can make your project amazing.</p>
                     </div>
                     <div class="arrow-section number-arrow-section two-arrow">
                         <div class="arrow right-arrow">

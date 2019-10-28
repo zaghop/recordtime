@@ -24,7 +24,7 @@ class User extends Public_controller
 
 	public function whyArtists()
     {
-        $data['title'] = _l('artists_overview');
+        $data['title'] = _l('Artists Overview');
 
         $this->data    = $data;
         $this->view    = 'artists/overview';
@@ -34,7 +34,7 @@ class User extends Public_controller
 	public function howItWorksArtists()
     {
 
-        $data['title'] = _l('artists_how_it_works');
+        $data['title'] = _l('How Artist Works');
         $data['class'] = 'how-it-works-page';
 
         $this->data    = $data;
@@ -52,7 +52,7 @@ class User extends Public_controller
             $instruments = implode(",",array_values($_POST['instruments']));
             $expensename = implode(",",array_values($_POST['expensename']));
             $expensevalue = implode(",",array_values($_POST['expensevalue']));
-            $uid = 17;
+            //$uid = 17;
 
             $data = array(
                 'user_id' => $this->input->post('user_id') ,
@@ -76,7 +76,7 @@ class User extends Public_controller
             }
         }
 
-        $data['title'] = _l('production_rates');
+        $data['title'] = _l('Production Rates');
         $data['class'] = 'production_rates';
 
         $this->data    = $data;
@@ -105,7 +105,7 @@ class User extends Public_controller
 		$data['user_id'] = $this->session->userdata['userid'];
 		$data['user_details'] = $this->user->getArtistdetails($data);
 		
-        $data['title'] = _l('edit_artist');
+        $data['title'] = _l('Edit Artist');
         $data['class'] = 'edit-artist-page';
 
         $this->data    = $data;
@@ -128,8 +128,78 @@ class User extends Public_controller
 				$data['error_msg'] = 'Some problems occured, please try again.';
 			}
        }
-		
-		
+
+    }
+
+    public function userProfile()
+    {
+        $data['user_id'] = $_GET['userid'];
+        $data['user_details'] = $this->user->getArtistdetails($data);
+        $data['production_rates'] = $this->user->getSummary($data);
+        
+        $data['title'] = _l('User Profile');
+        $data['class'] = 'user_profile';
+
+        $this->data    = $data;
+        $this->view    = 'userprofile';
+        $this->layout();
+        
+    }
+
+    public function editArtistSound()
+    {
+        $data['user_id'] = $this->session->userdata['userid'];
+        $data['user_details'] = $this->user->getArtistdetails($data);
+
+        if($this->input->post('submitreview')){
+        
+            $uid = $this->input->post('user_id');
+
+            $updatesound = $this->user->updatesound($uid);
+            if($updatesound){
+                redirect('/artists/profile');
+
+            }else{
+                $data['error_msg'] = 'Some problems occured, please try again.';
+            }
+       }
+
+        
+        $data['title'] = _l('Edit Reviews');
+        $data['class'] = 'edit-review-page';
+
+        $this->data    = $data;
+        $this->view    = 'artists/editsound';
+        $this->layout();
+        
+    }
+
+    public function editProducerSound()
+    {
+        $data['user_id'] = $this->session->userdata['userid'];
+        $data['user_details'] = $this->user->getProducerdetails($data);
+
+        if($this->input->post('submitreview')){
+        
+            $uid = $this->input->post('user_id');
+
+            $updatesound = $this->user->updatesound($uid);
+            if($updatesound){
+                redirect('/producers/profile');
+
+            }else{
+                $data['error_msg'] = 'Some problems occured, please try again.';
+            }
+       }
+
+        
+        $data['title'] = _l('Edit Reviews');
+        $data['class'] = 'edit-review-page';
+
+        $this->data    = $data;
+        $this->view    = 'producers/editsound';
+        $this->layout();
+        
     }
 
 	public function whyProducers()
@@ -1329,7 +1399,7 @@ class User extends Public_controller
         if(isset($this->session->userdata['userid'])!= ''){
             redirect('artists/profile');
         }
-        $data['title'] = _l('artists_login');
+        $data['title'] = _l('Artists Login');
 
         $this->data    = $data;
         $this->view    = 'artists/login';
@@ -1509,7 +1579,13 @@ class User extends Public_controller
             $insert = $this->user->artists_signup($userdata);
             if($insert){
                 $this->session->set_flashdata('success',"Your profile has been successfully registered.");
-                redirect("artists/login");
+
+                if($this->input->post('type') == '1'){
+                    redirect("artists/login");
+                }else{
+                    redirect("producers/login");
+                }
+                
             }
             else{
                 $this->session->set_flashdata('error',"there is some error. please try again.");
@@ -1573,7 +1649,7 @@ class User extends Public_controller
 
         $data['production_rates'] = $this->user->getSummary($data);
 		
-        $data['title'] = _l('artists_profile');
+        $data['title'] = _l('Artist Profile');
 
         $this->data    = $data;
         $this->view    = 'artists/profile';
@@ -1586,7 +1662,7 @@ class User extends Public_controller
         if(isset($this->session->userdata['userid'])!= ''){
             redirect('producer/profile');
         }
-        $data['title'] = _l('producer_login');
+        $data['title'] = _l('Producer Login');
 
         $this->data    = $data;
         $this->view    = 'artists/login';
@@ -1628,7 +1704,7 @@ class User extends Public_controller
 
         $data['production_rates'] = $this->user->getSummary($data);
 
-        $data['title'] = _l('producer_profile');
+        $data['title'] = _l('Producers Profile');
 
         $this->data    = $data;
         $this->view    = 'producers/profile';
@@ -1642,15 +1718,20 @@ class User extends Public_controller
         $data['user_id'] = $this->session->userdata['userid'];
         $data['user_details'] = $this->user->getProducerdetails($data);
         
-        $data['title'] = _l('edit_producer');
+        $data['title'] = _l('Edit Producer');
         $data['class'] = 'edit-artist-page';
 
-        $this->data    = $data;
-        $this->view    = 'producers/editprofile';
-        $this->layout();
-        
-        if($this->input->post('submit')){
-       // echo "<pre>"; print_r($_POST); exit;
+        $this->form_validation->set_rules('fname', 'First Name', 'trim|required');
+        $this->form_validation->set_rules('lname', 'Last Name', 'trim|required');
+        $this->form_validation->set_rules('state', 'State', 'trim|required');
+        $this->form_validation->set_rules('city', 'City', 'trim|required');
+        $this->form_validation->set_rules('genre', 'Genre', 'trim|required');
+        $this->form_validation->set_rules('philosphy', 'Philosphy', 'trim|required');
+        $this->form_validation->set_rules('credits', 'Credits', 'trim|required');
+        $this->form_validation->set_rules('skills', 'Skills', 'trim|required');
+
+
+        if($this->form_validation->run()==true) {
             $uid = $this->input->post('user_id');
 
             $config['upload_path']="./assets/themes/recordtime/users/";
@@ -1660,13 +1741,15 @@ class User extends Public_controller
             $updateArtistprofile = $this->user->updateproducerprofile($uid);
             if($updateArtistprofile){
                 redirect('/producers/profile');
-
             }else{
                 $data['error_msg'] = 'Some problems occured, please try again.';
             }
-       }
-        
-        
+        } else {
+            $this->data    = $data;
+            $this->view    = 'producers/editprofile';
+            $this->layout();
+        }
+
     }
 
     public function editProducerProductionRates()
@@ -1703,7 +1786,7 @@ class User extends Public_controller
             }
         }
 
-        $data['title'] = _l('production_rates');
+        $data['title'] = _l('Production Rates');
         $data['class'] = 'production_rates';
 
         $this->data    = $data;
@@ -1740,14 +1823,18 @@ class User extends Public_controller
             $insert = $this->user->artists_signup($userdata);
             if($insert){
                 $this->session->set_flashdata('success',"Your profile has been successfully registered.");
-                redirect("producers/login");
+                if($this->input->post('type') == '1'){
+                    redirect("artists/login");
+                }else{
+                    redirect("producers/login");
+                }
             }
             else{
                 $this->session->set_flashdata('error',"there is some error. please try again.");
                 redirect("producers/signup");
             }
         }
-        $data['title'] = _l('producer_signup');
+        $data['title'] = _l('Producer Signup');
 
         $this->data    = $data;
         $this->view    = 'producers/signup';

@@ -6,8 +6,7 @@
     <div class="text-left mt-50 col-sm-12">Simple.<br /> Transparent.<br> A little <span>rebellious.</span>.</div>
     </div>
 </div>
-<!-- <div class="container"> -->
-  <div class="">
+<div class="container">
 
   <div class="row white-bg">
   	<div class="title-work-with col-md-8">
@@ -49,7 +48,7 @@
                 </div>
 
                 <div class="col-sm-12 form-button-container">
-                    <span>Already have an account? Login <a href="<?php echo site_url(); ?>login"> Here!</a></span>
+                    <span>Already have an account? Login <a href="<?php echo site_url(); ?>/login"> Here!</a></span>
                 </div>
             </form>
             </div>

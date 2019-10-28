@@ -9,6 +9,7 @@ Class Search_model Extends CI_Model
 
     function search($search)
     {
+        exit;
         $this->db->like('philosophy', $search);
         $this->db->or_like('skills', $search);
         $this->db->or_like('genres', $search);
@@ -23,4 +24,25 @@ Class Search_model Extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+
+    public function searchProfile($data = array()) {
+       
+       $search = $data['search'];
+       $userid = $data['current_user_id'];
+
+        $this->db->select("*");
+        $this->db->from("tbl_user");
+        $this->db->where_not_in('id', $userid);
+        if($data != '')
+        {
+            $this->db->like('firstname', $search);
+            $this->db->or_like('lastname', $search);
+            $this->db->or_like('genre', $search);
+        }
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
 }

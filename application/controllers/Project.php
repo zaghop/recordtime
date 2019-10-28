@@ -52,32 +52,32 @@ class Project extends Public_controller
 
 
         if ($this->input->server('REQUEST_METHOD') == 'POST'){
-          $stripeUrl = 'https://api.stripe.com';
-          $stripeKey = 'pk_test_yt3JpiGWmUvIWuAjlDL4c1Tb00lQvTOM5c';
-          $stripeSecret = 'sk_test_AjwJEVoEy3GdPMktt9cORFlR00c36Jt9Xc';
-          
-          \Stripe\Stripe::setApiKey($stripeSecret);
-          
-          print_r($_POST);
-          $token = $_POST['token'];
-          $amount = $_POST['amount'];
-          try{
+          if(!empty($_POST['token'])){
+            $stripeUrl = 'https://api.stripe.com';
+            $stripeKey = 'pk_test_yt3JpiGWmUvIWuAjlDL4c1Tb00lQvTOM5c';
+            $stripeSecret = 'sk_test_AjwJEVoEy3GdPMktt9cORFlR00c36Jt9Xc';
             
-            $charge = \Stripe\Charge::create([
-            "amount" => $amount,
-            "currency" => "usd",
-            "source" => $token, // obtained with Stripe.js
-            "description" => "Charge for RecordTime"
-          ]);
+            \Stripe\Stripe::setApiKey($stripeSecret);
             
-          } catch(\Stripe\Error\Card $e) {
-            // Since it's a decline, \Stripe\Error\Card will be caught
-            http_response_code(401);
-            die();
-          } catch (Exception $e) {
-            // Something else happened, completely unrelated to Stripe
-            http_response_code(401);
-            die();
+            $token = $_POST['token'];
+            $amount = $_POST['amount'];
+            try{
+              
+              $charge = \Stripe\Charge::create([
+              "amount" => $amount,
+              "currency" => "usd",
+              "source" => $token, // obtained with Stripe.js
+              "description" => "Charge for RecordTime"
+            ]);
+              
+            } catch(\Stripe\Error\Card $e) {
+              // Since it's a decline, \Stripe\Error\Card will be caught
+              http_response_code(401);
+              die();
+            } catch (Exception $e) {
+              // Something else happened, completely unrelated to Stripe
+              http_response_code(401);
+              die();
           }
           
           $data = [];
@@ -90,13 +90,12 @@ class Project extends Public_controller
           
           http_response_code(200);
           die();
+          }
         }
+        
         if (!$this->session->user_logged_in) {
           redirect(site_url('index.php/user/login'));
         }
-
-
-        
 
         $user_id = $this->session->userid;
 
@@ -214,6 +213,53 @@ class Project extends Public_controller
        
       }
 
+      public function my_projects() {
+
+        if (!$this->session->user_logged_in) {
+          redirect(site_url('/index.php/user/login'));
+        }
+
+        //$user_id = $this->session->userdata['userid']; 
+        $project_id = $_GET['project_id'];
+        $user_id = $_GET['user_id'];
+       // $data['projectdetails'] = $this->project->prodetails($project_id);
+
+        $data['projects'] = $this->project->myprojects($user_id,$project_id);
+
+        $data['userdatas'] = $this->project->userdata($user_id);
+
+
+        if($this->input->post('acceptproject')){
+           
+
+            $data = array(
+                'project_id' => $this->input->post('project_id') ,
+                'producer_id' => $this->input->post('user_id') ,
+                'updated_at' => date('Y-m-d H:i:s')                 
+            );
+
+            $getProducer = $this->project->updateProducer($data);
+
+            if($getProducer){
+                redirect('project/dashboard');
+
+            }else{
+                $data['error_msg'] = 'Some problems occured, please try again.';
+            }
+        }
+
+
+
+
+          $data['title'] = _l('View projects');
+          $this->data    = $data;
+          $this->view    = 'projects/my_projects';
+          $this->layout();
+       
+      }
+
+
+
       public function producer_project_view() {
 
         if (!$this->session->user_logged_in) {
@@ -228,6 +274,69 @@ class Project extends Public_controller
           $data['title'] = _l('View project details');
           $this->data    = $data;
           $this->view    = 'projects/producer_project_view';
+          $this->layout();
+       
+      }
+
+      public function artist_project_edit() {
+
+        if (!$this->session->user_logged_in) {
+          redirect(site_url('/index.php/user/login'));
+        }
+
+        $this->form_validation->set_rules('project_name', 'Project Name', 'required');
+        $this->form_validation->set_rules('budget', 'Budget', 'required');
+
+        if ($this->form_validation->run() != FALSE)
+        {
+          
+          //echo "<pre>"; print_r($_POST); exit;
+          $formData = $this->input->post();
+          $update = $this->project->update_artist_projects($formData);
+          redirect('project/dashboard');
+        }
+
+
+
+        $user_id = $this->session->userdata['userid']; 
+        $project_id = $_GET['project_id'];
+        $data['projectdetails'] = $this->project->prodetails($project_id);
+
+
+          $data['title'] = _l('Edit project details');
+          $this->data    = $data;
+          $this->view    = 'projects/artist_project_edit';
+          $this->layout();
+       
+      }
+
+      public function producer_project_edit() {
+
+        if (!$this->session->user_logged_in) {
+          redirect(site_url('/index.php/user/login'));
+        }
+
+        $this->form_validation->set_rules('name', 'Project Name', 'required');
+        //$this->form_validation->set_rules('budget', 'Budget', 'required');
+
+        if ($this->form_validation->run() == true)
+        {
+          
+          $formData = $this->input->post();
+          $insert = $this->project->update_producer_projects($formData);
+          redirect('project/dashboard');
+        }
+
+
+
+        $user_id = $this->session->userdata['userid']; 
+        $project_id = $_GET['project_id'];
+        $data['projectdetails'] = $this->project->prodetails($project_id);
+
+
+          $data['title'] = _l('Edit project details');
+          $this->data    = $data;
+          $this->view    = 'projects/producer_project_edit';
           $this->layout();
        
       }

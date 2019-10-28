@@ -60,4 +60,64 @@ class Search extends Public_controller
       echo json_encode($results);
 
   }
+
+  public function search_profile(){
+    
+    $output = "";
+    $searchData = array(
+      'current_user_id' => $this->input->post('current_user_id'),
+      'search' => $this->input->post('search')       
+    );
+  
+    $showsearch = $this->search_model->searchProfile($searchData);
+    if($showsearch > 0){
+
+        foreach($showsearch as $row){
+
+          $output .= '
+            <div class="producer-contact-details-container box-shadow">
+              <div class="container">
+                <div class="row desktop-section">
+                  <div class="col-sm-1"></div>
+                  <div class="col-sm-4 producer-profile-img-container">
+                    <div class="producer-profile-img">
+                      <img src="'.site_url().template_assets_path().'/images/profucer-profile-image.png">
+                    </div>
+                  </div>
+                  <div class="col-sm-7 producer-profile-contact-details-container">
+                    <div class="producer-name">
+                      <a href="'.site_url().'userprofile?userid='.$row->id.'">
+                        <h1>'.$row->firstname.' '.$row->lastname.'</h1>
+                      </a>
+                    </div>
+                    <div class="producer-type">
+                      <p>'.$row->genre.'</p>
+                    </div>
+                    <div class="producer-city">
+                      <p>'.$row->city.', '.$row->state.'</p>
+                    </div>
+
+                    <div class="producer-email-container">
+                      <a href="'.site_url().'message?recipient_id='.$row->id.'" class="email-icon">
+                        <img src="'.site_url().template_assets_path().'/images/big-mail-icon.png">
+                      </a>
+                    </div>
+
+                  </div>
+                  </div>  
+                </div>
+              </div>
+            </div>
+          ';
+      }
+                
+    }else{
+      $output .= 'No Data Found';
+    } 
+    echo $output;
+
+  }
+
+  
+
 }

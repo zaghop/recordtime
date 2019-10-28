@@ -1,43 +1,34 @@
-<div class="middle-container Search container">
-  <div class="banner-image">
-     <div class="banner-content">
-        <img src="<?= site_url().template_assets_path(); ?>/images/Big Logo-White.png">
-     </div>
-  </div>
-  <div
-    class="page-title box-shadow ProjectsDashboard__Title">
-     <div class="container-fluid">
-        <h1>Search</h1>
-     </div>
-  </div>
-  <div class="form-container">
+<?php $current_user_id = $this->session->userdata['userid']; ?>
+	<div class="middle-container Search container">
+	  	<div class="banner-image">
+	     	<div class="banner-content"><img src="<?= site_url().template_assets_path(); ?>/images/Big Logo-White.png"></div>
+	  	</div>
+		<div class="page-title box-shadow ProjectsDashboard__Title">
+	     	<div class="container-fluid"><h1>Search</h1></div>
+	  	</div>
 
-    <form id="searchForm" action="#">
-      <input type="text" name="search" id="search"
-             placeholder="Search for producers, genres, and more" />
-       <button type="submit">→</button>
-    </form>
+	  	<div class="producer-contact-details-container box-shadow">
+	  		<div class="form-container">
+				<form id="searchForm" action="#">
+					<input type="hidden" name="current_user_id" value="<?php echo $current_user_id; ?>">
+					<input type="text" name="search" id="search" placeholder="Search for producers, genres, and more" />
+					<button type="submit">→</button>
+				</form>
+	    		<div id="user-city" style="display:none"><?php echo $user[0]['city']; ?></div>
+	  		</div>
+		  	<div class="result count">Results</div>
 
-    <div id="user-city" style="display:none">
-   <?php
-    echo $user[0]['city']
-    ?>
-  </div>
+	  		<div class="filter-buttons">
+	    		Sort by:
+			    <button id="price-ascending">Price (low to high)</button>
+			    <button id="price-descending"> Price (high to low)</button>
+			    <button id="location-toggle">Local</button>
+			</div>
+	  		<!-- <div id="ResultRows"class="Results container"></div> -->
+	  	</div>
+	</div>
 
-
-  </div>
-  <div class="result count">
-    Results
-  </div>
-  <div class="filter-buttons">
-    Sort by:
-    <button id="price-ascending">Price (low to high)</button>
-    <button id="price-descending"> Price (high to low)</button>
-    <button id="location-toggle">Local</button>
-  </div>
-  <div id="ResultRows"class="Results container"></div>
-
-</div>
+	<div id="ResultRows"class="Results container"></div>
 
 <!-- SEARCH RESULT TEMPLATE -->
 <script id="resultRow" type="text/x-handlebars-template">
@@ -117,23 +108,54 @@ $(document).ready(function(){
 
   }
 
-  $('#searchForm').submit(function(e) {
+  // $('#searchForm').submit(function(e) {
 
-    e.preventDefault();
-    e.stopPropagation();
-    // TODO: Get this more elegantly.
-    var search = document.forms[0][0].value;
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   // TODO: Get this more elegantly.
+  //   var search = document.forms[0][0].value;
 
-    var URL = 'search/producers?search=' + encodeURIComponent(search);
+  //   var URL = 'search/producers?search=' + encodeURIComponent(search);
 
-    $.get(URL, function(data) {
-      console.dir(data);
+  //   $.get(URL, function(data) {
+  //     console.dir(data);
 
-      globalData = data;
+  //     globalData = data;
 
-      renderResults(data, {});
-    });
-  });
+  //     renderResults(data, {});
+  //   });
+  // });
+
+
+
+  	
+
+	$( "#searchForm" ).submit( function ( e ) {
+		e.preventDefault();
+		
+		var formData = new FormData( $( "#searchForm" )[ 0 ] );
+		
+		$.ajax( {
+			type: "POST",
+			url: '<?php echo base_url() ?>search/search_profile',
+			data: formData,
+			processData: false,
+			contentType: false,
+			cache: false,
+			beforeSend: function () {
+				$( '#submit' ).html( 'Sending......' );
+			},
+			success: function ( data ) {
+				//location.reload();
+				$( '#ResultRows' ).html(data);
+			},
+			error: function () {
+				alert( 'fail' );
+			}
+		} );
+	} );
+	
+
 
   $('#price-descending').click(function() {
     renderResults(globalData, {price: 'descending'});
